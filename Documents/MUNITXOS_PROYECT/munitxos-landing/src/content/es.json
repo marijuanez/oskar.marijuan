@@ -1,0 +1,324 @@
+{
+  "brand": {
+    "name": "MUNCHOS",
+    "tagline": "Pinchos aus MUNCHEN",
+    "location": "Múnich, Alemania",
+    "subtagline": "Catering Boutique & Delicatessen Vasca"
+  },
+  "nav": {
+    "beneficios": "Beneficios",
+    "comoFunciona": "Cómo Funciona",
+    "menus": "Menús",
+    "personalizacion": "Personalizar Evento",
+    "filosofia": "Come Sano",
+    "garantia": "Garantía",
+    "gourmet": "Tienda Gourmet",
+    "testimonios": "Opiniones",
+    "reservar": "Reservar Catering",
+    "cartBadge": "Carrito"
+  },
+  "hero": {
+    "badge": "Catering Boutique en Múnich (10 - 50 invitados)",
+    "headline": "Pinchos aus MUNCHEN.\nLa fiesta vasca que Múnich no sabía que necesitaba.",
+    "subheadline": "Catering boutique para celebraciones íntimas.\nSushi premium, pinchos vascos y sabor sin renuncias, directo a tu evento.",
+    "ctaPrimary": "Reservar mi catering",
+    "ctaSecondary": "Ver menús y precios",
+    "stats": [
+      { "value": "100%", "label": "Producto fresco artesanal" },
+      { "value": "10-50", "label": "Invitados por experiencia" },
+      { "value": "4.9/5", "label": "Valoración de clientes" }
+    ]
+  },
+  "benefits": {
+    "badge": "¿Por qué MUNCHOS?",
+    "title": "Alta gastronomía pensada para disfrutar sin complicaciones.",
+    "subtitle": "Combinamos la tradición del pincho vasco con la técnica del sushi de autor.\nUn servicio integral llave en mano.",
+    "items": [
+      {
+        "icon": "UtensilsCrossed",
+        "title": "Producto de temporada",
+        "desc": "Ingredientes de origen certificado, seleccionados diariamente con estricto criterio delicatessen."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Servicio impecable",
+        "desc": "Cuidamos la puesta en escena y los detalles para que tú solo tengas que ejercer de anfitrión."
+      },
+      {
+        "icon": "Sliders",
+        "title": "Menús 100% personalizables",
+        "desc": "Adaptamos cada propuesta a las preferencias gastronómicas y requerimientos de tus invitados."
+      },
+      {
+        "icon": "HeartHandshake",
+        "title": "Equilibrio placer y bienestar",
+        "desc": "Técnicas de cocción ligeras y composiciones equilibradas que cuidan de la digestión y el sabor."
+      }
+    ]
+  },
+  "howItWorks": {
+    "badge": "El Proceso MUNCHOS",
+    "title": "De la idea a tu mesa en 4 sencillos pasos.",
+    "subtitle": "Un flujo diseñado para garantizar máxima comodidad.\nCero estrés durante el día de tu celebración.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Elige tu fecha y concepto",
+        "desc": "Cuéntanos el motivo de tu evento, el número de comensales (10 a 50) y la fecha prevista en Múnich."
+      },
+      {
+        "number": "02",
+        "title": "Diseño del menú a medida",
+        "desc": "Selecciona la combinación perfecta entre sushi premium, pinchos vascos, plancha o cocina tradicional."
+      },
+      {
+        "number": "03",
+        "title": "Preparación y logística",
+        "desc": "Cocinamos en el día y transportamos todo en vehículos refrigerados con vajilla boutique."
+      },
+      {
+        "number": "04",
+        "title": "Servicio y disfrute total",
+        "desc": "Presentación impecable lista para servir o con chef presencial. Tú disfrutas, nosotros hacemos la magia."
+      }
+    ]
+  },
+  "menus": {
+    "badge": "Nuestra Propuesta Gastronómica",
+    "title": "Menús elaborados para sorprender los sentidos.",
+    "subtitle": "Explora nuestras 5 especialidades gastronómicas.\nDiseñadas para eventos informales pero extremadamente elegantes.",
+    "categories": [
+      {
+        "id": "sushi",
+        "name": "Sushi Premium",
+        "tagline": "Fusión Nikkei-Vasca",
+        "image": "/images/sushi-dish-asian-restaurant.jpg",
+        "description": "Nigiris atún rojo Balfegó, uramakis de salmón salvaje ahumado con toque de txakoli y sashimis corte maestro.",
+        "highlights": ["Sin azúcares añadidos", "Pescado salvaje sostenible", "Salsas de soya artesanal"],
+        "items": [
+          "Nigiri de Atún Rojo con foie flameado y sal de Añana",
+          "Uramaki de Salmón y Aguacate con mahonesa de kimchi y sésamo negro",
+          "Tartar de Vieira con alga wakame y emulsión de cítricos"
+        ]
+      },
+      {
+        "id": "pintxos",
+        "name": "Pinchos Vascos",
+        "tagline": "Tradición de San Sebastián",
+        "image": "/images/Imagen 16-4-26 a las 11.12.jpg",
+        "description": "Canapés y pinchos elaborados sobre pan artesanal de masa madre con gildas de autor, piquillos rellenos y bacalao.",
+        "highlights": ["Pan de masa madre 48h", "Gildas Donostiarras premium", "Aceite de oliva AOVE"],
+        "items": [
+          "La Gilda MUNCHOS: piparra de Ibarra, anchoa del Cantábrico y aceituna gordal",
+          "Solomillo ibérico sobre reducción de Pedro Ximénez y queso Idiazábal",
+          "Pimiento del Piquillo confitado relleno de marisco"
+        ]
+      },
+      {
+        "id": "plancha",
+        "name": "Plancha & Grill",
+        "tagline": "Al momento y con brasas",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Txuletitas de cordero, brochetas marinadas de langostino con alioli suave y verduras a la parrilla con chimichurri vasco.",
+        "highlights": ["Carnes con maduración", "Cocción baja en grasas", "Verduras ecológicas de temporada"],
+        "items": [
+          "Brocheta de Langostino y Pulpo con salmuria de hierbas frescas",
+          "Tacos de Chuleton de Vaca Vieja con pimientos de Padrón",
+          "Parrillada de Verduras de Huerta con salsa Romesco de avellanas"
+        ]
+      },
+      {
+        "id": "tapas",
+        "name": "Tapas Elaboradas",
+        "tagline": "Bocados de alta cocina",
+        "image": "/images/IMG_0237.jpeg",
+        "description": "Creaciones vanguardistas para comer de pie: croquetas melosas de jamón ibérico, pulpo a la gallega templado y tartar de buey.",
+        "highlights": ["Presentación gourmet", "Raciones ideales para picoteo", "Texturas crujientes y melosas"],
+        "items": [
+          "Croqueta cremosa de Jamón Ibérico de Bellota y bechamel fina",
+          "Pulpo asado sobre parmentier de patata trufada",
+          "Tartar de Buey Vascuence condimentado al momento sobre tuétano asado"
+        ]
+      },
+      {
+        "id": "tradicional",
+        "name": "Platos Tradicionales",
+        "tagline": "Cazuelitas vascas auténticas",
+        "image": "/images/IMG_0238.jpeg",
+        "description": "Bacalao al pil-pil cremoso, marmitako de bonito del Norte en cazuelita individual y carrilleras al vino de Rioja Alavesa.",
+        "highlights": ["Cocción lenta artesanal", "Recetas familiares transmitidas", "Sabores profundos y reconfortantes"],
+        "items": [
+          "Bacalao confitado con emulsion suave de pil-pil de ajo suave",
+          "Marmitako de Bonito en cazuelita con pimiento choricero",
+          "Carrillera de Ternera estofada al vino tinto con cremoso de boniato"
+        ]
+      }
+    ],
+    "cta": "Solicitar presupuesto personalizado"
+  },
+  "bookingWidget": {
+    "badge": "Calculadora & Presupuesto Directo",
+    "title": "Diseña la experiencia para tu evento.",
+    "subtitle": "Indica los detalles de tu reunión para calcular una estimación instantánea.\nRecibirás una propuesta oficial en menos de 24h.",
+    "labels": {
+      "guests": "Número de Invitados (10 a 50):",
+      "date": "Fecha del Evento:",
+      "menuType": "Tipo de Menú Principal:",
+      "extras": "Servicios Extra Opcionales:",
+      "estimatedTotal": "Estimación orientativa total:",
+      "perPerson": "por persona",
+      "submitBtn": "Solicitar Presupuesto Oficial sin Compromiso"
+    },
+    "menuOptions": [
+      { "id": "de-tapas", "name": "Experiencia Pinchos & Tapas", "price": 38 },
+      { "id": "sushi-fusion", "name": "Fusión Nikkei (Sushi + Pinchos)", "price": 46 },
+      { "id": "full-experience", "name": "Experiencia Completa MUNCHOS (Sushi + Plancha + Tradicional)", "price": 58 }
+    ],
+    "extrasList": [
+      { "id": "chef", "name": "Chef & Showcooking en vivo (+180€)", "price": 180 },
+      { "id": "sommelier", "name": "Maridaje Vinos Vascos & Txakoli (+12€ / inv)", "pricePerGuest": 12 },
+      { "id": "desserts", "name": "Mesa Dulce Vasca & Tarta de Queso La Viña (+7€ / inv)", "pricePerGuest": 7 },
+      { "id": "tableware", "name": "Alquiler de Vajilla & Cristalería Premium (+5€ / inv)", "pricePerGuest": 5 }
+    ]
+  },
+  "philosophy": {
+    "badge": "Filosofía 'Come Sano'",
+    "title": "El equilibrio entre el placer hedonista y el bienestar real.",
+    "text": "Comer bien no significa renunciar a nada. En MUNCHOS creemos que el placer y el equilibrio pueden convivir en el mismo plato — por eso seleccionamos producto de calidad, cuidamos las cocciones y pensamos cada menú también desde la nutrición, sin sacrificar ni un gramo de sabor.",
+    "points": [
+      {
+        "title": "Sin aceites refinados",
+        "desc": "Utilizamos exclusivamente Aceite de Oliva Virgen Extra (AOVE) prensado en frío."
+      },
+      {
+        "title": "Bajo contenido en azúcares",
+        "desc": "Respetamos el dulzor natural de las verduras y frutas de temporada."
+      },
+      {
+        "title": "Proteína limpia y ligera",
+        "desc": "Pescados salvajes del Cantábrico y carnes magras preparadas a la temperatura justa."
+      }
+    ],
+    "quoteAuthor": "Oskar Marijuan",
+    "quoteRole": "Chef Fundador MUNCHOS Múnich"
+  },
+  "guarantee": {
+    "badge": "Compromiso MUNCHOS",
+    "title": "Garantía de Calidad y Puntualidad Absoluta.",
+    "subtitle": "Tu tranquilidad es el ingrediente principal de nuestro catering.",
+    "cards": [
+      {
+        "title": "Puntualidad Garantizada",
+        "desc": "Llegamos con 45 minutos de antelación para el montaje. Si el pedido se retrasa más de 15 minutos sin causa mayor, abonamos un 20% del valor total."
+      },
+      {
+        "title": "Frescura e Higiene 100%",
+        "desc": "Mantenimiento estricto de la cadena de frío y transporte térmico certificado. Si cualquier plato no cumple con el estándar esperado, te lo reemplazamos inmediatamente."
+      },
+      {
+        "title": "Gestión de Reclamaciones en 24h",
+        "desc": "Canal directo con la dirección para cualquier eventualidad. Respuesta y solución económica o reposición antes de 24 horas laborables."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Experiencias Reales",
+    "title": "Lo que dicen los anfitriones en Múnich.",
+    "reviews": [
+      {
+        "name": "Elena R.",
+        "event": "Cumpleaños 40º en Bogenhausen (25 personas)",
+        "comment": "MUNCHOS convirtió mi salón en una taberna donostiarra elegante. Los pinchos de bacalao y el nigiri de balfegó volaron en minutos. Mis invitados alemanes quedaron fascinados.",
+        "rating": 5
+      },
+      {
+        "name": "Markus & Sofía",
+        "event": "Cena privada en Schwabing (15 personas)",
+        "comment": "Buscábamos un catering que no fuese pesado ni grasiento. El equilibrio de sus platos y la presentación impoluta nos conquistaron. Repetiremos sin duda.",
+        "rating": 5
+      },
+      {
+        "name": "Carlos M.",
+        "event": "Celebración de empresa en Glockenbach (35 personas)",
+        "comment": "Puntualidad alemana con sabor vasco auténtico. El servicio de chef en vivo valió cada euro. La tarta de queso tipo La Viña es simplemente insuperable.",
+        "rating": 5
+      }
+    ]
+  },
+  "gourmetShop": {
+    "badge": "Delicatessen en Casa",
+    "title": "Productos Gourmet MUNCHOS.",
+    "subtitle": "Lleva la despensa del Cantábrico y nuestros productos exclusivos directamente a tu hogar en Múnich.",
+    "products": [
+      {
+        "id": "txakoli-premium",
+        "name": "Txakoli Getariako Reserva MUNCHOS",
+        "category": "Bodega Vasca",
+        "price": 22.00,
+        "image": "/images/IMG_1240.jpeg",
+        "desc": "Vino blanco vasco fresco, con ligera aguja natural y notas de manzana ácida. Maridaje perfecto con sushi."
+      },
+      {
+        "id": "aove-piparras",
+        "name": "Piparras de Ibarra en Vinagre de Manzana",
+        "category": "Conservas Artesanales",
+        "price": 14.50,
+        "image": "/images/IMG_1241.jpeg",
+        "desc": "Piparras tiernas seleccionadas una a una, finas y sin picor agresivo. Elaboración tradicional."
+      },
+      {
+        "id": "anchoas-cantabrico",
+        "name": "Anchoas del Cantábrico en AOVE (Costera)",
+        "category": "Salazones Premium",
+        "price": 18.90,
+        "image": "/images/IMG_1242.jpeg",
+        "desc": "Filetes limpios a mano, madurados 12 meses en salazón y envasados en virgen extra."
+      },
+      {
+        "id": "queso-idiazabal",
+        "name": "Queso Idiazábal Ahumado Artesano (Cuña 350g)",
+        "category": "Quesos de Autor",
+        "price": 16.00,
+        "image": "/images/IMG_2093.jpeg",
+        "desc": "Elaborado con leche cruda de oveja Latxa y ahumado con madera de haya vasca."
+      }
+    ],
+    "addBtn": "Añadir a mi selección",
+    "interestBtn": "Ver mi lista de compras"
+  },
+  "finalCta": {
+    "title": "¿Preparado para organizar una celebración inolvidable en Múnich?",
+    "subtitle": "Reserva tu fecha con antelación.\nAtendemos un número limitado de eventos por semana para mantener nuestro compromiso de frescura y atención boutique.",
+    "primaryBtn": "Solicitar fecha y presupuesto",
+    "secondaryBtn": "Contactar por WhatsApp"
+  },
+  "stickyCta": {
+    "text": "Catering Boutique Múnich (10-50 personas)",
+    "button": "Reservar mi Catering"
+  },
+  "modal": {
+    "title": "Solicitud de Reserva / Presupuesto",
+    "subtitle": "Completa tus datos y nos pondremos en contacto antes de 24 horas con una propuesta a medida.",
+    "name": "Tu nombre completo:",
+    "email": "Correo electrónico:",
+    "phone": "Teléfono de contacto (WhatsApp):",
+    "location": "Lugar del evento en Múnich / Alrededores:",
+    "notes": "Notas o alergias alimentarias de tus invitados:",
+    "submit": "Enviar Solicitud de Presupuesto",
+    "successTitle": "¡Solicitud Recibida!",
+    "successText": "Gracias por contactar con MUNCHOS. Te responderemos en breve con la propuesta detallada."
+  },
+  "footer": {
+    "about": "MUNCHOS trae la autenticidad de la gastronomía vasca y la delicadeza del sushi de autor al corazón de Múnich, transformando pequeñas celebraciones en experiencias memorables.",
+    "quickLinks": "Enlaces Rápidos",
+    "legal": "Información Legal",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos del Servicio",
+    "impressum": "Impressum (Legal Germany)",
+    "contact": "Contacto & Reservas",
+    "address": "Múnich, Baviera — Alemania",
+    "phone": "+49 89 1234 5678",
+    "email": "hola@munchos.de",
+    "copyright": "© 2026 MUNCHOS. Todos los derechos reservados. Catering Boutique en Múnich."
+  }
+}

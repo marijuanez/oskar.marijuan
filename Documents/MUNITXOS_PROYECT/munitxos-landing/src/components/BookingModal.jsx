@@ -1,0 +1,270 @@
+import React, { useState } from 'react';
+import { useTranslation } from '../context/LanguageContext';
+import { X, Send, CheckCircle } from 'lucide-react';
+import { createReservation } from '../services/reservationService';
+
+export const BookingModal = ({ isOpen, onClose, initialData }) => {
+  const { t } = useTranslation();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    notes: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Save to reservations store
+    createReservation({
+      date: initialData?.eventDate || new Date().toISOString().split('T')[0],
+      guests: initialData?.guests || 20,
+      menuType: initialData?.menuId || 'sushi-fusion',
+      menuName: initialData?.menuName || 'Fusión Nikkei (Sushi + Pinchos)',
+      extras: initialData?.extras || [],
+      estimatedTotal: initialData?.estimatedTotal || 0,
+      pricePerPerson: initialData?.pricePerPerson || 0,
+      status: 'pending',
+      source: 'public',
+      clientName: formData.name,
+      clientEmail: formData.email,
+      clientPhone: formData.phone,
+      location: formData.location,
+      notes: formData.notes
+    });
+
+    setSubmitted(true);
+  };
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
+  };
+
+  return (
+    <div className="modal-overlay" onClick={handleClose}>
+      <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+        
+        <button className="modal-close-btn" onClick={handleClose}><X size={24} /></button>
+
+        {!submitted ? (
+          <div>
+            <h3 className="modal-title">{t('modal.title')}</h3>
+            <p className="modal-subtitle">{t('modal.subtitle')}</p>
+
+            {initialData && (
+              <div className="booking-summary-banner">
+                <span className="summary-pill">{initialData.guests || 25} Invitados</span>
+                {initialData.eventDate && <span className="summary-pill">Fecha: {initialData.eventDate}</span>}
+                <span className="summary-pill">{initialData.menuName || 'Menú Seleccionado'}</span>
+                {initialData.estimatedTotal && (
+                  <span className="summary-pill gold-pill">Est. Total: {initialData.estimatedTotal}€</span>
+                )}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="modal-form">
+              <div className="form-field">
+                <label>{t('modal.name')}</label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="Ej: Maria Fernández"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-field">
+                  <label>{t('modal.email')}</label>
+                  <input 
+                    type="email" 
+                    required 
+                    placeholder="maria@ejemplo.de"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-field">
+                  <label>{t('modal.phone')}</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    placeholder="+49 176 1234567"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="form-field">
+                <label>{t('modal.location')}</label>
+                <input 
+                  type="text" 
+                  placeholder="Ej: Bogenhausen, Múnich"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                />
+              </div>
+
+              <div className="form-field">
+                <label>{t('modal.notes')}</label>
+                <textarea 
+                  rows="3" 
+                  placeholder="Preferencias de tus invitados, opciones vegetarianas o sin gluten..."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                ></textarea>
+              </div>
+
+              <button type="submit" className="btn btn-primary modal-submit">
+                <Send size={18} />
+                <span>{t('modal.submit')}</span>
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className="success-screen">
+            <CheckCircle size={64} className="success-icon" />
+            <h3>{t('modal.successTitle')}</h3>
+            <p>{t('modal.successText')}</p>
+            <button className="btn btn-primary" onClick={handleClose}>Entendido</button>
+          </div>
+        )}
+
+      </div>
+
+      <style>{`
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(10px);
+          z-index: 1005;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.5rem;
+        }
+
+        .modal-container {
+          background: var(--bg-card-dark);
+          border: 1px solid var(--accent-cyan);
+          padding: 2.5rem;
+          width: 100%;
+          max-width: 620px;
+          position: relative;
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        .modal-close-btn {
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+          background: transparent;
+          border: none;
+          color: var(--text-dark-secondary);
+          cursor: pointer;
+        }
+
+        .modal-title {
+          font-size: 2rem;
+          color: #FFF;
+          margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+          font-size: 0.95rem;
+          color: var(--text-dark-secondary);
+          margin-bottom: 1.5rem;
+        }
+
+        .booking-summary-banner {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          background: rgba(13, 13, 12, 0.7);
+          padding: 1rem;
+          margin-bottom: 1.5rem;
+          border: 1px dashed rgba(62, 193, 201, 0.3);
+        }
+
+        .summary-pill {
+          background: rgba(247, 245, 240, 0.08);
+          font-size: 0.82rem;
+          padding: 0.3rem 0.75rem;
+          color: var(--text-dark-primary);
+        }
+
+        .gold-pill {
+          background: rgba(62, 193, 201, 0.15);
+          color: var(--accent-cyan);
+          border: 1px solid var(--accent-cyan);
+          font-weight: 700;
+        }
+
+        .modal-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+
+        .form-field {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .form-field label {
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: var(--text-dark-primary);
+        }
+
+        .form-field input, .form-field textarea {
+          background: rgba(13, 13, 12, 0.8);
+          border: 1px solid rgba(247, 245, 240, 0.15);
+          color: var(--text-dark-primary);
+          padding: 0.8rem 1rem;
+          font-size: 0.95rem;
+        }
+
+        .modal-submit {
+          margin-top: 1rem;
+          width: 100%;
+        }
+
+        .success-screen {
+          text-align: center;
+          padding: 2rem 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .success-icon { color: var(--accent-cyan); }
+
+        @media (max-width: 640px) {
+          .form-row {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};

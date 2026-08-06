@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="520" height="220">
+  <defs>
+    <style>
+      .logo-icon-path { fill: none; stroke: #3EC1C9; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .logo-text-munchos { fill: #FFFFFF; font-family: 'Urkiola', 'Pirata One', 'Cinzel', serif, sans-serif; font-size: 62px; font-weight: 900; letter-spacing: 6px; }
+      .logo-text-sub { fill: #3EC1C9; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 8px; }
+    </style>
+  </defs>
+
+  <!-- Vertical Pintxo Icon (Cyan #3EC1C9) -->
+  <g transform="translate(260, 8)">
+    <!-- Central Stick -->
+    <line x1="0" y1="5" x2="0" y2="92" stroke="#3EC1C9" stroke-width="6" stroke-linecap="round" />
+    
+    <!-- Top Shape: Triangle -->
+    <path d="M 0 10 L -26 34 L 26 34 Z" class="logo-icon-path" />
+
+    <!-- Middle Shape: Diamond -->
+    <path d="M 0 42 L -22 58 L 0 74 L 22 58 Z" class="logo-icon-path" />
+
+    <!-- Bottom Shape: Rounded Oblong -->
+    <rect x="-28" y="78" width="56" height="16" rx="8" class="logo-icon-path" />
+  </g>
+
+  <!-- Typography: MUNCHOS -->
+  <text x="260" y="160" text-anchor="middle" class="logo-text-munchos">MUNCHOS</text>
+
+  <!-- Typography: LOS PINCHOS EN MUNCHEN -->
+  <text x="260" y="194" text-anchor="middle" class="logo-text-sub">LOS PINCHOS EN MUNCHEN</text>
+</svg>
