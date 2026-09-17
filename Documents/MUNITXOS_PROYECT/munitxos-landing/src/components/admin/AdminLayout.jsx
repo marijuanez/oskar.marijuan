@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Calendar, Flame, List, BarChart3, ShoppingBag, Tag, Users, LogOut, ArrowLeft, ShieldCheck, User, ChevronDown, Check } from 'lucide-react';
+import { Calendar, Flame, List, BarChart3, ShoppingBag, Tag, Users, LogOut, ArrowLeft, ShieldCheck, User, ChevronDown, Check, Video } from 'lucide-react';
 import { MonthlyCalendar } from './MonthlyCalendar';
 import { AnnualHeatmap } from './AnnualHeatmap';
 import { ReservationsList } from './ReservationsList';
 import { AnalyticsView } from './AnalyticsView';
 import { ProductsManager } from './ProductsManager';
 import { PromotionsManager } from './PromotionsManager';
+import { HeroSlidesManager } from './HeroSlidesManager';
 import { UserManagement } from './UserManagement';
 import { AddReservationModal } from './AddReservationModal';
 import { getStoredReservations, updateReservationStatus, createReservation, getCapacitySettings } from '../../services/reservationService';
@@ -45,6 +46,7 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
     { id: 'analytics', label: 'Analítica & Métricas', icon: BarChart3, ownerOnly: true },
     { id: 'products', label: 'CMS Tienda Gourmet', icon: ShoppingBag, ownerOnly: true },
     { id: 'promotions', label: 'CMS Banners Promo', icon: Tag, ownerOnly: true },
+    { id: 'heroslides', label: 'CMS Carrusel Hero', icon: Video, ownerOnly: true },
     { id: 'users', label: 'Gestión Usuarios', icon: Users, ownerOnly: true }
   ];
 
@@ -60,7 +62,7 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
           
           <div className="topbar-left">
             <a href="#" onClick={onNavigateToPublic} className="admin-logo-link" title="Volver a la Web Pública">
-              <img src="/images/logo.svg" alt="MUNCHOS Admin" className="admin-logo" />
+              <img src="/images/logo-definitive.png" alt="MUNCHOS Admin" className="admin-logo" />
             </a>
             <span className="admin-badge-title">PANEL CONTROL</span>
           </div>
@@ -183,6 +185,10 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
             <PromotionsManager />
           )}
 
+          {activeTab === 'heroslides' && currentUser?.role === 'owner' && (
+            <HeroSlidesManager />
+          )}
+
           {activeTab === 'users' && currentUser?.role === 'owner' && (
             <UserManagement />
           )}
@@ -221,14 +227,14 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.75rem 1.5rem;
+          padding: 0.8rem 1.8rem;
           width: 100%;
         }
 
         .topbar-left {
           display: flex;
           align-items: center;
-          gap: 1.2rem;
+          gap: 1.25rem;
         }
 
         .admin-logo-link {
@@ -236,8 +242,9 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
           align-items: center;
         }
 
+        /* 30% LARGER LOGO IN ADMIN PANEL */
         .admin-logo {
-          height: 52px;
+          height: 68px; /* Increased +30% */
           width: auto;
           display: block;
           filter: drop-shadow(0 2px 8px rgba(62, 193, 201, 0.4));
@@ -257,24 +264,24 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
         .topbar-right {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
+          gap: 1rem;
         }
 
         .user-profile-tag {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.6rem;
           background: rgba(13, 13, 12, 0.8);
           border: 1px solid rgba(62, 193, 201, 0.3);
-          padding: 0.4rem 0.85rem;
-          font-size: 0.85rem;
+          padding: 0.45rem 0.9rem;
+          font-size: 0.88rem;
           white-space: nowrap;
         }
 
         .user-name { font-weight: 600; color: #FFF; }
 
         .role-pill {
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           font-weight: 700;
           padding: 0.15rem 0.45rem;
           text-transform: uppercase;
@@ -447,7 +454,7 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
           .topbar-row-main { padding: 0.6rem 0.8rem; }
           .user-name { display: none; }
           .nav-public-btn span { display: none; }
-          .admin-logo { height: 44px; }
+          .admin-logo { height: 56px; }
           .admin-content-area { padding: 0.75rem; }
         }
       `}</style>

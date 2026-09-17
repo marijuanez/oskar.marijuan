@@ -1,8 +1,334 @@
 {
   "brand": {
-    "name": "Munitxos",
-    "tagline": "Pintxos aus München",
-    "location": "München, Deutschland"
+    "name": "MUNCHOS",
+    "tagline": "Pinchos in München",
+    "location": "München, Deutschland",
+    "subtagline": "Boutique-Catering & Baskische Delikatessen"
   },
-  "note": "Deutsches Content-Stub für Phase 3 Implementierung"
+  "nav": {
+    "menus": "Menüs & Karte",
+    "experiencia": "Erlebnis",
+    "testimonios": "Bewertungen",
+    "gourmet": "Gourmet Shop",
+    "reservar": "CATERING BUCHEN",
+    "cartBadge": "Warenkorb"
+  },
+  "hero": {
+    "badge": "✦ BOUTIQUE CATERING IN MÜNCHEN · 10 BIS 50 GÄSTE",
+    "headlinePart1": "Baskische Pinchos & ",
+    "headlineHighlight": "mediterrane Küche",
+    "headlinePart2": " für private Feiern",
+    "subheadline": "Premium-Sushi, handgemachte Pinchos und Live-Paella vor Ort. Wir bringen exklusiven Geschmack direkt zu Ihrem privaten Event.",
+    "ctaPrimary": "MEIN CATERING BUCHEN ›",
+    "ctaSecondary": "🍴 MENÜS & PREISE SEHEN",
+    "stats": [
+      { "value": "100%", "label": "Frische handwerkliche Produkte" },
+      { "value": "10–50", "label": "Gäste pro Erlebnis" },
+      { "value": "4.9 / 5", "label": "Kundenbewertung" }
+    ]
+  },
+  "benefits": {
+    "badge": "Warum MUNCHOS?",
+    "title": "Spitzengastronomie für unbeschwerten Genuss.",
+    "subtitle": "Wir kombinieren traditionelle baskische Pinchos mit Vor-Ort-Paella und Meister-Sushi.\nEin schlüsselfertiger Komplettservice.",
+    "items": [
+      {
+        "icon": "UtensilsCrossed",
+        "title": "Saisonale Frische",
+        "desc": "Zertifizierte Zutaten, täglich mit strengen Gourmet-Kriterien ausgewählt."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Tadelloser Service",
+        "desc": "Wir kümmern uns um die Präsentation und Details, damit Sie der perfekte Gastgeber sind."
+      },
+      {
+        "icon": "Sliders",
+        "title": "100% Anpassbare Menüs",
+        "desc": "Jedes Angebot wird individuell an die Wünsche und Vorlieben Ihrer Gäste angepasst."
+      },
+      {
+        "icon": "HeartHandshake",
+        "title": "Balance aus Genuss & Wohlbefinden",
+        "desc": "Leichte Zubereitungsmethoden und ausgewogene Kompositionen für besten Geschmack."
+      }
+    ]
+  },
+  "howItWorks": {
+    "badge": "Der MUNCHOS Ablauf",
+    "title": "Von der Idee zu Ihrem Tisch in 4 einfachen Schritten.",
+    "subtitle": "Ein Ablauf für maximalen Komfort.\nNull Stress am Tag Ihrer Feier.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Datum & Konzept wählen",
+        "desc": "Nennen Sie uns den Anlass, die Gästeanzahl (10 bis 50) und das Wunschdatum in München."
+      },
+      {
+        "number": "02",
+        "title": "Menü individuell gestalten",
+        "desc": "Wählen Sie Ihre Kombination aus Pinchos, Gegrilltem, Pizza vor Ort, Sushi oder Paella."
+      },
+      {
+        "number": "03",
+        "title": "Zubereitung & Logistik",
+        "desc": "Frisch am Eventtag gekocht und in Kühlfahrzeugen mit edlem Geschirr geliefert."
+      },
+      {
+        "number": "04",
+        "title": "Service & Vollkommener Genuss",
+        "desc": "Perfekt servierbereit oder mit Live-Koch. Sie genießen, wir erledigen den Rest."
+      }
+    ]
+  },
+  "menus": {
+    "badge": "Unsere Gastronomische Auslese",
+    "title": "Was möchten Sie genießen? Gestalten Sie Ihren Wunsch!",
+    "subtitle": "Entdecken Sie unsere 5 Spezialitäten.\nPerfekt für entspannte und hochklassige Events.",
+    "categories": [
+      {
+        "id": "pintxos",
+        "name": "Baskische Pinchos",
+        "tagline": "Tradition aus San Sebastián",
+        "image": "/images/Imagen 16-4-26 a las 11.12.jpg",
+        "description": "Edle Canapés auf handwerklichem Sauerteigbrot mit Gourmet-Gildas, gefüllten Piquillo-Paprikas und iberischem Filet.",
+        "highlights": ["48h Sauerteigbrot", "Donostia Premium-Gildas", "Natives Olivenöl Extra"],
+        "items": [
+          "MUNCHOS Gilda: Ibarra-Peperoni, kantabrische Sardelle & Gordal-Olive",
+          "Iberisches Schweinefilet auf Pedro Ximénez Reduktion & Idiazábal-Käse",
+          "Konfierte Piquillo-Paprika mit Meeresfrüchte-Füllung"
+        ]
+      },
+      {
+        "id": "plancha",
+        "name": "Plancha & Grill",
+        "tagline": "Sandwiches, Burger, Würste",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Gegrillte Gourmet-Burger, handwerkliche Sandwiches und baskische/bayerische Würste frisch zubereitet.",
+        "highlights": ["Gereiftes Rindfleisch", "Handwerklicher Brioche-Bun", "Hausgemachte Saucen"],
+        "items": [
+          "Gourmet Mini-Burger vom Dry-Aged Rind mit geräuchertem Idiazábal",
+          "Warmes Plancha-Sandwich mit iberischem Schinken & geschmolzenem Käse",
+          "Würstchen vom Grill mit mildem Alioli und baskischem Chimichurri"
+        ]
+      },
+      {
+        "id": "pizzas",
+        "name": "Hausgemachte Pizzas",
+        "tagline": "In situ (Frisch vor Ort gebacken)",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Handgemachte Pizzas, vor Ort mit 48h fermentiertem Sauerteig und frischen Zutaten direkt gebacken.",
+        "highlights": ["Vor Ort gebacken", "48h Sauerteig", "Mozzarella Fior di Latte"],
+        "items": [
+          "Gourmet Pizza Margherita mit San Marzano Tomaten & frischem Basilikum",
+          "Baskische Pizza mit Chistorra-Wurst, konfierten Piquillos & Räucherkäse",
+          "Iberische Pizza mit Räucherlachs, Rucola & Zitrusemulsion"
+        ]
+      },
+      {
+        "id": "sushi",
+        "name": "Sushi Fusion",
+        "tagline": "Nikkei-Baskische Fusion",
+        "image": "/images/sushi-dish-asian-restaurant.jpg",
+        "description": "Balfegó Blauflossen-Thunfisch Nigiris, Wildlachs-Uramakis mit Txakoli-Note und Meister-Sashimi.",
+        "highlights": ["Ohne zugesetzten Zucker", "Nachhaltiger Wildfisch", "Handwerkliche Sojasaucen"],
+        "items": [
+          "Roter Thunfisch Nigiri mit geflämmter Foie & Añana-Salz",
+          "Lachs-Avocado Uramaki mit Kimchi-Mayonnaise & schwarzem Sesam",
+          "Jakobsmuschel-Tartar mit Wakame-Alge & Zitrusemulsion"
+        ]
+      },
+      {
+        "id": "paellas",
+        "name": "Paellas & Reisgerichte",
+        "tagline": "Live Paellas, Reisgerichte & Risotto",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Mediterrane Paellas live gekocht, cremiges Meeresfrüchte-Reisgericht und Steinpilz-Risotto mit Idiazábal.",
+        "highlights": ["Albufera Bomba-Reis", "Live vor Ort gekocht", "Knuspriges Socarrat"],
+        "items": [
+          "Meeresfrüchte-Paella 'Senyoret' mit Riesengarnele, Tintenfisch & Safran",
+          "Cremiges Hummer-Reisgericht mit intensiver Meeresbrühe",
+          "Steinpilz-Risotto mit geräuchertem Idiazábal-Käse"
+        ]
+      }
+    ],
+    "cta": "Individuelles Angebot anfordern"
+  },
+  "bookingWidget": {
+    "badge": "Rechner & Sofort-Kalkulation",
+    "title": "Planen Sie Ihr Event-Erlebnis.",
+    "subtitle": "Geben Sie Ihre Event-Details ein für eine sofortige Schätzung.\nSie erhalten innerhalb von 24h ein offizielles Angebot.",
+    "labels": {
+      "guests": "Anzahl der Gäste (10 bis 50):",
+      "date": "Event-Datum:",
+      "menuType": "Hauptmenü-Auswahl:",
+      "extras": "Optionale Zusatzleistungen:",
+      "estimatedTotal": "Geschätzte Gesamtsumme:",
+      "perPerson": "pro Person",
+      "submitBtn": "Unverbindliches Angebot Anfordern"
+    },
+    "menuOptions": [
+      { "id": "de-tapas", "name": "Baskische Pinchos & Plancha Erlebnis", "price": 38 },
+      { "id": "pizzas-fusion", "name": "Hausgemachte Pizza vor Ort & Pinchos", "price": 44 },
+      { "id": "paellas-showcooking", "name": "Live Paellas & Reisgerichte Showcooking", "price": 48 },
+      { "id": "full-experience", "name": "MUNCHOS Komplett-Erlebnis (Sushi + Plancha + Paellas + Pinchos)", "price": 58 }
+    ],
+    "extrasList": [
+      { "id": "chef", "name": "Koch & Live Showcooking vor Ort (+180€)", "price": 180 },
+      { "id": "sommelier", "name": "Baskische Weinbegleitung & Txakoli (+12€ / Gast)", "pricePerGuest": 12 },
+      { "id": "desserts", "name": "Baskisches Dessertbuffet & Käsekuchen La Viña (+7€ / Gast)", "pricePerGuest": 7 },
+      { "id": "tableware", "name": "Premium Geschirr- & Gläserverleih (+5€ / Gast)", "pricePerGuest": 5 }
+    ]
+  },
+  "philosophy": {
+    "badge": "Philosophie 'Gesund Genießen'",
+    "title": "Die Balance zwischen Genuss und echtem Wohlbefinden.",
+    "text": "Gutes Essen bedeutet keinesfalls Verzicht. Bei MUNCHOS glauben wir, dass kulinarischer Genuss und Ausgewogenheit auf demselben Teller harmonieren – deshalb wählen wir erstklassige Zutaten, achten auf sanfte Zubereitung und planen jedes Menü auch unter nährstoffreichen Gesichtspunkten.",
+    "points": [
+      {
+        "title": "Keine raffinierten Öle",
+        "desc": "Wir verwenden ausschließlich kaltgepresstes Natives Olivenöl Extra (AOVE)."
+      },
+      {
+        "title": "Zuckerarm",
+        "desc": "Wir schätzen die natürliche Süße von saisonalem Gemüse und Obst."
+      },
+      {
+        "title": "Reines & leichtes Protein",
+        "desc": "Kantabrischer Wildfisch und mageres Fleisch auf den Punkt zubereitet."
+      }
+    ],
+    "quoteAuthor": "Oskar Marijuan",
+    "quoteRole": "Chefkoch & Gründer MUNCHOS München"
+  },
+  "guarantee": {
+    "badge": "MUNCHOS Versprechen",
+    "title": "Garantie für Qualität und absolute Pünktlichkeit.",
+    "subtitle": "Ihre Unbesorgtheit ist die wichtigste Zutat unseres Caterings.",
+    "cards": [
+      {
+        "title": "Garantiierte Pünktlichkeit",
+        "desc": "Wir treffen 45 Minuten vor Eventbeginn zum Aufbau ein. Bei Verspätung von mehr als 15 Minuten erstatten wir 20% des Gesamtwerts."
+      },
+      {
+        "title": "100% Frische & Hygiene",
+        "desc": "Strikte Einhaltung der Kühlkette und zertifizierter Thermotransport. Sollte ein Gericht nicht Ihren Erwartungen entsprechen, ersetzen wir es sofort."
+      },
+      {
+        "title": "Reklamationsbearbeitung in 24h",
+        "desc": "Direkter Draht zur Geschäftsführung. Rückmeldung und Erstattung oder Ersatz innerhalb von 24 Arbeitsstunden."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Echte Erfahrungen",
+    "title": "Was Gastgeber in München sagen.",
+    "reviews": [
+      {
+        "name": "Elena R.",
+        "event": "40. Geburtstag in Bogenhausen (25 Personen)",
+        "comment": "MUNCHOS hat mein Wohnzimmer in eine elegante Donostia-Bar verwandelt. Die Kabeljau-Pinchos und das Balfegó-Nigiri waren im Nu weg. Meine deutschen Gäste waren begeistert.",
+        "rating": 5
+      },
+      {
+        "name": "Markus & Sofía",
+        "event": "Privates Dinner in Schwabing (15 Personen)",
+        "comment": "Wir suchten ein Catering, das weder schwer noch fettig ist. Die Ausgewogenheit der Gerichte und die makellose Präsentation haben uns überzeugt.",
+        "rating": 5
+      },
+      {
+        "name": "Carlos M.",
+        "event": "Firmenevent im Glockenbach (35 Personen)",
+        "comment": "Deutsche Pünktlichkeit mit authentischem baskischen Geschmack. Der Live-Koch-Service war jeden Euro wert. Der Käsekuchen nach La Viña Art ist unübertroffen.",
+        "rating": 5
+      }
+    ]
+  },
+  "gourmetShop": {
+    "badge": "Delikatessen für Zuhause",
+    "title": "MUNCHOS Gourmet Produkte.",
+    "subtitle": "Holen Sie sich den Geschmack Kantabriens und exklusive Produkte direkt nach Hause in München.",
+    "products": [
+      {
+        "id": "txakoli-premium",
+        "name": "Txakoli Getariako Reserva MUNCHOS",
+        "category": "Baskisches Weingut",
+        "price": 22.00,
+        "image": "/images/IMG_1240.jpeg",
+        "desc": "Frischer baskischer Weißwein mit feiner natürlicher Kohlensäure und Apfelnoten. Perfekt zu Sushi."
+      },
+      {
+        "id": "aove-piparras",
+        "name": "Ibarra-Peperoni in Apfelessig",
+        "category": "Handwerkliche Konserven",
+        "price": 14.50,
+        "image": "/images/IMG_1241.jpeg",
+        "desc": "Zarte Ibarra-Peperoni, einzeln ausgewählt, mild und ohne scharfe Schärfe. Traditionelle Herstellung."
+      },
+      {
+        "id": "anchoas-cantabrico",
+        "name": "Kantabrische Sardellen in Extra Olivenöl",
+        "category": "Premium Salzzutaten",
+        "price": 18.90,
+        "image": "/images/IMG_1242.jpeg",
+        "desc": "Handgeputzte Filets, 12 Monate in Salz gereift und in kaltgepresstem Olivenöl eingelegt."
+      },
+      {
+        "id": "queso-idiazabal",
+        "name": "Handwerklicher Räucherkäse Idiazábal (350g)",
+        "category": "Gourmet Käse",
+        "price": 16.00,
+        "image": "/images/IMG_2093.jpeg",
+        "desc": "Aus Rohmilch vom Latxa-Schaf hergestellt und mit baskischem Buchenholz geräuchert."
+      }
+    ],
+    "addBtn": "Zur Auswahl hinzufügen",
+    "interestBtn": "Einkaufsliste ansehen"
+  },
+  "finalCta": {
+    "title": "Bereit für ein unvergessliches Event in München?",
+    "subtitle": "Sichern Sie sich Ihren Wunschtermin frühzeitig.\nWir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und Boutique-Qualität.",
+    "primaryBtn": "Termin & Angebot anfragen",
+    "secondaryBtn": "Kontakt via WhatsApp"
+  },
+  "stickyCta": {
+    "text": "Boutique Catering München (10-50 Personen)",
+    "button": "Catering buchen"
+  },
+  "modal": {
+    "title": "Buchungsanfrage / Angebot",
+    "subtitle": "Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden mit einem maßgeschneiderten Angebot.",
+    "name": "Ihr vollständiger Name:",
+    "email": "E-Mail-Adresse:",
+    "phone": "Telefonnummer (WhatsApp):",
+    "location": "Event-Ort in München / Umgebung:",
+    "notes": "Hinweise oder Allergien Ihrer Gäste:",
+    "submit": "Unverbindliches Angebot Senden",
+    "successTitle": "Anfrage Erhalten!",
+    "successText": "Vielen Dank für Ihre Anfrage bei MUNCHOS. Wir antworten Ihnen in Kürze mit einem detaillierten Angebot."
+  },
+  "footer": {
+    "about": "MUNCHOS bringt authentische baskische Gastronomie und edles Meister-Sushi ins Herz von München und verwandelt Feiern in unvergessliche Erlebnisse.",
+    "quickLinks": "Quick-Links",
+    "legal": "Rechtliches",
+    "privacy": "Datenschutzerklärung",
+    "terms": "AGB",
+    "impressum": "Impressum",
+    "contact": "Kontakt & Reservierung",
+    "address": "München, Bayern — Deutschland",
+    "phone": "+49 89 1234 5678",
+    "email": "hola@munchos.de",
+    "copyright": "© 2026 MUNCHOS. Alle Rechte vorbehalten. Catering Boutique in München."
+  },
+  "promotions": {
+    "badge": "Exklusives MUNCHOS Angebot",
+    "items": [
+      {
+        "id": "promo_01",
+        "headline": "Baskische Paella-Spezialität auf offenem Feuer am Wochenende",
+        "bodyText": "Ergänzen Sie Ihr Catering mit einer spektakulären Meeresfrüchte-Paella, die live in Ihrem Garten oder auf Ihrer Terrasse in München zubereitet wird.",
+        "ctaText": "Paella-Termine Anfragen"
+      }
+    ]
+  }
 }

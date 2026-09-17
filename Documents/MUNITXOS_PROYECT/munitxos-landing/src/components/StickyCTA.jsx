@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../context/LanguageContext';
 import { Calendar } from 'lucide-react';
 
 export const StickyCTA = ({ onOpenBooking }) => {
   const { t } = useTranslation();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > 450);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!visible) return null;
 
   return (
     <div className="sticky-cta-bar">
       <div className="container sticky-container">
         <div className="sticky-info">
-          <span className="sticky-brand">{t('brand.name')}</span>
+          <img src="/images/logo-text-only.svg?v=5" alt="MUNCHOS" className="sticky-logo-img" />
           <span className="sticky-sub">{t('stickyCta.text')}</span>
         </div>
 
@@ -25,12 +36,18 @@ export const StickyCTA = ({ onOpenBooking }) => {
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(13, 13, 12, 0.95);
+          background: rgba(12, 11, 10, 0.95);
           backdrop-filter: blur(12px);
-          border-top: 1px solid var(--accent-cyan);
+          border-top: 1px solid rgba(229, 167, 27, 0.35);
           padding: 0.85rem 0;
           z-index: 999;
-          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.8);
+          animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+          from { transform: translateY(100%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
         }
 
         .sticky-container {
@@ -42,15 +59,14 @@ export const StickyCTA = ({ onOpenBooking }) => {
         .sticky-info {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.25rem;
         }
 
-        .sticky-brand {
-          font-family: var(--font-logo);
-          font-size: 1.4rem;
-          font-weight: 900;
-          color: var(--accent-cyan);
-          letter-spacing: 2px;
+        .sticky-logo-img {
+          height: 26px;
+          width: auto;
+          display: block;
+          filter: none !important;
         }
 
         .sticky-sub {
@@ -59,19 +75,14 @@ export const StickyCTA = ({ onOpenBooking }) => {
         }
 
         .sticky-btn {
-          padding: 0.75rem 1.8rem;
-          font-size: 0.95rem;
+          font-size: 0.88rem;
+          padding: 0.65rem 1.4rem;
         }
 
-        @media (max-width: 640px) {
-          .sticky-sub { display: none; }
-          .sticky-btn {
-            width: 100%;
+        @media (max-width: 768px) {
+          .sticky-sub {
+            display: none;
           }
-          .sticky-container {
-            justify-content: center;
-          }
-          .sticky-brand { display: none; }
         }
       `}</style>
     </div>

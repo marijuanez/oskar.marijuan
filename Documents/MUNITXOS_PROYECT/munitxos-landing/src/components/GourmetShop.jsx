@@ -13,7 +13,7 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
         <div className="section-header">
           <div className="badge">{t('gourmetShop.badge')}</div>
           <h2>{t('gourmetShop.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#D4AF37" width={140} height={32} />
           <p>{t('gourmetShop.subtitle')}</p>
         </div>
 
@@ -30,7 +30,9 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
                 <p>{prod.desc}</p>
 
                 <div className="gourmet-footer">
-                  <span className="gourmet-price">{prod.price.toFixed(2)}€</span>
+                  <div className="gourmet-price-row">
+                    <span className="gourmet-price">{prod.price.toFixed(2)}€</span>
+                  </div>
                   <button 
                     className="btn btn-primary gourmet-add-btn"
                     onClick={() => onAddToCart(prod)}
@@ -125,10 +127,17 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
 
         .gourmet-footer {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
+          flex-direction: column;
+          gap: 0.85rem;
           border-top: 1px solid rgba(247, 245, 240, 0.08);
           padding-top: 1rem;
+          width: 100%;
+        }
+
+        .gourmet-price-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
         }
 
         .gourmet-price {
@@ -136,11 +145,15 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
           font-size: 1.6rem;
           font-weight: 700;
           color: var(--accent-cyan);
+          white-space: nowrap;
         }
 
         .gourmet-add-btn {
-          padding: 0.6rem 1.2rem;
-          font-size: 0.88rem;
+          width: 100%;
+          padding: 0.8rem 1rem;
+          font-size: 0.85rem;
+          justify-content: center;
+          white-space: nowrap !important;
         }
 
         .gourmet-bottom-cta {

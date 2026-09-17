@@ -1,8 +1,334 @@
 {
   "brand": {
-    "name": "Munitxos",
-    "tagline": "Pintxos aus München",
-    "location": "Munich, Germany"
+    "name": "MUNCHOS",
+    "tagline": "Pinchos in München",
+    "location": "Munich, Germany",
+    "subtagline": "Boutique Catering & Basque Delicatessen"
   },
-  "note": "English content stub for Phase 2 implementation"
+  "nav": {
+    "menus": "Menus & Card",
+    "experiencia": "Experience",
+    "testimonios": "Reviews",
+    "gourmet": "Gourmet Shop",
+    "reservar": "BOOK CATERING",
+    "cartBadge": "Cart"
+  },
+  "hero": {
+    "badge": "✦ BOUTIQUE CATERING IN MUNICH · 10 TO 50 GUESTS",
+    "headlinePart1": "Basque Pinchos & ",
+    "headlineHighlight": "Mediterranean Cuisine",
+    "headlinePart2": " for Intimate Celebrations",
+    "subheadline": "Premium sushi, artisanal pinchos, and live-cooked paellas. We bring northern flavor and exclusivity directly to your private event.",
+    "ctaPrimary": "BOOK MY CATERING ›",
+    "ctaSecondary": "🍴 VIEW MENUS & PRICES",
+    "stats": [
+      { "value": "100%", "label": "Fresh & artisanal product" },
+      { "value": "10–50", "label": "Guests per experience" },
+      { "value": "4.9 / 5", "label": "Client Rating" }
+    ]
+  },
+  "benefits": {
+    "badge": "Why MUNCHOS?",
+    "title": "Haute cuisine designed for effortless enjoyment.",
+    "subtitle": "We blend Basque pincho tradition with live paella cooking and signature sushi.\nA turnkey, full-service catering experience.",
+    "items": [
+      {
+        "icon": "UtensilsCrossed",
+        "title": "Seasonal ingredients",
+        "desc": "Certified origin products, daily selected under strict gourmet standards."
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Flawless service",
+        "desc": "We handle setup and fine details so you can focus entirely on hosting."
+      },
+      {
+        "icon": "Sliders",
+        "title": "100% Customizable menus",
+        "desc": "Tailored to your guests' culinary desires and dietary requirements."
+      },
+      {
+        "icon": "HeartHandshake",
+        "title": "Flavor & Wellbeing balance",
+        "desc": "Light cooking methods and balanced recipes designed for great digestability and flavor."
+      }
+    ]
+  },
+  "howItWorks": {
+    "badge": "The MUNCHOS Process",
+    "title": "From concept to your table in 4 easy steps.",
+    "subtitle": "Designed for ultimate convenience.\nZero stress on your celebration day.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Choose Date & Concept",
+        "desc": "Tell us about your event, number of guests (10 to 50), and target date in Munich."
+      },
+      {
+        "number": "02",
+        "title": "Tailor Your Menu",
+        "desc": "Select your ideal mix of Basque pinchos, grill, live pizza, sushi, or paellas."
+      },
+      {
+        "number": "03",
+        "title": "Preparation & Logistics",
+        "desc": "Cooked fresh on event day and transported in temperature-controlled vehicles with boutique tableware."
+      },
+      {
+        "number": "04",
+        "title": "Service & Enjoyment",
+        "desc": "Served ready to enjoy or with an on-site chef. You celebrate, we deliver the magic."
+      }
+    ]
+  },
+  "menus": {
+    "badge": "Our Culinary Offerings",
+    "title": "What would you like to eat? Customize your wish!",
+    "subtitle": "Explore our 5 culinary specialties.\nDesigned for relaxed yet high-end gatherings.",
+    "categories": [
+      {
+        "id": "pintxos",
+        "name": "Basque Pinchos",
+        "tagline": "San Sebastián Tradition",
+        "image": "/images/Imagen 16-4-26 a las 11.12.jpg",
+        "description": "Gourmet canapés on sourdough bread featuring signature gildas, stuffed piquillo peppers, and Iberian sirloin.",
+        "highlights": ["48h Sourdough Bread", "Donostia Premium Gildas", "Extra Virgin Olive Oil"],
+        "items": [
+          "MUNCHOS Gilda: Ibarra chili pepper, Cantabrian anchovy & Gordal olive",
+          "Iberian Sirloin over Pedro Ximénez reduction & Idiazábal cheese",
+          "Confit Piquillo pepper stuffed with seafood"
+        ]
+      },
+      {
+        "id": "plancha",
+        "name": "Grill & Plancha",
+        "tagline": "Sandwiches, Burgers, Sausages",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Grilled gourmet burgers, artisanal sandwiches, and Basque/Bavarian sausages cooked fresh on site.",
+        "highlights": ["Aged Beef", "Artisanal Brioche Bun", "House Sauces"],
+        "items": [
+          "Dry-aged beef gourmet mini burgers with smoked Idiazábal cheese",
+          "Grilled artisanal sandwich with Iberian ham & melted cheese",
+          "Grilled artisanal sausages with mild alioli and Basque chimichurri"
+        ]
+      },
+      {
+        "id": "pizzas",
+        "name": "Homemade Pizzas",
+        "tagline": "In Situ (Freshly Baked Live)",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Artisanal pizzas baked live during your event made with 48-hour fermented sourdough and fresh ingredients.",
+        "highlights": ["Baked Live On-Site", "48h Sourdough", "Mozzarella Fior di Latte"],
+        "items": [
+          "Gourmet Margherita pizza with San Marzano tomatoes & fresh basil",
+          "Basque pizza with artisanal chistorra sausage, piquillo peppers & smoked cheese",
+          "Iberian pizza with smoked salmon, wild arugula & citrus emulsion"
+        ]
+      },
+      {
+        "id": "sushi",
+        "name": "Sushi Fusion",
+        "tagline": "Nikkei-Basque Fusion",
+        "image": "/images/sushi-dish-asian-restaurant.jpg",
+        "description": "Balfegó bluefin tuna nigiris, wild salmon uramakis with a touch of txakoli, and master sashimi.",
+        "highlights": ["No Added Sugars", "Sustainable Wild Fish", "Artisanal Soy Sauces"],
+        "items": [
+          "Red Tuna Nigiri with seared foie & Añana mineral salt",
+          "Salmon & Avocado Uramaki with kimchi mayo & black sesame",
+          "Scallop Tartare with wakame seaweed & citrus emulsion"
+        ]
+      },
+      {
+        "id": "paellas",
+        "name": "Paellas & Rice Dishes",
+        "tagline": "Live Paellas, Soupy Rices, Risottos",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Mediterranean paellas cooked live on site, seafood soupy rice, and creamy boletus risotto with Idiazábal.",
+        "highlights": ["Albufera Bomba Rice", "Cooked Live On-Site", "Crispy Socarrat"],
+        "items": [
+          "Seafood & Senyoret Paella with king prawns, fresh squid & saffron",
+          "Cantabrian Lobster Soupy Rice with concentrated seafood broth",
+          "Creamy Boletus Edulis & Smoked Idiazábal Cheese Risotto"
+        ]
+      }
+    ],
+    "cta": "Request custom quote"
+  },
+  "bookingWidget": {
+    "badge": "Calculator & Direct Estimate",
+    "title": "Design the experience for your event.",
+    "subtitle": "Enter your gathering details to compute an instant estimate.\nYou will receive an official proposal within 24h.",
+    "labels": {
+      "guests": "Number of Guests (10 to 50):",
+      "date": "Event Date:",
+      "menuType": "Main Menu Selection:",
+      "extras": "Optional Extra Services:",
+      "estimatedTotal": "Estimated Total Price:",
+      "perPerson": "per person",
+      "submitBtn": "Request Official Quote (No Obligation)"
+    },
+    "menuOptions": [
+      { "id": "de-tapas", "name": "Basque Pinchos & Grill Experience", "price": 38 },
+      { "id": "pizzas-fusion", "name": "Live Homemade Pizzas & Pinchos", "price": 44 },
+      { "id": "paellas-showcooking", "name": "Live Paellas & Rice Showcooking", "price": 48 },
+      { "id": "full-experience", "name": "Full MUNCHOS Experience (Sushi + Grill + Paellas + Pinchos)", "price": 58 }
+    ],
+    "extrasList": [
+      { "id": "chef", "name": "On-Site Chef & Live Showcooking (+180€)", "price": 180 },
+      { "id": "sommelier", "name": "Basque Wine & Txakoli Pairing (+12€ / guest)", "pricePerGuest": 12 },
+      { "id": "desserts", "name": "Basque Sweet Table & La Viña Cheesecake (+7€ / guest)", "pricePerGuest": 7 },
+      { "id": "tableware", "name": "Premium Glassware & Tableware Rental (+5€ / guest)", "pricePerGuest": 5 }
+    ]
+  },
+  "philosophy": {
+    "badge": "'Eat Healthy' Philosophy",
+    "title": "The balance between hedonistic pleasure and real wellbeing.",
+    "text": "Eating well never means compromising on taste. At MUNCHOS we believe culinary delight and nutritional balance belong on the same plate — which is why we choose top-tier ingredients, gentle cooking techniques, and design every menu thoughtfully without sacrificing a single bit of flavor.",
+    "points": [
+      {
+        "title": "No refined oils",
+        "desc": "We exclusively use cold-pressed Extra Virgin Olive Oil (EVOO)."
+      },
+      {
+        "title": "Low in sugar",
+        "desc": "We honor the natural sweetness of seasonal vegetables and fruits."
+      },
+      {
+        "title": "Clean & light protein",
+        "desc": "Wild Cantabrian fish and lean meats prepared to perfection."
+      }
+    ],
+    "quoteAuthor": "Oskar Marijuan",
+    "quoteRole": "Founder & Head Chef MUNCHOS Munich"
+  },
+  "guarantee": {
+    "badge": "MUNCHOS Commitment",
+    "title": "Absolute Quality & Punctuality Guarantee.",
+    "subtitle": "Your peace of mind is the main ingredient of our catering.",
+    "cards": [
+      {
+        "title": "Guaranteed Punctuality",
+        "desc": "We arrive 45 minutes prior for setup. If delayed over 15 minutes without force majeure, we refund 20% of the total cost."
+      },
+      {
+        "title": "100% Freshness & Hygiene",
+        "desc": "Strict cold-chain maintenance and certified thermal transport. If any dish fails to meet expectations, we replace it immediately."
+      },
+      {
+        "title": "24h Claim Management",
+        "desc": "Direct line to management. Response and financial resolution or replacement within 24 business hours."
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Real Experiences",
+    "title": "What hosts in Munich say.",
+    "reviews": [
+      {
+        "name": "Elena R.",
+        "event": "40th Birthday in Bogenhausen (25 guests)",
+        "comment": "MUNCHOS turned my living room into an elegant Donostia tavern. The cod pinchos and Balfegó nigiris vanished in minutes. My German guests were thrilled.",
+        "rating": 5
+      },
+      {
+        "name": "Markus & Sofía",
+        "event": "Private Dinner in Schwabing (15 guests)",
+        "comment": "We were looking for catering that wasn't heavy or greasy. The balance of dishes and immaculate presentation won us over.",
+        "rating": 5
+      },
+      {
+        "name": "Carlos M.",
+        "event": "Corporate Event in Glockenbach (35 guests)",
+        "comment": "German punctuality with authentic Basque flavor. The live chef service was worth every euro. The La Viña-style cheesecake is unbeatable.",
+        "rating": 5
+      }
+    ]
+  },
+  "gourmetShop": {
+    "badge": "Delicatessen at Home",
+    "title": "MUNCHOS Gourmet Products.",
+    "subtitle": "Bring Cantabrian pantry goods and our exclusive products directly to your home in Munich.",
+    "products": [
+      {
+        "id": "txakoli-premium",
+        "name": "Txakoli Getariako Reserva MUNCHOS",
+        "category": "Basque Winery",
+        "price": 22.00,
+        "image": "/images/IMG_1240.jpeg",
+        "desc": "Fresh Basque white wine with a delicate natural effervescence and apple notes. Perfect pairing for sushi."
+      },
+      {
+        "id": "aove-piparras",
+        "name": "Ibarra Chili Peppers in Apple Vinegar",
+        "category": "Artisanal Preserves",
+        "price": 14.50,
+        "image": "/images/IMG_1241.jpeg",
+        "desc": "Handpicked tender Ibarra peppers, mild and without aggressive heat. Traditional production."
+      },
+      {
+        "id": "anchoas-cantabrico",
+        "name": "Cantabrian Anchovies in EVOO",
+        "category": "Premium Salt-Cured",
+        "price": 18.90,
+        "image": "/images/IMG_1242.jpeg",
+        "desc": "Hand-cleaned fillets, aged 12 months in salt and packed in extra virgin olive oil."
+      },
+      {
+        "id": "queso-idiazabal",
+        "name": "Artisanal Smoked Idiazábal Cheese (350g)",
+        "category": "Artisan Cheese",
+        "price": 16.00,
+        "image": "/images/IMG_2093.jpeg",
+        "desc": "Made from raw Latxa sheep milk and smoked with Basque beechwood."
+      }
+    ],
+    "addBtn": "Add to selection",
+    "interestBtn": "View shopping list"
+  },
+  "finalCta": {
+    "title": "Ready to host an unforgettable gathering in Munich?",
+    "subtitle": "Book your date in advance.\nWe accept a limited number of events per week to guarantee maximum freshness and boutique care.",
+    "primaryBtn": "Request date & quote",
+    "secondaryBtn": "Contact via WhatsApp"
+  },
+  "stickyCta": {
+    "text": "Boutique Catering Munich (10-50 people)",
+    "button": "Book my Catering"
+  },
+  "modal": {
+    "title": "Booking Request / Quote",
+    "subtitle": "Fill in your details and we will reach out within 24 hours with a custom proposal.",
+    "name": "Your full name:",
+    "email": "Email address:",
+    "phone": "Contact phone (WhatsApp):",
+    "location": "Event location in Munich / Area:",
+    "notes": "Notes or dietary requirements of your guests:",
+    "submit": "Send Quote Request",
+    "successTitle": "Request Received!",
+    "successText": "Thank you for contacting MUNCHOS. We will reply shortly with a detailed proposal."
+  },
+  "footer": {
+    "about": "MUNCHOS brings Basque culinary authenticity and master sushi craft to the heart of Munich, turning small gatherings into unforgettable experiences.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal Information",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "impressum": "Impressum",
+    "contact": "Contact & Bookings",
+    "address": "Munich, Bavaria — Germany",
+    "phone": "+49 89 1234 5678",
+    "email": "hola@munchos.de",
+    "copyright": "© 2026 MUNCHOS. All rights reserved. Boutique Catering in Munich."
+  },
+  "promotions": {
+    "badge": "Exclusive MUNCHOS Promotion",
+    "items": [
+      {
+        "id": "promo_01",
+        "headline": "Live-Cooked Basque Seafood Paella Special on Weekends",
+        "bodyText": "Enhance your catering with a spectacular seafood paella cooked live in your garden or terrace in Munich.",
+        "ctaText": "Inquire Paella Dates"
+      }
+    ]
+  }
 }

@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '../../context/LanguageContext';
 import { getActivePromotions } from '../../services/cmsService';
 import { Tag, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
 export const PromotionsBanner = () => {
+  const { t, lang } = useTranslation();
   const [promos, setPromos] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const active = getActivePromotions();
-    setPromos(active);
-  }, []);
+    const cmsPromos = getActivePromotions();
+    const translatedItems = t('promotions.items');
+    
+    // Merge CMS image & link with translated text when switching language
+    const merged = cmsPromos.map((cmsItem, idx) => {
+      const trans = Array.isArray(translatedItems) && (translatedItems[idx] || translatedItems[0]);
+      if (trans && lang !== 'es') {
+        return {
+          ...cmsItem,
+          headline: trans.headline || cmsItem.headline,
+          bodyText: trans.bodyText || cmsItem.bodyText,
+          ctaText: trans.ctaText || cmsItem.ctaText
+        };
+      }
+      return cmsItem;
+    });
+
+    setPromos(merged.length > 0 ? merged : cmsPromos);
+  }, [lang, t]);
 
   useEffect(() => {
     if (promos.length > 1) {
@@ -36,7 +54,7 @@ export const PromotionsBanner = () => {
             <img src={currentPromo.image} alt={currentPromo.headline} className="promo-img" />
             <div className="promo-badge">
               <Tag size={15} />
-              <span>Promoción Exclusiva MUNCHOS</span>
+              <span>{t('promotions.badge') || 'Promoción Exclusiva MUNCHOS'}</span>
             </div>
           </div>
 
@@ -79,34 +97,41 @@ export const PromotionsBanner = () => {
 
         .promo-card {
           display: grid;
-          grid-template-columns: 0.9fr 1.1fr;
+          grid-template-columns: 360px 1fr;
           background: var(--bg-card-dark);
           border: 1px solid var(--accent-cyan);
           box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
           overflow: hidden;
+          align-items: stretch;
         }
 
         .promo-image-col {
           position: relative;
-          min-height: 260px;
+          width: 100%;
+          height: 100%;
+          min-height: 0;
         }
 
         .promo-img {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          display: block;
         }
 
         .promo-badge {
           position: absolute;
-          top: 1rem;
-          left: 1rem;
+          top: 0.85rem;
+          left: 0.85rem;
           background: rgba(13, 13, 12, 0.92);
           backdrop-filter: blur(8px);
           border: 1px solid var(--accent-cyan);
           color: var(--accent-cyan);
-          padding: 0.35rem 0.85rem;
-          font-size: 0.8rem;
+          padding: 0.3rem 0.75rem;
+          font-size: 0.75rem;
           font-weight: 700;
           display: flex;
           align-items: center;
@@ -115,22 +140,25 @@ export const PromotionsBanner = () => {
         }
 
         .promo-content-col {
-          padding: 2.5rem;
+          padding: 1.8rem 2.2rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
 
         .promo-content-col h2 {
-          font-size: 1.8rem;
+          font-size: 1.6rem;
           color: #FFF;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.6rem;
+          line-height: 1.25;
+          font-family: var(--font-subtitles);
         }
 
         .promo-content-col p {
-          font-size: 1rem;
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
+          font-size: 0.95rem;
+          line-height: 1.55;
+          margin-bottom: 1.2rem;
+          color: var(--text-dark-secondary);
         }
 
         .promo-btn {
@@ -141,8 +169,8 @@ export const PromotionsBanner = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-top: 1.5rem;
-          padding-top: 1rem;
+          margin-top: 1.2rem;
+          padding-top: 0.8rem;
           border-top: 1px solid rgba(247, 245, 240, 0.08);
         }
 
@@ -172,8 +200,8 @@ export const PromotionsBanner = () => {
           background: rgba(247, 245, 240, 0.08);
           border: 1px solid rgba(247, 245, 240, 0.15);
           color: var(--text-dark-primary);
-          width: 36px;
-          height: 36px;
+          width: 34px;
+          height: 34px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -186,15 +214,28 @@ export const PromotionsBanner = () => {
           color: var(--accent-cyan);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+          .promo-card {
+            grid-template-columns: 280px 1fr;
+          }
+          .promo-content-col {
+            padding: 1.4rem 1.6rem;
+          }
+        }
+
+        @media (max-width: 680px) {
           .promo-card {
             grid-template-columns: 1fr;
           }
           .promo-image-col {
             min-height: 200px;
+            height: 200px;
           }
           .promo-content-col {
-            padding: 1.8rem;
+            padding: 1.4rem 1.4rem;
+          }
+          .promo-content-col h2 {
+            font-size: 1.35rem;
           }
         }
       `}</style>

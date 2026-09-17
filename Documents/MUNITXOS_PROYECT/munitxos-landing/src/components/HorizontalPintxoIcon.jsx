@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const HorizontalPintxoIcon = ({ color = '#3EC1C9', width = 160, height = 36 }) => {
+export const HorizontalPintxoIcon = ({ color = '#D4AF37', width = 160, height = 36 }) => {
   return (
     <div className="horizontal-pintxo-wrapper" style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
       <svg 

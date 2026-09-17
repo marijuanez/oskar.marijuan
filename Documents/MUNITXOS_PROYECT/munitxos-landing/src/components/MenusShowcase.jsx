@@ -16,7 +16,7 @@ export const MenusShowcase = ({ onSelectMenuCategory }) => {
         <div className="section-header">
           <div className="badge">{t('menus.badge')}</div>
           <h2>{t('menus.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#D4AF37" width={140} height={32} />
           <p>{t('menus.subtitle')}</p>
         </div>
 
@@ -112,7 +112,7 @@ export const MenusShowcase = ({ onSelectMenuCategory }) => {
           background: var(--accent-cyan);
           color: #0D0D0C;
           border-color: var(--accent-cyan);
-          box-shadow: 0 4px 15px rgba(62, 193, 201, 0.4);
+          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .menu-card-display {
@@ -120,7 +120,7 @@ export const MenusShowcase = ({ onSelectMenuCategory }) => {
           grid-template-columns: 1fr 1fr;
           gap: 3rem;
           background: var(--bg-card-dark);
-          border: 1px solid rgba(62, 193, 201, 0.2);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           overflow: hidden;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
@@ -180,7 +180,7 @@ export const MenusShowcase = ({ onSelectMenuCategory }) => {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          background: rgba(62, 193, 201, 0.12);
+          background: rgba(212, 175, 55, 0.12);
           border: 1px solid var(--accent-cyan);
           color: var(--accent-cyan);
           font-size: 0.82rem;

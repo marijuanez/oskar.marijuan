@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { getStoredPromotions, savePromotions } from '../../services/cmsService';
-import { Plus, Eye, EyeOff, Trash2, Save, X, Calendar, Layers } from 'lucide-react';
+import { getStoredPromotions, savePromotions, updatePromotion, optimizeImageFile } from '../../services/cmsService';
+import { Plus, Eye, EyeOff, Trash2, Save, X, Calendar, Layers, Pencil, Upload, Image as ImageIcon, Zap } from 'lucide-react';
 
 export const PromotionsManager = () => {
   const [promotions, setPromotions] = useState(getStoredPromotions());
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isOptimizing, setIsOptimizing] = useState(false);
 
   const [formData, setFormData] = useState({
     headline: '',
@@ -33,13 +36,25 @@ export const PromotionsManager = () => {
     }
   };
 
-  const handleSaveAdd = (e) => {
-    e.preventDefault();
-    const newId = `promo_${Date.now()}`;
-    const updated = [...promotions, { ...formData, id: newId }];
-    setPromotions(updated);
-    savePromotions(updated);
+  const handleStartEdit = (promo) => {
+    setEditingId(promo.id);
+    setFormData({
+      headline: promo.headline || '',
+      bodyText: promo.bodyText || '',
+      image: promo.image || '/images/IMG_1240.jpeg',
+      ctaText: promo.ctaText || 'Ver Promoción',
+      ctaLink: promo.ctaLink || '#personalizacion',
+      active: promo.active !== undefined ? promo.active : true,
+      startDate: promo.startDate || '',
+      endDate: promo.endDate || ''
+    });
+    setShowAddForm(true);
+    window.scrollTo({ top: 180, behavior: 'smooth' });
+  };
+
+  const handleCancelForm = () => {
     setShowAddForm(false);
+    setEditingId(null);
     setFormData({
       headline: '',
       bodyText: '',
@@ -52,6 +67,38 @@ export const PromotionsManager = () => {
     });
   };
 
+  const handleImageFile = async (file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    setIsOptimizing(true);
+    try {
+      const optimizedUrl = await optimizeImageFile(file, 800, 800, 0.78);
+      setFormData(prev => ({ ...prev, image: optimizedUrl }));
+    } catch (e) {
+      console.error("Error al optimizar la imagen:", e);
+    } finally {
+      setIsOptimizing(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleImageFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const handleSaveForm = (e) => {
+    e.preventDefault();
+    const itemToSave = {
+      ...formData,
+      id: editingId || `promo_${Date.now()}`
+    };
+    const updated = updatePromotion(itemToSave);
+    setPromotions(updated);
+    handleCancelForm();
+  };
+
   return (
     <div className="promotions-manager-module">
       
@@ -59,12 +106,32 @@ export const PromotionsManager = () => {
       <div className="module-header">
         <div className="header-text-block">
           <h2 className="header-title">Gestión del Banner de Promociones</h2>
-          <p className="header-subtitle">Publica ofertas temporales y eventos especiales en la portada sin desplegar código.</p>
+          <p className="header-subtitle">Edita, añade o sube imágenes para ofertas temporales y eventos especiales en tiempo real.</p>
         </div>
 
-        <button className="btn btn-primary btn-sm header-action-btn" onClick={() => setShowAddForm(!showAddForm)}>
+        <button 
+          className="btn btn-primary btn-sm header-action-btn" 
+          onClick={() => {
+            if (showAddForm && !editingId) {
+              handleCancelForm();
+            } else {
+              setEditingId(null);
+              setFormData({
+                headline: '',
+                bodyText: '',
+                image: '/images/IMG_1240.jpeg',
+                ctaText: 'Ver Promoción',
+                ctaLink: '#personalizacion',
+                active: true,
+                startDate: '',
+                endDate: ''
+              });
+              setShowAddForm(true);
+            }
+          }}
+        >
           <Plus size={16} />
-          <span>Nueva Promoción</span>
+          <span>{showAddForm ? 'Cerrar Formulario' : 'Nueva Promoción'}</span>
         </button>
       </div>
 
@@ -86,10 +153,10 @@ export const PromotionsManager = () => {
         </div>
       </div>
 
-      {/* Add Form */}
+      {/* Add / Edit Form Collapse */}
       {showAddForm && (
-        <form onSubmit={handleSaveAdd} className="glass-card add-promo-form">
-          <h3>Crear Nueva Promoción para la Portada</h3>
+        <form onSubmit={handleSaveForm} className="glass-card add-promo-form">
+          <h3>{editingId ? '✍️ Editar Promoción de Portada' : '✨ Crear Nueva Promoción para la Portada'}</h3>
           
           <div className="form-field">
             <label>Titular de la Promoción *</label>
@@ -125,13 +192,57 @@ export const PromotionsManager = () => {
             </div>
 
             <div className="form-field">
-              <label>Ruta de Imagen *</label>
+              <label>Ruta / URL de la Imagen *</label>
               <input 
                 type="text" 
                 required 
-                value={formData.image}
+                value={formData.image.startsWith('data:') ? `[Imagen Base64 Optimizada - ${Math.round(formData.image.length / 1024)} KB]` : formData.image}
                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                title={formData.image}
               />
+            </div>
+          </div>
+
+          {/* Drag & Drop Image Upload Zone */}
+          <div className="form-field">
+            <label className="drag-header-label">
+              <span>Subir Imagen por Arrastre (Drag & Drop)</span>
+              <span className="badge-opt"><Zap size={12} /> Auto-Optimización Canvas 800px</span>
+            </label>
+            <div 
+              className={`drag-drop-zone ${isDragging ? 'is-dragging' : ''} ${isOptimizing ? 'is-optimizing' : ''}`}
+              onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+              onDragLeave={() => setIsDragging(false)}
+              onDrop={handleDrop}
+            >
+              <input 
+                type="file" 
+                accept="image/*" 
+                id="file-promo-input"
+                className="file-hidden-input"
+                onChange={(e) => handleImageFile(e.target.files[0])}
+              />
+              <label htmlFor="file-promo-input" className="drag-label-content">
+                {isOptimizing ? (
+                  <div className="optimizing-text">
+                    <Zap size={24} className="icon-cyan spin" />
+                    <span>Optimizando y comprimiendo imagen en canvas...</span>
+                  </div>
+                ) : formData.image ? (
+                  <div className="preview-row">
+                    <img src={formData.image} alt="Preview" className="drag-preview-img" />
+                    <div className="preview-info">
+                      <span className="preview-status">⚡ Imagen procesada y optimizada.</span>
+                      <span className="preview-sub">Arrastra otra foto para reemplazarla.</span>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Upload size={28} className="icon-cyan" />
+                    <span>Arrastra y suelta tu imagen aquí o <strong>haz clic para seleccionar</strong></span>
+                  </>
+                )}
+              </label>
             </div>
           </div>
 
@@ -156,11 +267,11 @@ export const PromotionsManager = () => {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" disabled={isOptimizing}>
               <Save size={16} />
-              <span>Publicar Promoción</span>
+              <span>{editingId ? 'Guardar Cambios' : 'Publicar Promoción'}</span>
             </button>
-            <button type="button" className="btn btn-secondary" onClick={() => setShowAddForm(false)}>
+            <button type="button" className="btn btn-secondary" onClick={handleCancelForm}>
               <X size={16} />
               <span>Cancelar</span>
             </button>
@@ -194,6 +305,14 @@ export const PromotionsManager = () => {
 
             <div className="promo-cms-actions">
               <button 
+                className="btn-action-icon edit"
+                title="Editar promoción"
+                onClick={() => handleStartEdit(promo)}
+              >
+                <Pencil size={17} />
+              </button>
+
+              <button 
                 className={`btn-action-icon ${promo.active ? 'active' : ''}`}
                 title={promo.active ? "Desactivar de portada" : "Activar en portada"}
                 onClick={() => handleToggleActive(promo.id)}
@@ -218,6 +337,10 @@ export const PromotionsManager = () => {
           display: flex;
           flex-direction: column;
           gap: 1.8rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
         /* STACKED FULL WIDTH HEADER LAYOUT */
@@ -229,6 +352,7 @@ export const PromotionsManager = () => {
           border: 1px solid rgba(247, 245, 240, 0.1);
           padding: 1.5rem 1.8rem;
           width: 100%;
+          box-sizing: border-box;
         }
 
         .header-text-block {
@@ -261,6 +385,8 @@ export const PromotionsManager = () => {
           background: rgba(62, 193, 201, 0.1);
           border: 1px solid var(--accent-cyan);
           padding: 1.25rem 1.8rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .mode-status-banner h4 { font-size: 1.1rem; color: #FFF; margin-bottom: 0.2rem; }
@@ -272,18 +398,47 @@ export const PromotionsManager = () => {
           display: flex;
           flex-direction: column;
           gap: 1.1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
         .form-row {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
           gap: 1rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
           gap: 0.4rem;
+          width: 100%;
+          max-width: 100%;
+          min-width: 0; /* PREVENT GRID OVERFLOW FROM BASE64 OR LONG TEXT */
+          box-sizing: border-box;
+        }
+
+        .drag-header-label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .badge-opt {
+          font-size: 0.72rem;
+          color: var(--accent-cyan);
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: rgba(62, 193, 201, 0.12);
+          padding: 0.15rem 0.5rem;
+          border: 1px solid rgba(62, 193, 201, 0.3);
         }
 
         .form-field label {
@@ -298,6 +453,95 @@ export const PromotionsManager = () => {
           color: var(--text-dark-primary);
           padding: 0.8rem 1rem;
           font-size: 0.95rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .form-field textarea {
+          white-space: pre-wrap;
+        }
+
+        /* DRAG AND DROP ZONE */
+        .drag-drop-zone {
+          border: 2px dashed rgba(212, 175, 55, 0.4);
+          background: rgba(13, 13, 12, 0.6);
+          padding: 1.2rem;
+          text-align: center;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+
+        .drag-drop-zone:hover, .drag-drop-zone.is-dragging {
+          border-color: var(--accent-cyan);
+          background: rgba(212, 175, 55, 0.08);
+        }
+
+        .file-hidden-input {
+          display: none;
+        }
+
+        .drag-label-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          font-size: 0.88rem;
+          color: var(--text-dark-secondary);
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .preview-row {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          text-align: left;
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .preview-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+          overflow: hidden;
+        }
+
+        .preview-status {
+          font-weight: 700;
+          color: var(--accent-cyan);
+        }
+
+        .preview-sub {
+          font-size: 0.8rem;
+          color: var(--text-dark-secondary);
+        }
+
+        .drag-preview-img {
+          width: 54px;
+          height: 54px;
+          object-fit: cover;
+          border: 1px solid var(--accent-cyan);
+          flex-shrink: 0;
+        }
+
+        .optimizing-text {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          color: var(--accent-cyan);
+          font-weight: 600;
         }
 
         .form-actions {
@@ -309,6 +553,9 @@ export const PromotionsManager = () => {
           display: flex;
           flex-direction: column;
           gap: 1.25rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
         }
 
         .promo-cms-card {
@@ -316,6 +563,10 @@ export const PromotionsManager = () => {
           align-items: center;
           gap: 1.5rem;
           padding: 1.5rem;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
         .promo-cms-card.is-inactive { opacity: 0.5; }
@@ -329,6 +580,8 @@ export const PromotionsManager = () => {
 
         .promo-cms-content {
           flex-grow: 1;
+          min-width: 0;
+          overflow: hidden;
         }
 
         .promo-cms-header {
@@ -378,6 +631,7 @@ export const PromotionsManager = () => {
         }
 
         .btn-action-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .btn-action-icon.edit:hover { border-color: var(--accent-cyan); background: rgba(212, 175, 55, 0.2); }
         .btn-action-icon.delete:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
         @media (max-width: 768px) {

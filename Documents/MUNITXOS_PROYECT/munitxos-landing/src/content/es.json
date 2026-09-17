@@ -1,38 +1,36 @@
 {
   "brand": {
     "name": "MUNCHOS",
-    "tagline": "Pinchos aus MUNCHEN",
+    "tagline": "Pinchos in München",
     "location": "Múnich, Alemania",
     "subtagline": "Catering Boutique & Delicatessen Vasca"
   },
   "nav": {
-    "beneficios": "Beneficios",
-    "comoFunciona": "Cómo Funciona",
-    "menus": "Menús",
-    "personalizacion": "Personalizar Evento",
-    "filosofia": "Come Sano",
-    "garantia": "Garantía",
-    "gourmet": "Tienda Gourmet",
+    "menus": "Menús & Carta",
+    "experiencia": "Experiencia",
     "testimonios": "Opiniones",
-    "reservar": "Reservar Catering",
+    "gourmet": "Tienda Gourmet",
+    "reservar": "RESERVAR CATERING",
     "cartBadge": "Carrito"
   },
   "hero": {
-    "badge": "Catering Boutique en Múnich (10 - 50 invitados)",
-    "headline": "Pinchos aus MUNCHEN.\nLa fiesta vasca que Múnich no sabía que necesitaba.",
-    "subheadline": "Catering boutique para celebraciones íntimas.\nSushi premium, pinchos vascos y sabor sin renuncias, directo a tu evento.",
-    "ctaPrimary": "Reservar mi catering",
-    "ctaSecondary": "Ver menús y precios",
+    "badge": "✦ CATERING BOUTIQUE EN MÚNICH · 10 A 50 INVITADOS",
+    "headlinePart1": "Pinchos Vascos y ",
+    "headlineHighlight": "cocina mediterránea",
+    "headlinePart2": " para celebraciones íntimas",
+    "subheadline": "Sushi premium, pinchos artesanales y paellas cocinadas in situ. Llevamos el sabor y la exclusividad del norte directamente a tu evento privado.",
+    "ctaPrimary": "RESERVAR MI CATERING ›",
+    "ctaSecondary": "🍴 VER MENÚS Y PRECIOS",
     "stats": [
-      { "value": "100%", "label": "Producto fresco artesanal" },
-      { "value": "10-50", "label": "Invitados por experiencia" },
-      { "value": "4.9/5", "label": "Valoración de clientes" }
+      { "value": "100%", "label": "Producto fresco y artesanal" },
+      { "value": "10–50", "label": "Invitados por experiencia" },
+      { "value": "4.9 / 5", "label": "Valoración de clientes" }
     ]
   },
   "benefits": {
     "badge": "¿Por qué MUNCHOS?",
     "title": "Alta gastronomía pensada para disfrutar sin complicaciones.",
-    "subtitle": "Combinamos la tradición del pincho vasco con la técnica del sushi de autor.\nUn servicio integral llave en mano.",
+    "subtitle": "Combinamos la tradición del pincho vasco con paellas in situ y sushi de autor.\nUn servicio integral llave en mano.",
     "items": [
       {
         "icon": "UtensilsCrossed",
@@ -69,7 +67,7 @@
       {
         "number": "02",
         "title": "Diseño del menú a medida",
-        "desc": "Selecciona la combinación perfecta entre sushi premium, pinchos vascos, plancha o cocina tradicional."
+        "desc": "Selecciona la combinación perfecta entre pinchos vascos, plancha, pizzas in situ, sushi o paellas."
       },
       {
         "number": "03",
@@ -85,12 +83,51 @@
   },
   "menus": {
     "badge": "Nuestra Propuesta Gastronómica",
-    "title": "Menús elaborados para sorprender los sentidos.",
+    "title": "¿Qué quieres comer? ¡Personaliza tu deseo!",
     "subtitle": "Explora nuestras 5 especialidades gastronómicas.\nDiseñadas para eventos informales pero extremadamente elegantes.",
     "categories": [
       {
+        "id": "pintxos",
+        "name": "Pinchos Vascos",
+        "tagline": "Tradición de San Sebastián",
+        "image": "/images/Imagen 16-4-26 a las 11.12.jpg",
+        "description": "Canapés y pinchos elaborados sobre pan artesanal de masa madre con gildas de autor, piquillos rellenos y solomillo ibérico.",
+        "highlights": ["Pan de masa madre 48h", "Gildas Donostiarras premium", "Aceite de oliva AOVE"],
+        "items": [
+          "La Gilda MUNCHOS: piparra de Ibarra, anchoa del Cantábrico y aceituna gordal",
+          "Solomillo ibérico sobre reducción de Pedro Ximénez y queso Idiazábal",
+          "Pimiento del Piquillo confitado relleno de marisco"
+        ]
+      },
+      {
+        "id": "plancha",
+        "name": "Plancha",
+        "tagline": "Sandwiches, Burgers, Salchichas",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Hamburguesas gourmet a la parrilla, sandwiches artesanales y salchichas vascas/bávaras preparadas al momento.",
+        "highlights": ["Carnes maduradas", "Pan brioche artesano", "Salsas de la casa"],
+        "items": [
+          "Mini Burgers gourmet de Vaca Vieja con queso Idiazábal ahumado",
+          "Sandwich artesanal a la plancha con jamón ibérico y queso fundido",
+          "Salchichas artesanales a la parrilla con alioli suave y chimichurri vasco"
+        ]
+      },
+      {
+        "id": "pizzas",
+        "name": "Pizzas Caseras",
+        "tagline": "In situ (Elaboradas en directo)",
+        "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
+        "description": "Pizzas artesanas elaboradas y horneadas in situ durante tu evento con masa madre fermentada 48 horas e ingredientes frescos.",
+        "highlights": ["Horneadas in situ", "Masa madre 48h", "Mozzarella Fior di Latte"],
+        "items": [
+          "Pizza Margarita gourmet con tomate San Marzano y albahaca fresca",
+          "Pizza Vasca con chistorra artesana, piquillos confitados y queso ahumado",
+          "Pizza Ibérica con salmón ahumado, rúcula y emulsión de cítricos"
+        ]
+      },
+      {
         "id": "sushi",
-        "name": "Sushi Premium",
+        "name": "Sushi",
         "tagline": "Fusión Nikkei-Vasca",
         "image": "/images/sushi-dish-asian-restaurant.jpg",
         "description": "Nigiris atún rojo Balfegó, uramakis de salmón salvaje ahumado con toque de txakoli y sashimis corte maestro.",
@@ -102,55 +139,16 @@
         ]
       },
       {
-        "id": "pintxos",
-        "name": "Pinchos Vascos",
-        "tagline": "Tradición de San Sebastián",
-        "image": "/images/Imagen 16-4-26 a las 11.12.jpg",
-        "description": "Canapés y pinchos elaborados sobre pan artesanal de masa madre con gildas de autor, piquillos rellenos y bacalao.",
-        "highlights": ["Pan de masa madre 48h", "Gildas Donostiarras premium", "Aceite de oliva AOVE"],
-        "items": [
-          "La Gilda MUNCHOS: piparra de Ibarra, anchoa del Cantábrico y aceituna gordal",
-          "Solomillo ibérico sobre reducción de Pedro Ximénez y queso Idiazábal",
-          "Pimiento del Piquillo confitado relleno de marisco"
-        ]
-      },
-      {
-        "id": "plancha",
-        "name": "Plancha & Grill",
-        "tagline": "Al momento y con brasas",
+        "id": "paellas",
+        "name": "Paellas & Arroces",
+        "tagline": "Paellas, Arroces Caldosos, Risottos",
         "image": "/images/high-angle-man-putting-arugula-baked-pizza-dough-with-smoked-salmon-slices.jpg",
-        "description": "Txuletitas de cordero, brochetas marinadas de langostino con alioli suave y verduras a la parrilla con chimichurri vasco.",
-        "highlights": ["Carnes con maduración", "Cocción baja en grasas", "Verduras ecológicas de temporada"],
+        "description": "Paellas mediterráneas elaboradas in situ, arroces caldosos marineros y risottos cremosos con boletus e Idiazábal.",
+        "highlights": ["Arroz Bomba de Albufera", "Elaboradas in situ", "Socarrat crujiente artesano"],
         "items": [
-          "Brocheta de Langostino y Pulpo con salmuria de hierbas frescas",
-          "Tacos de Chuleton de Vaca Vieja con pimientos de Padrón",
-          "Parrillada de Verduras de Huerta con salsa Romesco de avellanas"
-        ]
-      },
-      {
-        "id": "tapas",
-        "name": "Tapas Elaboradas",
-        "tagline": "Bocados de alta cocina",
-        "image": "/images/IMG_0237.jpeg",
-        "description": "Creaciones vanguardistas para comer de pie: croquetas melosas de jamón ibérico, pulpo a la gallega templado y tartar de buey.",
-        "highlights": ["Presentación gourmet", "Raciones ideales para picoteo", "Texturas crujientes y melosas"],
-        "items": [
-          "Croqueta cremosa de Jamón Ibérico de Bellota y bechamel fina",
-          "Pulpo asado sobre parmentier de patata trufada",
-          "Tartar de Buey Vascuence condimentado al momento sobre tuétano asado"
-        ]
-      },
-      {
-        "id": "tradicional",
-        "name": "Platos Tradicionales",
-        "tagline": "Cazuelitas vascas auténticas",
-        "image": "/images/IMG_0238.jpeg",
-        "description": "Bacalao al pil-pil cremoso, marmitako de bonito del Norte en cazuelita individual y carrilleras al vino de Rioja Alavesa.",
-        "highlights": ["Cocción lenta artesanal", "Recetas familiares transmitidas", "Sabores profundos y reconfortantes"],
-        "items": [
-          "Bacalao confitado con emulsion suave de pil-pil de ajo suave",
-          "Marmitako de Bonito en cazuelita con pimiento choricero",
-          "Carrillera de Ternera estofada al vino tinto con cremoso de boniato"
+          "Paella de Marisco y Senyoret con gambón, calamar fresco y azafrán en hebra",
+          "Arroz Caldoso de Bogavante del Cantábrico con fumet marino concentrado",
+          "Risotto cremoso de Boletus edulis y Queso Idiazábal ahumado"
         ]
       }
     ],
@@ -170,9 +168,10 @@
       "submitBtn": "Solicitar Presupuesto Oficial sin Compromiso"
     },
     "menuOptions": [
-      { "id": "de-tapas", "name": "Experiencia Pinchos & Tapas", "price": 38 },
-      { "id": "sushi-fusion", "name": "Fusión Nikkei (Sushi + Pinchos)", "price": 46 },
-      { "id": "full-experience", "name": "Experiencia Completa MUNCHOS (Sushi + Plancha + Tradicional)", "price": 58 }
+      { "id": "de-tapas", "name": "Experiencia Pinchos Vascos & Plancha", "price": 38 },
+      { "id": "pizzas-fusion", "name": "Pizzas Caseras In Situ & Pinchos", "price": 44 },
+      { "id": "paellas-showcooking", "name": "Paellas & Arroces en Vivo", "price": 48 },
+      { "id": "full-experience", "name": "Experiencia Completa MUNCHOS (Sushi + Plancha + Paellas + Pinchos)", "price": 58 }
     ],
     "extrasList": [
       { "id": "chef", "name": "Chef & Showcooking en vivo (+180€)", "price": 180 },
@@ -320,5 +319,16 @@
     "phone": "+49 89 1234 5678",
     "email": "hola@munchos.de",
     "copyright": "© 2026 MUNCHOS. Todos los derechos reservados. Catering Boutique en Múnich."
+  },
+  "promotions": {
+    "badge": "Promoción Exclusiva MUNCHOS",
+    "items": [
+      {
+        "id": "promo_01",
+        "headline": "Especial Paellas Vascas a Fuego Vivo los Fines de Semana",
+        "bodyText": "Añade a tu catering una espectacular paella de marisco cocinada en directo en tu jardín o terraza en Múnich.",
+        "ctaText": "Consultar Fechas de Paella"
+      }
+    ]
   }
 }

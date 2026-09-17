@@ -10,9 +10,9 @@ export const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           
-          {/* Brand Col */}
+          {/* Brand Col — Pure Vector Text-Only MUNCHOS Logo */}
           <div className="footer-brand-col">
-            <img src="/images/logo.svg" alt="MUNCHOS" className="footer-logo" />
+            <img src="/images/logo-text-only.svg?v=4" alt="MUNCHOS" className="footer-logo" />
             <p className="footer-about">{t('footer.about')}</p>
             <div className="social-links">
               <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
@@ -84,14 +84,23 @@ export const Footer = () => {
 
         .footer-grid {
           display: grid;
-          grid-template-columns: 2fr 1fr 1.5fr 1fr;
+          grid-template-columns: 1.8fr 1fr 1.25fr 1fr;
           gap: 3rem;
           margin-bottom: 4rem;
         }
 
+        .footer-brand-col {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
         .footer-logo {
-          height: 65px;
+          height: 34px;
+          width: auto;
           margin-bottom: 1.25rem;
+          display: block;
+          filter: none !important;
         }
 
         .footer-about {

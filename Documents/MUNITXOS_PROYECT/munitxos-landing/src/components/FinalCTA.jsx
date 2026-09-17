@@ -11,7 +11,7 @@ export const FinalCTA = ({ onOpenBooking }) => {
       <div className="container">
         <div className="final-cta-card">
           <h2>{t('finalCta.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={160} height={36} />
+          <HorizontalPintxoIcon color="#D4AF37" width={160} height={36} />
           <p>{t('finalCta.subtitle')}</p>
 
           <div className="final-cta-actions">

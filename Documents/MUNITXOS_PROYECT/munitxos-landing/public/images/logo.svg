@@ -1,30 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="520" height="220">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="680" height="540">
   <defs>
+    <!-- Premium Metallic Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE8A6" />
+      <stop offset="35%" stop-color="#FFD700" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#997315" />
+    </linearGradient>
+
     <style>
-      .logo-icon-path { fill: none; stroke: #3EC1C9; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
-      .logo-text-munchos { fill: #FFFFFF; font-family: 'Urkiola', 'Pirata One', 'Cinzel', serif, sans-serif; font-size: 62px; font-weight: 900; letter-spacing: 6px; }
-      .logo-text-sub { fill: #3EC1C9; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 8px; }
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@900&amp;display=swap');
+      .bg-transparent { fill: none; }
+      .gold-stroke { stroke: url(#goldGrad); stroke-width: 3.5px; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .gold-fill { fill: url(#goldGrad); }
+      .brand-title {
+        font-family: 'Cinzel', 'Urkiola', serif;
+        font-size: 70px;
+        font-weight: 900;
+        fill: url(#goldGrad);
+        letter-spacing: 7px;
+        text-anchor: middle;
+      }
+      .banner-text {
+        font-family: 'Plus Jakarta Sans', 'Arial Black', sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        fill: url(#goldGrad);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+      .ribbon-text {
+        font-family: 'Plus Jakarta Sans', 'Arial Black', sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        fill: url(#goldGrad);
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        text-anchor: middle;
+      }
     </style>
   </defs>
 
-  <!-- Vertical Pintxo Icon (Cyan #3EC1C9) -->
-  <g transform="translate(260, 8)">
-    <!-- Central Stick -->
-    <line x1="0" y1="5" x2="0" y2="92" stroke="#3EC1C9" stroke-width="6" stroke-linecap="round" />
+  <!-- Canvas Container (Centered at X=340, Y=260) -->
+  <g transform="translate(0, 0)">
+
+    <!-- CENTRAL TOOTHPICK (PALO DE GILDA) -->
+    <path d="M 340 25 L 342.5 30 L 342.5 435 L 337.5 435 L 337.5 30 Z" fill="url(#goldGrad)" />
+
+    <!-- TOP HALF-CIRCLE ARC (R=185, Center 340,240) -->
+    <path d="M 162.2 188 A 185 185 0 0 1 517.8 188" class="gold-stroke" stroke-width="4" />
+
+    <!-- BOTTOM HALF-CIRCLE ARC (R=185, Center 340,240) -->
+    <path d="M 517.8 292 A 185 185 0 0 1 162.2 292" class="gold-stroke" stroke-width="4" />
+
+    <!-- GILDA VECTOR CONTOUR DRAWING (Silhouetted Top Icon) -->
+    <!-- 1. Aceituna siluetada -->
+    <g transform="translate(340, 80)">
+      <ellipse cx="0" cy="0" rx="36" ry="26" class="gold-stroke" stroke-width="3.5" />
+      <ellipse cx="15" cy="-2" rx="9" ry="14" class="gold-stroke" stroke-width="3.5" />
+      <path d="M 9 -4 C 13 2, 15 6, 15 10" class="gold-stroke" stroke-width="2.5" />
+    </g>
+
+    <!-- 2. Anchoa enrollada siluetada -->
+    <g transform="translate(340, 132)">
+      <path d="M -34 -2 C -36 -14, -10 -18, 0 -18 C 16 -18, 34 -12, 32 2 C 30 14, 10 18, -4 18 C -22 18, -32 10, -32 -2 Z" class="gold-stroke" stroke-width="3.5" />
+      <path d="M -24 -4 C -12 -12, 8 -12, 18 -4 C 22 2, 12 10, -2 10 C -12 10, -18 4, -18 -4" class="gold-stroke" stroke-width="2.5" />
+      <path d="M -9 -2 C 0 -6, 9 -6, 11 0" class="gold-stroke" stroke-width="2" />
+    </g>
+
+    <!-- 3. Piparra / Guindilla siluetada -->
+    <g transform="translate(340, 175)">
+      <path d="M -75 -6 C -45 -18, 10 -16, 62 -20 C 72 -21, 80 -13, 76 -4 C 66 10, 32 15, -10 15 C -45 15, -66 4, -75 -6 Z" class="gold-stroke" stroke-width="3.5" />
+      <path d="M -75 -6 C -82 -10, -90 -8, -93 -2" class="gold-stroke" stroke-width="3" />
+      <path d="M -48 -4 C -22 -8, 16 -6, 48 -10" class="gold-stroke" stroke-width="2" />
+    </g>
+
+    <!-- SIDE BANNERS (CATERING & BOUTIQUE) -->
+    <line x1="45" y1="238" x2="160" y2="238" class="gold-stroke" stroke-width="2.5" />
+    <text x="50" y="232" class="banner-text">CATERING</text>
     
-    <!-- Top Shape: Triangle -->
-    <path d="M 0 10 L -26 34 L 26 34 Z" class="logo-icon-path" />
+    <line x1="520" y1="238" x2="635" y2="238" class="gold-stroke" stroke-width="2.5" />
+    <text x="525" y="232" class="banner-text">BOUTIQUE</text>
 
-    <!-- Middle Shape: Diamond -->
-    <path d="M 0 42 L -22 58 L 0 74 L 22 58 Z" class="logo-icon-path" />
+    <!-- CENTRAL WORDMARK: MUNCHOS (CINZEL SERIF BRAND TYPOGRAPHY - 100% UNIFIED) -->
+    <text x="344" y="260" class="brand-title">MUNCHOS</text>
 
-    <!-- Bottom Shape: Rounded Oblong -->
-    <rect x="-28" y="78" width="56" height="16" rx="8" class="logo-icon-path" />
+    <!-- BOTTOM RIBBON SUBTEXT: PINCHOS IN MUNCHEN -->
+    <text x="340" y="340" class="ribbon-text">PINCHOS IN MUNCHEN</text>
+
   </g>
-
-  <!-- Typography: MUNCHOS -->
-  <text x="260" y="160" text-anchor="middle" class="logo-text-munchos">MUNCHOS</text>
-
-  <!-- Typography: LOS PINCHOS EN MUNCHEN -->
-  <text x="260" y="194" text-anchor="middle" class="logo-text-sub">LOS PINCHOS EN MUNCHEN</text>
 </svg>

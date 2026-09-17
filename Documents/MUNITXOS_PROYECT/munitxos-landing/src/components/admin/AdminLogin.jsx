@@ -31,7 +31,7 @@ export const AdminLogin = () => {
       <div className="login-card">
         
         <div className="login-header">
-          <img src="/images/logo.svg" alt="MUNCHOS Admin" className="login-logo" />
+          <img src="/images/logo-definitive.png" alt="MUNCHOS Admin" className="login-logo" />
           <h2>Panel de Control MUNCHOS</h2>
           <p>Acceso restringido para propietarios y personal autorizado</p>
         </div>
