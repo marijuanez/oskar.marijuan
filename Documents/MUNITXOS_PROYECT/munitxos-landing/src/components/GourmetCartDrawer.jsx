@@ -87,9 +87,11 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
                     },
                     body: JSON.stringify({
                       _senderName: "MUNCHOS Gourmet Store",
-                      _subject: `🛍️ Pedido Productos Gourmet MUNCHOS (${totalAmount.toFixed(2)}€)`,
+                      from_name: "MUNCHOS Gourmet Store",
+                      _subject: `🛍️ MUNCHOS Catering: Pedido Productos Gourmet (${totalAmount.toFixed(2)}€)`,
                       _template: "table",
                       _captcha: "false",
+                      Empresa_Remitente: "MUNCHOS Boutique Catering Múnich",
                       Productos_Seleccionados: itemListText,
                       Total_Estimado: `${totalAmount.toFixed(2)}€`
                     })
