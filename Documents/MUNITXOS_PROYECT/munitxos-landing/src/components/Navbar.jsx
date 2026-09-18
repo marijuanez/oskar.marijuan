@@ -112,19 +112,19 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
               <div className="mobile-drawer-lang">
                 <button 
                   className={`mobile-lang-btn ${lang === 'es' ? 'active' : ''}`} 
-                  onClick={() => setLang('es')}
+                  onClick={() => { setLang('es'); setMobileOpen(false); }}
                 >
                   Español (ES)
                 </button>
                 <button 
                   className={`mobile-lang-btn ${lang === 'de' ? 'active' : ''}`} 
-                  onClick={() => setLang('de')}
+                  onClick={() => { setLang('de'); setMobileOpen(false); }}
                 >
                   Deutsch (DE)
                 </button>
                 <button 
                   className={`mobile-lang-btn ${lang === 'en' ? 'active' : ''}`} 
-                  onClick={() => setLang('en')}
+                  onClick={() => { setLang('en'); setMobileOpen(false); }}
                 >
                   English (EN)
                 </button>
