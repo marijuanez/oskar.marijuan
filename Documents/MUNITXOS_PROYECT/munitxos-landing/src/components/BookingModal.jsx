@@ -45,7 +45,7 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
     const created = createReservation(reservationData);
     setLastReservation(reservationData);
 
-    // 2. Automated Email dispatch to munchos.catering@gmail.com via FormSubmit AJAX service
+    // 2. Automated Email dispatch to munchos.catering@gmail.com via FormSubmit service with MUNCHOS sender name
     try {
       await fetch("https://formsubmit.co/ajax/munchos.catering@gmail.com", {
         method: "POST",
@@ -54,7 +54,10 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
+          _senderName: "MUNCHOS Catering",
+          _replyto: formData.email,
           _subject: `🔔 Nueva Reserva MUNCHOS: ${formData.name} (${reservationData.date})`,
+          _autoresponse: `¡Muchas gracias por tu solicitud en MUNCHOS Catering Múnich! Hemos recibido tus datos para el día ${reservationData.date} (${reservationData.guests} invitados) y nos pondremos en contacto contigo en menos de 24 horas con tu propuesta oficial personalizada. MUNCHOS Boutique Catering Múnich.`,
           _template: "table",
           _captcha: "false",
           Cliente: formData.name,

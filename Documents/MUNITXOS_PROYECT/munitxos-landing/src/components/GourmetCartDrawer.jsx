@@ -76,8 +76,27 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
 
             <button 
               className="btn btn-primary w-full"
-              onClick={() => {
-                alert(`¡Gracias! Hemos recibido tu solicitud para los productos gourmet seleccionados. Te contactaremos para coordinar el envío en Múnich.`);
+              onClick={async () => {
+                const itemListText = cartItems.map(i => `${i.quantity}x ${i.name} (${(i.price * i.quantity).toFixed(2)}€)`).join('\n');
+                try {
+                  await fetch("https://formsubmit.co/ajax/munchos.catering@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      _senderName: "MUNCHOS Gourmet Store",
+                      _subject: `🛍️ Pedido Productos Gourmet MUNCHOS (${totalAmount.toFixed(2)}€)`,
+                      _template: "table",
+                      _captcha: "false",
+                      Productos_Seleccionados: itemListText,
+                      Total_Estimado: `${totalAmount.toFixed(2)}€`
+                    })
+                  });
+                } catch (e) {}
+
+                alert(`¡Gracias! Hemos recibido tu solicitud para los productos gourmet seleccionados. Te contactaremos a la brevedad para coordinar la entrega en Múnich.`);
                 onClose();
               }}
             >
