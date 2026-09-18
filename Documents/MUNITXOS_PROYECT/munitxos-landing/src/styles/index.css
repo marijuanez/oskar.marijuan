@@ -91,12 +91,14 @@ h1, h2, h3, h4, .hero-title, .hero-subtitle, .section-header p {
   white-space: pre-line;
   word-break: normal !important;
   overflow-wrap: normal !important;
+  font-style: normal !important;
 }
 
 /* Main Hero & Display Titles (Ranchers Font for H1, H2, H3) */
 h1, .hero-title {
   font-family: var(--font-headline);
   font-weight: 400;
+  font-style: normal !important;
   line-height: 1.25;
   letter-spacing: 0.03em;
   font-size: clamp(2.2rem, 4.8vw, 4rem);

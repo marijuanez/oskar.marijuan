@@ -836,6 +836,7 @@ Wir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und
         .hero-h1-title {
           font-family: var(--font-headline);
           font-weight: 400;
+          font-style: normal !important;
           color: #FFFFFF;
           font-size: clamp(2.1rem, 3.6vw, 3.4rem);
           line-height: 1.20;
@@ -851,6 +852,7 @@ Wir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und
         /* RANCHERS BRAND GOLD HIGHLIGHT */
         .gold-ranchers-highlight {
           font-family: var(--font-headline);
+          font-style: normal !important;
           color: #e5a71b;
           font-weight: 400;
           text-transform: uppercase;
