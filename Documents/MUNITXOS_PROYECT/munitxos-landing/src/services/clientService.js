@@ -287,21 +287,36 @@ export const exportClientsToCSV = () => {
   const clients = getStoredClients();
   if (!clients || clients.length === 0) return;
 
-  const headers = ['Nombre', 'Email', 'Teléfono', 'Ubicación', 'Solicitudes Totales', 'Eventos Confirmados', 'Total Comensales', 'Gasto Acumulado (€)', 'Recurrente', 'Etiquetas', 'Notas'];
+  const headers = ['Nombre', 'Email', 'Teléfono', 'Ubicación', 'Fecha Registro', 'Hora Registro', 'Solicitudes Totales', 'Eventos Confirmados', 'Total Comensales', 'Gasto Acumulado (€)', 'Recurrente', 'Etiquetas', 'Notas'];
   
-  const rows = clients.map(c => [
-    `"${c.clientName || ''}"`,
-    `"${c.clientEmail || ''}"`,
-    `"${c.clientPhone || ''}"`,
-    `"${c.location || ''}"`,
-    c.totalEventsCount || 0,
-    c.completedEventsCount || 0,
-    c.totalGuestsServed || 0,
-    c.totalSpent || 0,
-    c.isRepeatCustomer ? 'Sí' : 'No',
-    `"${(c.tags || []).join(', ')}"`,
-    `"${(c.notes || '').replace(/"/g, '""')}"`
-  ]);
+  const rows = clients.map(c => {
+    let dateStr = '';
+    let timeStr = '';
+    if (c.createdAt) {
+      try {
+        const d = new Date(c.createdAt);
+        dateStr = d.toLocaleDateString('es-ES');
+        timeStr = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      } catch (e) {
+        dateStr = c.createdAt;
+      }
+    }
+    return [
+      `"${c.clientName || ''}"`,
+      `"${c.clientEmail || ''}"`,
+      `"${c.clientPhone || ''}"`,
+      `"${c.location || ''}"`,
+      `"${dateStr}"`,
+      `"${timeStr}"`,
+      c.totalEventsCount || 0,
+      c.completedEventsCount || 0,
+      c.totalGuestsServed || 0,
+      c.totalSpent || 0,
+      c.isRepeatCustomer ? 'Sí' : 'No',
+      `"${(c.tags || []).join(', ')}"`,
+      `"${(c.notes || '').replace(/"/g, '""')}"`
+    ];
+  });
 
   const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
   const encodedUri = encodeURI(csvContent);

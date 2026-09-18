@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Users, UserCheck, Search, Filter, Download, Mail, Phone, MapPin, 
-  Calendar, Award, DollarSign, ExternalLink, Edit3, X, Save, RefreshCw, CheckCircle, MessageSquare, Plus, Trash2, AlertTriangle
+  Calendar, Clock, Award, DollarSign, ExternalLink, Edit3, X, Save, RefreshCw, CheckCircle, MessageSquare, Plus, Trash2, AlertTriangle
 } from 'lucide-react';
 import { getStoredClients, updateClientDetails, deleteClient, createManualClient, exportClientsToCSV } from '../../services/clientService';
 import { getStoredReservations } from '../../services/reservationService';
@@ -24,6 +24,8 @@ export const ClientsManager = () => {
     clientEmail: '',
     clientPhone: '',
     location: '',
+    regDate: '',
+    regTime: '',
     totalEventsCount: 1,
     completedEventsCount: 1,
     totalGuestsServed: 20,
@@ -42,6 +44,19 @@ export const ClientsManager = () => {
   useEffect(() => {
     refreshData();
   }, []);
+
+  const formatDateTime = (isoString) => {
+    if (!isoString) return { date: 'N/A', time: 'N/A' };
+    try {
+      const d = new Date(isoString);
+      if (isNaN(d.getTime())) return { date: isoString, time: '' };
+      const date = d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const time = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) + ' h';
+      return { date, time };
+    } catch (e) {
+      return { date: isoString, time: '' };
+    }
+  };
 
   // Filter clients
   const filteredClients = clients.filter(c => {
@@ -75,11 +90,14 @@ export const ClientsManager = () => {
   };
 
   const handleOpenAddModal = () => {
+    const now = new Date();
     setFormData({
       clientName: '',
       clientEmail: '',
       clientPhone: '',
       location: 'Múnich',
+      regDate: now.toISOString().split('T')[0],
+      regTime: now.toTimeString().split(' ')[0].substring(0, 5),
       totalEventsCount: 1,
       completedEventsCount: 1,
       totalGuestsServed: 20,
@@ -93,8 +111,11 @@ export const ClientsManager = () => {
   const handleSaveNewClient = (e) => {
     e.preventDefault();
     const tags = formData.tagsStr.split(',').map(t => t.trim()).filter(Boolean);
+    const createdAtISO = formData.regDate ? `${formData.regDate}T${formData.regTime || '12:00'}:00.000Z` : new Date().toISOString();
+    
     const updated = createManualClient({
       ...formData,
+      createdAt: createdAtISO,
       tags
     });
     setClients(updated);
@@ -103,11 +124,23 @@ export const ClientsManager = () => {
 
   const handleOpenEditModal = (client) => {
     setClientToEdit(client);
+    let rDate = '';
+    let rTime = '';
+    if (client.createdAt) {
+      try {
+        const d = new Date(client.createdAt);
+        rDate = d.toISOString().split('T')[0];
+        rTime = d.toTimeString().split(' ')[0].substring(0, 5);
+      } catch (e) {}
+    }
+
     setFormData({
       clientName: client.clientName || '',
       clientEmail: client.clientEmail || '',
       clientPhone: client.clientPhone || '',
       location: client.location || 'Múnich',
+      regDate: rDate || new Date().toISOString().split('T')[0],
+      regTime: rTime || '12:00',
       totalEventsCount: client.totalEventsCount || 0,
       completedEventsCount: client.completedEventsCount || 0,
       totalGuestsServed: client.totalGuestsServed || 0,
@@ -122,8 +155,11 @@ export const ClientsManager = () => {
     if (!clientToEdit) return;
 
     const tags = formData.tagsStr.split(',').map(t => t.trim()).filter(Boolean);
+    const createdAtISO = formData.regDate ? `${formData.regDate}T${formData.regTime || '12:00'}:00.000Z` : clientToEdit.createdAt;
+
     const updated = updateClientDetails(clientToEdit.id, {
       ...formData,
+      createdAt: createdAtISO,
       totalEventsCount: parseInt(formData.totalEventsCount) || 0,
       completedEventsCount: parseInt(formData.completedEventsCount) || 0,
       totalGuestsServed: parseInt(formData.totalGuestsServed) || 0,
@@ -164,7 +200,7 @@ export const ClientsManager = () => {
         <div className="header-left">
           <h2 className="header-title">Base de Datos de Clientes & CRM</h2>
           <p className="header-subtitle">
-            Gestión de fichas de clientes, edición, borrado, historial de solicitudes y analítica de comensales.
+            Gestión de fichas de clientes con fecha/hora de registro, historial de solicitudes y métricas de comensales.
           </p>
         </div>
 
@@ -227,7 +263,7 @@ export const ClientsManager = () => {
           <Search size={18} className="search-icon" />
           <input 
             type="text"
-            placeholder="Buscar cliente por nombre, email, teléfono o zona..."
+            placeholder="Buscar por nombre, email, teléfono, zona..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -279,6 +315,7 @@ export const ClientsManager = () => {
           <thead>
             <tr>
               <th>Cliente / Razón Social</th>
+              <th>Fecha & Hora Registro</th>
               <th>Contacto & Ubicación</th>
               <th>Solicitudes / Eventos</th>
               <th>Total Comensales</th>
@@ -290,98 +327,108 @@ export const ClientsManager = () => {
           <tbody>
             {filteredClients.length === 0 ? (
               <tr>
-                <td colSpan="7" className="empty-row">
+                <td colSpan="8" className="empty-row">
                   No se encontraron clientes en la base de datos.
                 </td>
               </tr>
             ) : (
-              filteredClients.map((client) => (
-                <tr key={client.id} className="table-row-hover">
-                  <td>
-                    <div className="client-name-cell">
-                      <span className="client-name">{client.clientName}</span>
-                      <div className="tags-row">
-                        {(client.tags || []).map((t, idx) => (
-                          <span key={idx} className={`tag-badge tag-${t.toLowerCase()}`}>
-                            {t}
-                          </span>
-                        ))}
+              filteredClients.map((client) => {
+                const dt = formatDateTime(client.createdAt);
+                return (
+                  <tr key={client.id} className="table-row-hover">
+                    <td>
+                      <div className="client-name-cell">
+                        <span className="client-name">{client.clientName}</span>
+                        <div className="tags-row">
+                          {(client.tags || []).map((t, idx) => (
+                            <span key={idx} className={`tag-badge tag-${t.toLowerCase()}`}>
+                              {t}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td>
-                    <div className="contact-cell">
-                      <span className="contact-line">
-                        <Mail size={13} /> {client.clientEmail}
-                      </span>
-                      {client.clientPhone && (
+                    <td>
+                      <div className="datetime-cell">
+                        <span className="date-line"><Calendar size={13} /> {dt.date}</span>
+                        <span className="time-line"><Clock size={13} /> {dt.time}</span>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="contact-cell">
                         <span className="contact-line">
-                          <Phone size={13} /> {client.clientPhone}
+                          <Mail size={13} /> {client.clientEmail}
                         </span>
-                      )}
-                      {client.location && (
-                        <span className="contact-line location-line">
-                          <MapPin size={13} /> {client.location}
+                        {client.clientPhone && (
+                          <span className="contact-line">
+                            <Phone size={13} /> {client.clientPhone}
+                          </span>
+                        )}
+                        {client.location && (
+                          <span className="contact-line location-line">
+                            <MapPin size={13} /> {client.location}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="stats-cell">
+                        <span className="highlight-num">{client.totalEventsCount || 0} solic.</span>
+                        <span className="sub-num">({client.completedEventsCount || 0} confirmados)</span>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span className="guests-cell-val">{client.totalGuestsServed || 0} pers.</span>
+                    </td>
+
+                    <td>
+                      <span className="spent-val">{client.totalSpent || 0}€</span>
+                    </td>
+
+                    <td>
+                      {client.isRepeatCustomer ? (
+                        <span className="badge-repeat">
+                          <UserCheck size={13} /> Recurrente
                         </span>
+                      ) : (
+                        <span className="badge-single">Primera Reserva</span>
                       )}
-                    </div>
-                  </td>
+                    </td>
 
-                  <td>
-                    <div className="stats-cell">
-                      <span className="highlight-num">{client.totalEventsCount || 0} solic.</span>
-                      <span className="sub-num">({client.completedEventsCount || 0} confirmados)</span>
-                    </div>
-                  </td>
+                    <td>
+                      <div className="action-buttons-cell">
+                        <button 
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => handleOpenDetail(client)}
+                          title="Ver Historial"
+                        >
+                          Ver
+                        </button>
 
-                  <td>
-                    <span className="guests-cell-val">{client.totalGuestsServed || 0} pers.</span>
-                  </td>
+                        <button 
+                          className="btn-icon btn-edit-icon"
+                          onClick={() => handleOpenEditModal(client)}
+                          title="Editar Datos Cliente"
+                        >
+                          <Edit3 size={15} />
+                        </button>
 
-                  <td>
-                    <span className="spent-val">{client.totalSpent || 0}€</span>
-                  </td>
-
-                  <td>
-                    {client.isRepeatCustomer ? (
-                      <span className="badge-repeat">
-                        <UserCheck size={13} /> Recurrente
-                      </span>
-                    ) : (
-                      <span className="badge-single">Primera Reserva</span>
-                    )}
-                  </td>
-
-                  <td>
-                    <div className="action-buttons-cell">
-                      <button 
-                        className="btn btn-secondary btn-sm"
-                        onClick={() => handleOpenDetail(client)}
-                        title="Ver Historial"
-                      >
-                        Ver
-                      </button>
-
-                      <button 
-                        className="btn-icon btn-edit-icon"
-                        onClick={() => handleOpenEditModal(client)}
-                        title="Editar Datos Cliente"
-                      >
-                        <Edit3 size={15} />
-                      </button>
-
-                      <button 
-                        className="btn-icon btn-delete-icon"
-                        onClick={() => setClientToDelete(client)}
-                        title="Eliminar Cliente"
-                      >
-                        <Trash2 size={15} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
+                        <button 
+                          className="btn-icon btn-delete-icon"
+                          onClick={() => setClientToDelete(client)}
+                          title="Eliminar Cliente"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
@@ -417,6 +464,28 @@ export const ClientsManager = () => {
                     value={formData.clientEmail}
                     onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
                     placeholder="ejemplo@web.de"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Fecha de Registro *</label>
+                  <input 
+                    type="date" 
+                    required 
+                    className="form-input" 
+                    value={formData.regDate}
+                    onChange={(e) => setFormData({ ...formData, regDate: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Hora de Registro *</label>
+                  <input 
+                    type="time" 
+                    required 
+                    className="form-input" 
+                    value={formData.regTime}
+                    onChange={(e) => setFormData({ ...formData, regTime: e.target.value })}
                   />
                 </div>
 
@@ -545,6 +614,28 @@ export const ClientsManager = () => {
                 </div>
 
                 <div className="form-group">
+                  <label className="form-label">Fecha de Registro</label>
+                  <input 
+                    type="date" 
+                    required 
+                    className="form-input" 
+                    value={formData.regDate}
+                    onChange={(e) => setFormData({ ...formData, regDate: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Hora de Registro</label>
+                  <input 
+                    type="time" 
+                    required 
+                    className="form-input" 
+                    value={formData.regTime}
+                    onChange={(e) => setFormData({ ...formData, regTime: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
                   <label className="form-label">Teléfono / WhatsApp</label>
                   <input 
                     type="text" 
@@ -668,6 +759,13 @@ export const ClientsManager = () => {
             <div className="modal-client-header">
               <div className="header-info">
                 <h3 className="modal-client-name">{selectedClient.clientName}</h3>
+                
+                {/* Registration Date & Time Badge */}
+                <div className="modal-datetime-badge">
+                  <Calendar size={14} className="icon-cyan" />
+                  <span>Alta: <strong>{formatDateTime(selectedClient.createdAt).date}</strong> a las <strong>{formatDateTime(selectedClient.createdAt).time}</strong></span>
+                </div>
+
                 <div className="modal-tags">
                   {selectedClient.isRepeatCustomer && (
                     <span className="badge-repeat"><UserCheck size={14} /> Cliente Recurrente</span>
@@ -962,6 +1060,30 @@ export const ClientsManager = () => {
           font-size: 0.95rem;
         }
 
+        .datetime-cell {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+          font-size: 0.82rem;
+        }
+
+        .date-line {
+          color: #FFF;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .time-line {
+          color: var(--accent-cyan);
+          font-size: 0.78rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
         .tags-row {
           display: flex;
           gap: 0.3rem;
@@ -1189,6 +1311,19 @@ export const ClientsManager = () => {
         .modal-client-name {
           font-family: var(--font-subtitles);
           font-size: 1.6rem;
+          color: #FFF;
+        }
+
+        .modal-datetime-badge {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.84rem;
+          color: var(--text-dark-secondary);
+          margin-top: 0.2rem;
+        }
+
+        .modal-datetime-badge strong {
           color: #FFF;
         }
 
