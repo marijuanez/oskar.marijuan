@@ -79,7 +79,8 @@
         "title": "Service & Vollkommener Genuss",
         "desc": "Perfekt servierbereit oder mit Live-Koch. Sie genießen, wir erledigen den Rest."
       }
-    ]
+    ],
+    "cta": "Planen Sie Ihr Event in 2 Minuten"
   },
   "menus": {
     "badge": "Unsere Gastronomische Auslese",
@@ -165,7 +166,11 @@
       "extras": "Optionale Zusatzleistungen:",
       "estimatedTotal": "Geschätzte Gesamtsumme:",
       "perPerson": "pro Person",
-      "submitBtn": "Unverbindliches Angebot Anfordern"
+      "submitBtn": "Unverbindliches Angebot Anfordern",
+      "guestsBadge": "Gäste",
+      "dateAvailable": "Datum Verfügbar",
+      "intimate": "10 (Intim)",
+      "maximum": "50 (Maximal)"
     },
     "menuOptions": [
       { "id": "de-tapas", "name": "Baskische Pinchos & Plancha Erlebnis", "price": 38 },
@@ -199,7 +204,9 @@
       }
     ],
     "quoteAuthor": "Oskar Marijuan",
-    "quoteRole": "Chefkoch & Gründer MUNCHOS München"
+    "quoteRole": "Chefkoch & Gründer MUNCHOS München",
+    "experienceBadgeTitle": "Baskische Gastronomie",
+    "experienceBadgeSub": "im Herzen von München"
   },
   "guarantee": {
     "badge": "MUNCHOS Versprechen",
@@ -303,9 +310,11 @@
     "phone": "Telefonnummer (WhatsApp):",
     "location": "Event-Ort in München / Umgebung:",
     "notes": "Hinweise oder Allergien Ihrer Gäste:",
+    "paymentTitle": "Bevorzugte Zahlungsmethode:",
     "submit": "Unverbindliches Angebot Senden",
     "successTitle": "Anfrage Erhalten!",
-    "successText": "Vielen Dank für Ihre Anfrage bei MUNCHOS. Wir antworten Ihnen in Kürze mit einem detaillierten Angebot."
+    "successText": "Vielen Dank für Ihre Anfrage bei MUNCHOS. Wir antworten Ihnen in Kürze mit einem detaillierten Angebot.",
+    "understood": "Verstanden"
   },
   "footer": {
     "about": "MUNCHOS bringt authentische baskische Gastronomie und edles Meister-Sushi ins Herz von München und verwandelt Feiern in unvergessliche Erlebnisse.",
@@ -318,7 +327,16 @@
     "address": "München, Bayern — Deutschland",
     "phone": "+49 89 1234 5678",
     "email": "hola@munchos.de",
-    "copyright": "© 2026 MUNCHOS. Alle Rechte vorbehalten. Catering Boutique in München."
+    "copyright": "© 2026 MUNCHOS. Alle Rechte vorbehalten. Catering Boutique in München.",
+    "admin": "Inhaber / Admin-Zugang"
+  },
+  "cart": {
+    "title": "Gourmet-Einkaufsliste",
+    "empty": "Ihre Gourmet-Auswahl ist leer.",
+    "emptySub": "Fügen Sie Konserven, baskische Weine oder Käse aus unserem Shop hinzu.",
+    "estimatedTotal": "Geschätzte Gesamtsumme:",
+    "acceptedPayments": "Akzeptierte Zahlungsmethoden:",
+    "checkoutBtn": "Gourmet-Produkte Anfragen"
   },
   "promotions": {
     "badge": "Exklusives MUNCHOS Angebot",

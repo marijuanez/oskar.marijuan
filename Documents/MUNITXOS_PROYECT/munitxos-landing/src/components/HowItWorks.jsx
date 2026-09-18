@@ -35,7 +35,7 @@ export const HowItWorks = ({ onOpenBooking }) => {
 
         <div className="how-it-works-cta">
           <button className="btn btn-outline-gold how-cta-btn" onClick={onOpenBooking}>
-            <span>Diseña tu evento en 2 minutos</span>
+            <span>{t('howItWorks.cta')}</span>
           </button>
         </div>
       </div>

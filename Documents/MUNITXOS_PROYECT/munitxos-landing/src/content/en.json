@@ -79,7 +79,8 @@
         "title": "Service & Enjoyment",
         "desc": "Served ready to enjoy or with an on-site chef. You celebrate, we deliver the magic."
       }
-    ]
+    ],
+    "cta": "Design your event in 2 minutes"
   },
   "menus": {
     "badge": "Our Culinary Offerings",
@@ -165,7 +166,11 @@
       "extras": "Optional Extra Services:",
       "estimatedTotal": "Estimated Total Price:",
       "perPerson": "per person",
-      "submitBtn": "Request Official Quote (No Obligation)"
+      "submitBtn": "Request Official Quote (No Obligation)",
+      "guestsBadge": "guests",
+      "dateAvailable": "Date Available",
+      "intimate": "10 (Intimate)",
+      "maximum": "50 (Maximum)"
     },
     "menuOptions": [
       { "id": "de-tapas", "name": "Basque Pinchos & Grill Experience", "price": 38 },
@@ -199,7 +204,9 @@
       }
     ],
     "quoteAuthor": "Oskar Marijuan",
-    "quoteRole": "Founder & Head Chef MUNCHOS Munich"
+    "quoteRole": "Founder & Head Chef MUNCHOS Munich",
+    "experienceBadgeTitle": "Basque Gastronomy",
+    "experienceBadgeSub": "in the heart of Munich"
   },
   "guarantee": {
     "badge": "MUNCHOS Commitment",
@@ -303,9 +310,11 @@
     "phone": "Contact phone (WhatsApp):",
     "location": "Event location in Munich / Area:",
     "notes": "Notes or dietary requirements of your guests:",
+    "paymentTitle": "Preferred Payment Method:",
     "submit": "Send Quote Request",
     "successTitle": "Request Received!",
-    "successText": "Thank you for contacting MUNCHOS. We will reply shortly with a detailed proposal."
+    "successText": "Thank you for contacting MUNCHOS. We will reply shortly with a detailed proposal.",
+    "understood": "Got it"
   },
   "footer": {
     "about": "MUNCHOS brings Basque culinary authenticity and master sushi craft to the heart of Munich, turning small gatherings into unforgettable experiences.",
@@ -318,7 +327,16 @@
     "address": "Munich, Bavaria — Germany",
     "phone": "+49 89 1234 5678",
     "email": "hola@munchos.de",
-    "copyright": "© 2026 MUNCHOS. All rights reserved. Boutique Catering in Munich."
+    "copyright": "© 2026 MUNCHOS. All rights reserved. Boutique Catering in Munich.",
+    "admin": "Owner / Admin Access"
+  },
+  "cart": {
+    "title": "Gourmet Shopping List",
+    "empty": "Your gourmet selection is empty.",
+    "emptySub": "Add preserves, Basque wines, or artisanal cheeses from our shop.",
+    "estimatedTotal": "Estimated Total:",
+    "acceptedPayments": "Accepted Payment Methods:",
+    "checkoutBtn": "Request Gourmet Products"
   },
   "promotions": {
     "badge": "Exclusive MUNCHOS Promotion",

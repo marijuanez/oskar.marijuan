@@ -113,7 +113,7 @@ export const BookingWidget = ({ onSubmitBooking }) => {
               <label className="calc-label">
                 <Users size={20} className="icon-cyan" />
                 <span>{t('bookingWidget.labels.guests')}</span>
-                <span className="guest-badge-value">{guests} invitados</span>
+                <span className="guest-badge-value">{guests} {t('bookingWidget.labels.guestsBadge')}</span>
               </label>
               <input 
                 type="range" 
@@ -125,9 +125,9 @@ export const BookingWidget = ({ onSubmitBooking }) => {
                 className="custom-slider"
               />
               <div className="slider-range-labels">
-                <span>10 (Íntimo)</span>
+                <span>{t('bookingWidget.labels.intimate')}</span>
                 <span>30</span>
-                <span>50 (Máximo)</span>
+                <span>{t('bookingWidget.labels.maximum')}</span>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export const BookingWidget = ({ onSubmitBooking }) => {
                 {availStatus && availStatus.isAvailable && (
                   <span className="avail-badge-success">
                     <CheckCircle2 size={15} />
-                    <span>Fecha Disponible</span>
+                    <span>{t('bookingWidget.labels.dateAvailable')}</span>
                   </span>
                 )}
               </div>

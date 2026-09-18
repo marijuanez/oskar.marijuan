@@ -17,7 +17,7 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
         <div className="drawer-header">
           <div className="drawer-title-group">
             <ShoppingBag size={22} className="icon-gold" />
-            <h3>Lista de Compras Gourmet</h3>
+            <h3>{t('cart.title')}</h3>
           </div>
           <button className="close-btn" onClick={onClose} aria-label="Cerrar"><X size={24} /></button>
         </div>
@@ -27,8 +27,8 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
           {cartItems.length === 0 ? (
             <div className="empty-cart">
               <ShoppingBag size={48} className="empty-icon" />
-              <p>Tu selección gourmet está vacía.</p>
-              <span className="empty-sub">Añade conservas, vinos vascos o quesos artesanos de nuestra tienda.</span>
+              <p>{t('cart.empty')}</p>
+              <span className="empty-sub">{t('cart.emptySub')}</span>
             </div>
           ) : (
             <div className="cart-items-list">
@@ -59,13 +59,13 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
         {cartItems.length > 0 && (
           <div className="drawer-footer">
             <div className="cart-total-row">
-              <span>Total Estimado:</span>
+              <span>{t('cart.estimatedTotal')}</span>
               <span className="total-price">{totalAmount.toFixed(2)}€</span>
             </div>
 
             {/* Payment Methods Badges Row */}
             <div className="cart-payment-methods">
-              <span className="pay-methods-title">Formas de pago aceptadas:</span>
+              <span className="pay-methods-title">{t('cart.acceptedPayments')}</span>
               <div className="pay-badges-row">
                 <span className="pay-badge" title="PayPal & Apple Pay">PayPal / Apple Pay</span>
                 <span className="pay-badge" title="Klarna & Sofortüberweisung">Klarna / Sofort</span>
@@ -81,7 +81,7 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
                 onClose();
               }}
             >
-              <span>Solicitar Productos Gourmet</span>
+              <span>{t('cart.checkoutBtn')}</span>
               <ArrowRight size={18} />
             </button>
           </div>

@@ -127,7 +127,7 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
 
               {/* Payment Method Selector */}
               <div className="payment-options-group">
-                <label className="pay-group-label">Forma de pago preferida:</label>
+                <label className="pay-group-label">{t('modal.paymentTitle')}</label>
                 <div className="pay-options-grid">
                   <label className={`pay-opt-card ${paymentMethod === 'paypal' ? 'selected' : ''}`}>
                     <input 
@@ -183,7 +183,7 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
             <CheckCircle size={64} className="success-icon" />
             <h3>{t('modal.successTitle')}</h3>
             <p>{t('modal.successText')}</p>
-            <button className="btn btn-primary" onClick={handleClose}>Entendido</button>
+            <button className="btn btn-primary" onClick={handleClose}>{t('modal.understood')}</button>
           </div>
         )}
 

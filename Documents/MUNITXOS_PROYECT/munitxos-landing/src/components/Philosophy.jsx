@@ -54,8 +54,8 @@ export const Philosophy = () => {
               <div className="experience-badge">
                 <Award size={24} className="gold-icon" />
                 <div>
-                  <span className="badge-title">Gastronomía Vasca</span>
-                  <span className="badge-sub">en el corazón de Múnich</span>
+                  <span className="badge-title">{t('philosophy.experienceBadgeTitle')}</span>
+                  <span className="badge-sub">{t('philosophy.experienceBadgeSub')}</span>
                 </div>
               </div>
             </div>

@@ -72,7 +72,7 @@ export const Footer = () => {
               <li style={{ marginTop: '0.35rem' }}>
                 <a href="#admin" className="admin-footer-link">
                   <Lock size={13} />
-                  <span>Acceso Propietario / Admin</span>
+                  <span>{t('footer.admin')}</span>
                 </a>
               </li>
             </ul>

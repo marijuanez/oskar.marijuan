@@ -79,7 +79,8 @@
         "title": "Servicio y disfrute total",
         "desc": "Presentación impecable lista para servir o con chef presencial. Tú disfrutas, nosotros hacemos la magia."
       }
-    ]
+    ],
+    "cta": "Diseña tu evento en 2 minutos"
   },
   "menus": {
     "badge": "Nuestra Propuesta Gastronómica",
@@ -165,7 +166,11 @@
       "extras": "Servicios Extra Opcionales:",
       "estimatedTotal": "Estimación orientativa total:",
       "perPerson": "por persona",
-      "submitBtn": "Solicitar Presupuesto Oficial sin Compromiso"
+      "submitBtn": "Solicitar Presupuesto Oficial sin Compromiso",
+      "guestsBadge": "invitados",
+      "dateAvailable": "Fecha Disponible",
+      "intimate": "10 (Íntimo)",
+      "maximum": "50 (Máximo)"
     },
     "menuOptions": [
       { "id": "de-tapas", "name": "Experiencia Pinchos Vascos & Plancha", "price": 38 },
@@ -199,7 +204,9 @@
       }
     ],
     "quoteAuthor": "Oskar Marijuan",
-    "quoteRole": "Chef Fundador MUNCHOS Múnich"
+    "quoteRole": "Chef Fundador MUNCHOS Múnich",
+    "experienceBadgeTitle": "Gastronomía Vasca",
+    "experienceBadgeSub": "en el corazón de Múnich"
   },
   "guarantee": {
     "badge": "Compromiso MUNCHOS",
@@ -303,9 +310,11 @@
     "phone": "Teléfono de contacto (WhatsApp):",
     "location": "Lugar del evento en Múnich / Alrededores:",
     "notes": "Notas o alergias alimentarias de tus invitados:",
+    "paymentTitle": "Forma de pago preferida:",
     "submit": "Enviar Solicitud de Presupuesto",
     "successTitle": "¡Solicitud Recibida!",
-    "successText": "Gracias por contactar con MUNCHOS. Te responderemos en breve con la propuesta detallada."
+    "successText": "Gracias por contactar con MUNCHOS. Te responderemos en breve con la propuesta detallada.",
+    "understood": "Entendido"
   },
   "footer": {
     "about": "MUNCHOS trae la autenticidad de la gastronomía vasca y la delicadeza del sushi de autor al corazón de Múnich, transformando pequeñas celebraciones en experiencias memorables.",
@@ -318,7 +327,16 @@
     "address": "Múnich, Baviera — Alemania",
     "phone": "+49 89 1234 5678",
     "email": "hola@munchos.de",
-    "copyright": "© 2026 MUNCHOS. Todos los derechos reservados. Catering Boutique en Múnich."
+    "copyright": "© 2026 MUNCHOS. Todos los derechos reservados. Catering Boutique en Múnich.",
+    "admin": "Acceso Propietario / Admin"
+  },
+  "cart": {
+    "title": "Lista de Compras Gourmet",
+    "empty": "Tu selección gourmet está vacía.",
+    "emptySub": "Añade conservas, vinos vascos o quesos artesanos de nuestra tienda.",
+    "estimatedTotal": "Total Estimado:",
+    "acceptedPayments": "Formas de pago aceptadas:",
+    "checkoutBtn": "Solicitar Productos Gourmet"
   },
   "promotions": {
     "badge": "Promoción Exclusiva MUNCHOS",
