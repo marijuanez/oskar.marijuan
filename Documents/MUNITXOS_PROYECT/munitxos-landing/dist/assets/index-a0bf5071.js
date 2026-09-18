@@ -2076,7 +2076,7 @@ Wir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und
             width: 100%;
           }
         }
-      `})]})},Bf=({onOpenBooking:e})=>{const{t}=ce(),[n,r]=j.useState(!1);return j.useEffect(()=>{const i=()=>{r(window.scrollY>450)};return window.addEventListener("scroll",i),()=>window.removeEventListener("scroll",i)},[]),n?a.jsxs("div",{className:"sticky-cta-bar",children:[a.jsxs("div",{className:"container sticky-container",children:[a.jsxs("div",{className:"sticky-info",children:[a.jsx("img",{src:"/images/logo-text-only.svg?v=5",alt:"MUNCHOS",className:"sticky-logo-img"}),a.jsx("span",{className:"sticky-sub",children:t("stickyCta.text")})]}),a.jsxs("button",{className:"btn btn-primary sticky-btn",onClick:e,children:[a.jsx(Ve,{size:18}),a.jsx("span",{children:t("stickyCta.button")})]})]}),a.jsx("style",{children:`
+      `})]})},Bf=({onOpenBooking:e})=>{const{t}=ce(),[n,r]=j.useState(!1);return j.useEffect(()=>{const i=()=>{r(window.scrollY>450)};return window.addEventListener("scroll",i),()=>window.removeEventListener("scroll",i)},[]),n?a.jsxs("div",{className:"sticky-cta-bar",children:[a.jsxs("div",{className:"container sticky-container",children:[a.jsxs("div",{className:"sticky-info",children:[a.jsx("img",{src:"/images/logo-definitive.png?v=5",alt:"MUNCHOS",className:"sticky-logo-img"}),a.jsx("span",{className:"sticky-sub",children:t("stickyCta.text")})]}),a.jsxs("button",{className:"btn btn-primary sticky-btn",onClick:e,children:[a.jsx(Ve,{size:17}),a.jsx("span",{children:t("stickyCta.button")})]})]}),a.jsx("style",{children:`
         .sticky-cta-bar {
           position: fixed;
           bottom: 0;
@@ -2085,9 +2085,9 @@ Wir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und
           background: rgba(12, 11, 10, 0.95);
           backdrop-filter: blur(12px);
           border-top: 1px solid rgba(229, 167, 27, 0.35);
-          padding: 0.85rem 0;
+          padding: 0.65rem 0;
           z-index: 999;
-          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.85);
           animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -2100,34 +2100,63 @@ Wir betreuen eine begrenzte Anzahl an Events pro Woche für maximale Frische und
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 1rem;
         }
 
         .sticky-info {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
+          gap: 1rem;
+          min-width: 0;
         }
 
         .sticky-logo-img {
-          height: 26px;
+          height: 38px;
           width: auto;
           display: block;
-          filter: none !important;
+          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+          flex-shrink: 0;
         }
 
         .sticky-sub {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-dark-secondary);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .sticky-btn {
-          font-size: 0.88rem;
-          padding: 0.65rem 1.4rem;
+          font-size: 0.85rem;
+          padding: 0.6rem 1.2rem;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
           .sticky-sub {
             display: none;
+          }
+          .sticky-logo-img {
+            height: 34px;
+          }
+          .sticky-btn {
+            font-size: 0.82rem;
+            padding: 0.55rem 0.9rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .sticky-cta-bar {
+            padding: 0.55rem 0;
+          }
+          .sticky-logo-img {
+            height: 32px;
+          }
+          .sticky-btn {
+            font-size: 0.78rem;
+            padding: 0.5rem 0.75rem;
+            gap: 0.35rem;
           }
         }
       `})]}):null},Hf=()=>{const{t:e}=ce();return a.jsxs("footer",{className:"footer-section",children:[a.jsxs("div",{className:"container",children:[a.jsxs("div",{className:"footer-grid",children:[a.jsxs("div",{className:"footer-brand-col",children:[a.jsx("img",{src:"/images/logo-text-only.svg?v=4",alt:"MUNCHOS",className:"footer-logo"}),a.jsx("p",{className:"footer-about",children:e("footer.about")}),a.jsxs("div",{className:"social-links",children:[a.jsx("a",{href:"#","aria-label":"Instagram",children:a.jsx(Yh,{size:20})}),a.jsx("a",{href:"#","aria-label":"Facebook",children:a.jsx(qh,{size:20})})]})]}),a.jsxs("div",{className:"footer-col",children:[a.jsx("h4",{children:e("footer.quickLinks")}),a.jsxs("ul",{children:[a.jsx("li",{children:a.jsx("a",{href:"#beneficios",children:e("nav.beneficios")})}),a.jsx("li",{children:a.jsx("a",{href:"#como-funciona",children:e("nav.comoFunciona")})}),a.jsx("li",{children:a.jsx("a",{href:"#menus",children:e("nav.menus")})}),a.jsx("li",{children:a.jsx("a",{href:"#personalizacion",children:e("nav.personalizacion")})}),a.jsx("li",{children:a.jsx("a",{href:"#gourmet",children:e("nav.gourmet")})})]})]}),a.jsxs("div",{className:"footer-col",children:[a.jsx("h4",{children:e("footer.contact")}),a.jsxs("ul",{className:"contact-list",children:[a.jsxs("li",{children:[a.jsx(tf,{size:18,className:"icon-cyan"}),a.jsx("span",{children:e("footer.address")})]}),a.jsxs("li",{children:[a.jsx(of,{size:18,className:"icon-cyan"}),a.jsx("span",{children:e("footer.phone")})]}),a.jsxs("li",{children:[a.jsx(ul,{size:18,className:"icon-cyan"}),a.jsx("span",{children:e("footer.email")})]})]})]}),a.jsxs("div",{className:"footer-col",children:[a.jsx("h4",{children:e("footer.legal")}),a.jsxs("ul",{children:[a.jsx("li",{children:a.jsx("a",{href:"#",children:e("footer.impressum")})}),a.jsx("li",{children:a.jsx("a",{href:"#",children:e("footer.privacy")})}),a.jsx("li",{children:a.jsx("a",{href:"#",children:e("footer.terms")})}),a.jsx("li",{style:{marginTop:"0.5rem"},children:a.jsxs("a",{href:"#admin",className:"admin-footer-link",children:[a.jsx(Zd,{size:13}),a.jsx("span",{children:"Acceso Propietario / Admin"})]})})]})]})]}),a.jsx("div",{className:"footer-bottom",children:a.jsx("p",{children:e("footer.copyright")})})]}),a.jsx("style",{children:`

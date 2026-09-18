@@ -20,12 +20,12 @@ export const StickyCTA = ({ onOpenBooking }) => {
     <div className="sticky-cta-bar">
       <div className="container sticky-container">
         <div className="sticky-info">
-          <img src="/images/logo-text-only.svg?v=5" alt="MUNCHOS" className="sticky-logo-img" />
+          <img src="/images/logo-definitive.png?v=5" alt="MUNCHOS" className="sticky-logo-img" />
           <span className="sticky-sub">{t('stickyCta.text')}</span>
         </div>
 
         <button className="btn btn-primary sticky-btn" onClick={onOpenBooking}>
-          <Calendar size={18} />
+          <Calendar size={17} />
           <span>{t('stickyCta.button')}</span>
         </button>
       </div>
@@ -39,9 +39,9 @@ export const StickyCTA = ({ onOpenBooking }) => {
           background: rgba(12, 11, 10, 0.95);
           backdrop-filter: blur(12px);
           border-top: 1px solid rgba(229, 167, 27, 0.35);
-          padding: 0.85rem 0;
+          padding: 0.65rem 0;
           z-index: 999;
-          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.85);
           animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -54,34 +54,63 @@ export const StickyCTA = ({ onOpenBooking }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 1rem;
         }
 
         .sticky-info {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
+          gap: 1rem;
+          min-width: 0;
         }
 
         .sticky-logo-img {
-          height: 26px;
+          height: 38px;
           width: auto;
           display: block;
-          filter: none !important;
+          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+          flex-shrink: 0;
         }
 
         .sticky-sub {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-dark-secondary);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .sticky-btn {
-          font-size: 0.88rem;
-          padding: 0.65rem 1.4rem;
+          font-size: 0.85rem;
+          padding: 0.6rem 1.2rem;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
           .sticky-sub {
             display: none;
+          }
+          .sticky-logo-img {
+            height: 34px;
+          }
+          .sticky-btn {
+            font-size: 0.82rem;
+            padding: 0.55rem 0.9rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .sticky-cta-bar {
+            padding: 0.55rem 0;
+          }
+          .sticky-logo-img {
+            height: 32px;
+          }
+          .sticky-btn {
+            font-size: 0.78rem;
+            padding: 0.5rem 0.75rem;
+            gap: 0.35rem;
           }
         }
       `}</style>
