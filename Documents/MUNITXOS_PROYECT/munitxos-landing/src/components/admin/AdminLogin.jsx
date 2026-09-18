@@ -44,7 +44,7 @@ export const AdminLogin = () => {
             <input 
               type="email" 
               required 
-              placeholder="propietario@munchos.de"
+              placeholder="munchos.catering@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -74,7 +74,7 @@ export const AdminLogin = () => {
             <button 
               type="button" 
               className="btn btn-secondary btn-sm"
-              onClick={() => handleQuickLogin('owner@munchos.de', 'owner')}
+              onClick={() => handleQuickLogin('munchos.catering@gmail.com', 'owner')}
             >
               <ShieldCheck size={16} className="icon-cyan" />
               <span>Acceso Owner (Propietario)</span>
@@ -83,7 +83,7 @@ export const AdminLogin = () => {
             <button 
               type="button" 
               className="btn btn-secondary btn-sm"
-              onClick={() => handleQuickLogin('staff@munchos.de', 'staff')}
+              onClick={() => handleQuickLogin('munchos.catering@gmail.com', 'staff')}
             >
               <User size={16} />
               <span>Acceso Staff (Personal)</span>

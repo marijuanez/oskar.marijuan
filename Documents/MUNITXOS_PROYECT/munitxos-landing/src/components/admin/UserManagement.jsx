@@ -77,7 +77,7 @@ export const UserManagement = () => {
             <input 
               type="email" 
               required 
-              placeholder="marcos@munchos.de"
+              placeholder="munchos.catering@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

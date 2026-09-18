@@ -8,13 +8,13 @@ const STORAGE_KEY_SESSION = 'munchos_auth_session_v1';
 // Default Accounts
 const INITIAL_USERS = [
   {
-    email: 'owner@munchos.de',
+    email: 'munchos.catering@gmail.com',
     password: 'owner',
     name: 'Oskar Marijuan (Owner)',
     role: 'owner'
   },
   {
-    email: 'staff@munchos.de',
+    email: 'munchos.catering@gmail.com',
     password: 'staff',
     name: 'MUNCHOS Equipo Staff',
     role: 'staff'

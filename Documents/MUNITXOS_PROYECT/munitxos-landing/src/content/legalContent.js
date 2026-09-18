@@ -6,8 +6,8 @@ export const legalContent = {
       lastUpdated: "Última actualización: 18 de Septiembre de 2026",
       entity: "Munchos Catering",
       address: "Gräfstr. 28, 81241 Múnich, Alemania",
-      contactOps: "operations@munchos.com",
-      contactPrivacy: "oskar@munchos.com",
+      contactOps: "munchos.catering@gmail.com",
+      contactPrivacy: "munchos.catering@gmail.com",
       jurisdiction: "Tribunales de Múnich, Alemania",
       supervisoryAuthority: "Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)"
     },
@@ -53,7 +53,7 @@ export const legalContent = {
       ],
       chefGuaranteeTitle: "5. Garantía de Cancelación por Parte del Chef / Munchos",
       chefGuaranteeText: "En el caso extraordinario e improbable de que Munchos o el chef asignado deban cancelar la prestación del servicio por causas de fuerza mayor imprevistas (enfermedad grave o accidentes), se reembolsará el 100% de los importes abonados en un plazo máximo de 48 horas habiles. Adicionalmente, asistiremos sin coste en la reubicación con caterings asociados de alta gama en Múnich.",
-      contactNote: "Para solicitar una cancelación o modificación, envía un correo electrónico formal a operations@munchos.com indicando tu número de reserva y fecha del evento."
+      contactNote: "Para solicitar una cancelación o modificación, envía un correo electrónico formal a munchos.catering@gmail.com indicando tu número de reserva y fecha del evento."
     },
     terms: {
       title: "Términos y Condiciones Generales de Contratación (AGB)",
@@ -72,7 +72,7 @@ export const legalContent = {
         },
         {
           heading: "4. Plazo de Reclamaciones y Calidad del Servicio",
-          content: "La satisfacción del cliente es nuestro pilar fundamental. Cualquier discrepancia, defecto aparente en los platos o falta de cantidad debe ser comunicada inmediatamente durante el evento o por escrito en un plazo máximo de 48 horas posteriores a la finalización del servicio a operations@munchos.com. Transcurrido este plazo de 48h, los servicios se considerarán prestados a entera conformidad."
+          content: "La satisfacción del cliente es nuestro pilar fundamental. Cualquier discrepancia, defecto aparente en los platos o falta de cantidad debe ser comunicada inmediatamente durante el evento o por escrito en un plazo máximo de 48 horas posteriores a la finalización del servicio a munchos.catering@gmail.com. Transcurrido este plazo de 48h, los servicios se considerarán prestados a entera conformidad."
         },
         {
           heading: "5. Responsabilidad e Instalaciones en la Ubicación",
@@ -90,7 +90,7 @@ export const legalContent = {
       sections: [
         {
           heading: "1. Responsable del Tratamiento de Datos",
-          content: "El responsable del tratamiento de los datos recabados en esta plataforma web es:\n\nMunchos Catering\nGräfstr. 28, 81241 Múnich, Alemania\nCorreo electrónico de privacidad: oskar@munchos.com"
+          content: "El responsable del tratamiento de los datos recabados en esta plataforma web es:\n\nMunchos Catering\nGräfstr. 28, 81241 Múnich, Alemania\nCorreo electrónico de privacidad: munchos.catering@gmail.com"
         },
         {
           heading: "2. Datos Recabados y Finalidad del Tratamiento",
@@ -121,7 +121,7 @@ export const legalContent = {
         },
         {
           heading: "6. Derechos del Usuario (ARCO / RGPD)",
-          content: "Tienes derecho en cualquier momento a solicitar acceso a tus datos personales, su rectificación, supresión ('derecho al olvido'), limitación del tratamiento, portabilidad de los datos y a oponerte al tratamiento. Puedes ejercer estos derechos enviando una solicitud formal a oskar@munchos.com."
+          content: "Tienes derecho en cualquier momento a solicitar acceso a tus datos personales, su rectificación, supresión ('derecho al olvido'), limitación del tratamiento, portabilidad de los datos y a oponerte al tratamiento. Puedes ejercer estos derechos enviando una solicitud formal a munchos.catering@gmail.com."
         },
         {
           heading: "7. Autoridad de Control Competente",
@@ -138,8 +138,8 @@ export const legalContent = {
       lastUpdated: "Zuletzt aktualisiert: 18. September 2026",
       entity: "Munchos Catering",
       address: "Gräfstr. 28, 81241 München, Deutschland",
-      contactOps: "operations@munchos.com",
-      contactPrivacy: "oskar@munchos.com",
+      contactOps: "munchos.catering@gmail.com",
+      contactPrivacy: "munchos.catering@gmail.com",
       jurisdiction: "Gerichtsstand München, Deutschland",
       supervisoryAuthority: "Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)"
     },
@@ -185,7 +185,7 @@ export const legalContent = {
       ],
       chefGuaranteeTitle: "5. Ausfallgarantie bei Stornierung durch Munchos / den Chefkoch",
       chefGuaranteeText: "Sollte Munchos oder der zugewiesene Koch den Service aufgrund unvorhersehbarer höherer Gewalt (schwere Krankheit oder Unfall) stornieren müssen, werden 100% der gezahlten Beträge innerhalb von 48 Werktagsstunden zurückerstattet. Zudem unterstützen wir Sie kostenfrei bei der Vermittlung an ein Partner-Catering im Premium-Segment in München.",
-      contactNote: "Um eine Stornierung oder Änderung zu beantragen, senden Sie bitte eine formelle E-Mail an operations@munchos.com unter Angabe Ihrer Buchungsnummer und des Event-Datums."
+      contactNote: "Um eine Stornierung oder Änderung zu beantragen, senden Sie bitte eine formelle E-Mail an munchos.catering@gmail.com unter Angabe Ihrer Buchungsnummer und des Event-Datums."
     },
     terms: {
       title: "Allgemeine Geschäftsbedingungen (AGB)",
@@ -204,7 +204,7 @@ export const legalContent = {
         },
         {
           heading: "4. Reklamationsfrist und Qualitätsstandards",
-          content: "Ihre Zufriedenheit ist unser höchstes Anliegen. Etwaige Beanstandungen hinsichtlich Qualität oder Menge müssen unverzüglich während der Veranstaltung oder schriftlich binnen 48 Stunden nach Eventende an operations@munchos.com mitgeteilt werden. Nach Ablauf von 48 Stunden gilt die Leistung als ordnungsgemäß erbracht."
+          content: "Ihre Zufriedenheit ist unser höchstes Anliegen. Etwaige Beanstandungen hinsichtlich Qualität oder Menge müssen unverzüglich während der Veranstaltung oder schriftlich binnen 48 Stunden nach Eventende an munchos.catering@gmail.com mitgeteilt werden. Nach Ablauf von 48 Stunden gilt die Leistung als ordnungsgemäß erbracht."
         },
         {
           heading: "5. Haftung und Pflichten am Veranstaltungsort",
@@ -222,7 +222,7 @@ export const legalContent = {
       sections: [
         {
           heading: "1. Verantwortlicher für die Datenverarbeitung",
-          content: "Verantwortlicher im Sinne der DSGVO ist:\n\nMunchos Catering\nGräfstr. 28, 81241 München, Deutschland\nE-Mail für Datenschutz: oskar@munchos.com"
+          content: "Verantwortlicher im Sinne der DSGVO ist:\n\nMunchos Catering\nGräfstr. 28, 81241 München, Deutschland\nE-Mail für Datenschutz: munchos.catering@gmail.com"
         },
         {
           heading: "2. Erhobene Daten und Verarbeitungszwecke",
@@ -253,7 +253,7 @@ export const legalContent = {
         },
         {
           heading: "6. Rechte der betroffenen Personen (Betroffenenrechte)",
-          content: "Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung ('Recht auf Vergessenwerden'), Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung. Wenden Sie sich hierzu an oskar@munchos.com."
+          content: "Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung ('Recht auf Vergessenwerden'), Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung. Wenden Sie sich hierzu an munchos.catering@gmail.com."
         },
         {
           heading: "7. Zuständige Aufsichtsbehörde",
@@ -270,8 +270,8 @@ export const legalContent = {
       lastUpdated: "Last updated: September 18, 2026",
       entity: "Munchos Catering",
       address: "Gräfstr. 28, 81241 Munich, Germany",
-      contactOps: "operations@munchos.com",
-      contactPrivacy: "oskar@munchos.com",
+      contactOps: "munchos.catering@gmail.com",
+      contactPrivacy: "munchos.catering@gmail.com",
       jurisdiction: "Courts of Munich, Germany",
       supervisoryAuthority: "Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)"
     },
@@ -317,7 +317,7 @@ export const legalContent = {
       ],
       chefGuaranteeTitle: "5. Cancellation Guarantee by Munchos / Chef",
       chefGuaranteeText: "In the unlikely event that Munchos or the assigned chef must cancel due to unforeseen force majeure (severe illness or accident), a 100% full refund of all payments will be issued within 48 business hours. Additionally, we will assist free of charge in transferring your booking to a high-end partner catering company in Munich.",
-      contactNote: "To request a cancellation or date change, please send a formal email to operations@munchos.com with your booking ID and event date."
+      contactNote: "To request a cancellation or date change, please send a formal email to munchos.catering@gmail.com with your booking ID and event date."
     },
     terms: {
       title: "Terms and Conditions of Service (AGB)",
@@ -336,7 +336,7 @@ export const legalContent = {
         },
         {
           heading: "4. 48-Hour Claim Window & Quality Guarantee",
-          content: "Client satisfaction is our main priority. Any issue or claim regarding food quality or service quantity must be reported during the event or in writing within 48 hours following the event end to operations@munchos.com. After 48 hours, services are deemed accepted in full."
+          content: "Client satisfaction is our main priority. Any issue or claim regarding food quality or service quantity must be reported during the event or in writing within 48 hours following the event end to munchos.catering@gmail.com. After 48 hours, services are deemed accepted in full."
         },
         {
           heading: "5. Venue Requirements & Liability",
@@ -354,7 +354,7 @@ export const legalContent = {
       sections: [
         {
           heading: "1. Data Controller Information",
-          content: "The controller responsible for processing data on this website is:\n\nMunchos Catering\nGräfstr. 28, 81241 Munich, Germany\nPrivacy Email: oskar@munchos.com"
+          content: "The controller responsible for processing data on this website is:\n\nMunchos Catering\nGräfstr. 28, 81241 Munich, Germany\nPrivacy Email: munchos.catering@gmail.com"
         },
         {
           heading: "2. Collected Data & Purpose of Processing",
@@ -385,7 +385,7 @@ export const legalContent = {
         },
         {
           heading: "6. User Rights under GDPR",
-          content: "You have the right at any time to request access, rectification, erasure ('right to be forgotten'), restriction of processing, data portability, and object to processing. Contact oskar@munchos.com."
+          content: "You have the right at any time to request access, rectification, erasure ('right to be forgotten'), restriction of processing, data portability, and object to processing. Contact munchos.catering@gmail.com."
         },
         {
           heading: "7. Lead Supervisory Authority",
