@@ -132,20 +132,21 @@ export const Hero = ({ onOpenBooking }) => {
       </div>
 
       <style>{`
-        /* FULLSCREEN HERO CONTAINER */
+        /* FULLSCREEN HERO CONTAINER (FLEXIBLE HEIGHT & CONTAINER RESILIENCE) */
         .hero-fullscreen {
           position: relative;
           width: 100%;
           min-height: 100vh;
+          height: auto;
           display: flex;
           align-items: center;
-          padding-top: 96px;
+          padding-top: 104px;
           padding-bottom: 2.5rem;
           overflow: hidden;
           background: #0C0B0A;
         }
 
-        /* VIDEO CAROUSEL BACKGROUND (BRIGHT & CLEARLY VISIBLE) */
+        /* VIDEO CAROUSEL BACKGROUND */
         .hero-video-container {
           position: absolute;
           inset: 0;
@@ -172,19 +173,19 @@ export const Hero = ({ onOpenBooking }) => {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          filter: brightness(0.88) saturate(1.15) contrast(1.05);
+          filter: brightness(0.85) saturate(1.1);
         }
 
-        /* LIGHT BALANCED OVERLAYS SO BACKGROUND VIDEO SHINES THROUGH */
+        /* GRADIENT OVERLAYS FOR HIGH CONTRAST (WCAG AA COMPLIANCE) */
         .hero-horizontal-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             90deg,
-            rgba(12, 11, 10, 0.90) 0%,
-            rgba(12, 11, 10, 0.72) 45%,
-            rgba(12, 11, 10, 0.35) 75%,
-            rgba(12, 11, 10, 0.10) 100%
+            rgba(12, 11, 10, 0.92) 0%,
+            rgba(12, 11, 10, 0.78) 45%,
+            rgba(12, 11, 10, 0.40) 75%,
+            rgba(12, 11, 10, 0.15) 100%
           );
           z-index: 2;
         }
@@ -194,9 +195,9 @@ export const Hero = ({ onOpenBooking }) => {
           inset: 0;
           background: linear-gradient(
             180deg,
-            rgba(12, 11, 10, 0.70) 0%,
+            rgba(12, 11, 10, 0.75) 0%,
             transparent 35%,
-            rgba(12, 11, 10, 0.85) 100%
+            rgba(12, 11, 10, 0.88) 100%
           );
           z-index: 2;
         }
@@ -210,6 +211,8 @@ export const Hero = ({ onOpenBooking }) => {
 
         .hero-text-block {
           max-width: 660px;
+          min-height: auto;
+          height: auto;
         }
 
         /* GOLD PILL BADGE */
@@ -228,23 +231,31 @@ export const Hero = ({ onOpenBooking }) => {
           margin-bottom: 1.1rem;
           border-radius: 0px !important;
           box-shadow: 0 4px 15px rgba(229, 167, 27, 0.20);
+          white-space: normal !important;
+          word-break: break-word !important;
+          max-width: 100%;
+          line-height: 1.35;
         }
 
         .badge-icon {
           color: #e5a71b;
+          flex-shrink: 0;
         }
 
-        /* H1 HEADLINE IN 100% RANCHERS FONT WITH TWO-COLOR HARMONY */
+        /* H1 HEADLINE IN 100% RANCHERS FONT WITH DEFENSIVE TYPOGRAPHY */
         .hero-h1-title {
           font-family: var(--font-headline);
           font-weight: 400;
           color: #FFFFFF;
-          font-size: clamp(2rem, 3.5vw, 3.4rem);
-          line-height: 1.18;
+          font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+          line-height: 1.20;
           margin-bottom: 1.1rem;
           letter-spacing: 0.02em;
           text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
           text-transform: uppercase;
+          text-wrap: balance;
+          overflow-wrap: break-word;
+          hyphens: auto;
         }
 
         /* RANCHERS BRAND GOLD HIGHLIGHT */
@@ -257,7 +268,7 @@ export const Hero = ({ onOpenBooking }) => {
           text-shadow: 0 0 25px rgba(229, 167, 27, 0.50);
         }
 
-        /* PARAGRAPH */
+        /* PARAGRAPH WITH RELATIVE LINE HEIGHT & BREAK CONTROL */
         .hero-desc-paragraph {
           font-size: clamp(0.95rem, 1.2vw, 1.1rem);
           line-height: 1.55;
@@ -265,13 +276,15 @@ export const Hero = ({ onOpenBooking }) => {
           margin-bottom: 1.5rem;
           max-width: 600px;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+          overflow-wrap: break-word;
+          hyphens: auto;
         }
 
-        /* BUTTONS GROUP (DESKTOP & TABLET: 2 EQUAL COLUMNS SPANNING EXACT 100% WIDTH OF THE 3-COLUMN GRIDS BELOW) */
+        /* BUTTONS GROUP (DESKTOP & TABLET: 2 EQUAL COLUMNS / MOBILE: STACKED 100% WIDTH GAP 12px) */
         .hero-buttons-group {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 0.6rem;
+          gap: 12px;
           width: 100%;
           margin-bottom: 1.5rem;
         }
@@ -293,6 +306,7 @@ export const Hero = ({ onOpenBooking }) => {
           box-shadow: 0 6px 25px rgba(229, 167, 27, 0.40);
           transition: all 0.2s ease;
           width: 100%;
+          min-height: 48px;
           box-sizing: border-box;
           white-space: nowrap;
         }
@@ -320,6 +334,7 @@ export const Hero = ({ onOpenBooking }) => {
           text-decoration: none;
           transition: all 0.2s ease;
           width: 100%;
+          min-height: 48px;
           box-sizing: border-box;
           white-space: nowrap;
         }
@@ -354,6 +369,7 @@ export const Hero = ({ onOpenBooking }) => {
           transition: all 0.25s ease;
           border-radius: 0px !important;
           width: 100%;
+          min-height: auto;
           box-sizing: border-box;
         }
 
@@ -441,6 +457,8 @@ export const Hero = ({ onOpenBooking }) => {
           gap: 0.2rem;
           border-radius: 0px !important;
           transition: border-color 0.2s ease;
+          min-height: auto;
+          height: auto;
         }
 
         .proof-metric-card:hover {
@@ -458,62 +476,95 @@ export const Hero = ({ onOpenBooking }) => {
         .metric-lbl {
           font-size: 0.72rem;
           color: rgba(247, 245, 240, 0.85);
-          line-height: 1.25;
+          line-height: 1.3;
           font-weight: 600;
+          overflow-wrap: break-word;
+          hyphens: auto;
         }
 
-        /* TABLET OPTIMIZATIONS (IPAD MINI 8.3", IPAD 10.9", IPAD AIR 11"/13", IPAD PRO 11"/13") */
-        @media (max-width: 1024px) {
+        /* 2. TABLET (768px - 1024px) – EQUILIBRIO Y ALINEACIÓN */
+        @media (min-width: 768px) and (max-width: 1024px) {
           .hero-fullscreen {
-            padding-top: 92px;
+            padding-top: 96px;
             padding-bottom: 2.2rem;
             min-height: auto;
-          }
-
-          .hero-horizontal-overlay {
-            background: linear-gradient(
-              180deg,
-              rgba(12, 11, 10, 0.78) 0%,
-              rgba(12, 11, 10, 0.55) 50%,
-              rgba(12, 11, 10, 0.82) 100%
-            );
+            height: auto;
           }
 
           .hero-h1-title {
-            font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            line-height: 1.22;
           }
 
           .hero-text-block {
             max-width: 100%;
           }
-        }
 
-        /* MOBILE RESPONSIVE OPTIMIZATIONS (PANTALLAS MOVILES < 640px) */
-        @media (max-width: 640px) {
-          .hero-fullscreen {
-            padding-top: 90px;
-            padding-bottom: 1.8rem;
-            min-height: auto;
+          .hero-buttons-group {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
           }
 
+          .hero-controls-panel {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+          }
+
+          .hero-proof-cards-row {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+          }
+
+          .proof-metric-card {
+            padding: 0.55rem 0.5rem;
+            text-align: center;
+          }
+
+          .metric-lbl {
+            font-size: 0.68rem;
+          }
+        }
+
+        /* 1. MOBILE (< 768px) – LIMPIEZA VISUAL Y FOCO EN CONVERSIÓN */
+        @media (max-width: 767px) {
+          .hero-fullscreen {
+            padding-top: 92px;
+            padding-bottom: 2rem;
+            min-height: auto;
+            height: auto;
+          }
+
+          /* Oscurecimiento incrementado (WCAG AA Contraste Elevado) */
           .hero-horizontal-overlay {
             background: linear-gradient(
               180deg,
-              rgba(12, 11, 10, 0.70) 0%,
-              rgba(12, 11, 10, 0.45) 50%,
-              rgba(12, 11, 10, 0.75) 100%
+              rgba(0, 0, 0, 0.72) 0%,
+              rgba(0, 0, 0, 0.82) 50%,
+              rgba(0, 0, 0, 0.90) 100%
+            );
+          }
+
+          .hero-vertical-overlay {
+            background: linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.78) 0%,
+              transparent 35%,
+              rgba(0, 0, 0, 0.92) 100%
             );
           }
 
           .hero-gold-badge {
             font-size: 0.68rem;
-            padding: 0.28rem 0.6rem;
+            padding: 0.3rem 0.65rem;
             margin-bottom: 0.8rem;
           }
 
           .hero-h1-title {
             font-size: 1.65rem;
-            line-height: 1.2;
+            line-height: 1.22;
             margin-bottom: 0.8rem;
           }
 
@@ -523,60 +574,34 @@ export const Hero = ({ onOpenBooking }) => {
 
           .hero-desc-paragraph {
             font-size: 0.88rem;
-            margin-bottom: 1.1rem;
-            line-height: 1.45;
+            margin-bottom: 1.25rem;
+            line-height: 1.48;
           }
 
-          /* Mobile: CTAs Stacked 1 Column 100% Width */
+          /* Botones CTAs en ancho completo (width: 100%) apilados verticalmente con 12px gap */
           .hero-buttons-group {
             grid-template-columns: 1fr;
-            gap: 0.65rem;
-            margin-bottom: 1.25rem;
+            gap: 12px;
+            margin-bottom: 1rem;
             width: 100%;
           }
 
           .hero-primary-btn, .hero-secondary-btn {
             justify-content: center;
             width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 0.85rem;
+            padding: 0.85rem 1rem;
+            font-size: 0.88rem;
+            box-sizing: border-box;
           }
 
-          /* Mobile: Clean Carousel Tabs Without 01/02/03 prefix */
-          .carousel-tab-btn {
-            padding: 0.45rem 0.4rem;
-            gap: 0.25rem;
-          }
-
-          .tab-sub {
-            display: none;
-          }
-
-          .tab-title {
-            font-size: 0.70rem;
-            text-align: center;
-          }
-
+          /* Ocultar pestañas intermedias de categorías en móvil para eliminar ruido */
           .hero-controls-panel {
-            gap: 0.4rem;
-            margin-bottom: 0.75rem;
+            display: none !important;
           }
 
+          /* Ocultar bloque de métricas en móvil para eliminar ruido y scroll excesivo */
           .hero-proof-cards-row {
-            gap: 0.4rem;
-          }
-
-          .proof-metric-card {
-            padding: 0.45rem 0.35rem;
-            text-align: center;
-          }
-
-          .metric-val {
-            font-size: 1.05rem;
-          }
-
-          .metric-lbl {
-            font-size: 0.62rem;
+            display: none !important;
           }
         }
       `}</style>

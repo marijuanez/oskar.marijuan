@@ -109,6 +109,27 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
             </div>
 
             <div className="mobile-drawer-actions">
+              <div className="mobile-drawer-lang">
+                <button 
+                  className={`mobile-lang-btn ${lang === 'es' ? 'active' : ''}`} 
+                  onClick={() => setLang('es')}
+                >
+                  Español (ES)
+                </button>
+                <button 
+                  className={`mobile-lang-btn ${lang === 'de' ? 'active' : ''}`} 
+                  onClick={() => setLang('de')}
+                >
+                  Deutsch (DE)
+                </button>
+                <button 
+                  className={`mobile-lang-btn ${lang === 'en' ? 'active' : ''}`} 
+                  onClick={() => setLang('en')}
+                >
+                  English (EN)
+                </button>
+              </div>
+
               <button className="btn btn-primary w-full" onClick={() => { setMobileOpen(false); onOpenBooking(); }}>
                 <Calendar size={16} />
                 <span>{t('nav.reservar')}</span>
@@ -162,7 +183,7 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
           width: auto;
           display: block;
           filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-          transition: transform 0.2s ease;
+          transition: transform 0.2s ease, height 0.2s ease;
         }
 
         .nav-logo-link:hover .nav-logo-img {
@@ -214,7 +235,7 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
           gap: 1.2rem;
         }
 
-        /* COMPACT LANG SWITCHER */
+        /* COMPACT LANG SWITCHER (DESKTOP) */
         .compact-lang-switcher {
           display: flex;
           align-items: center;
@@ -319,7 +340,7 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
           padding: 0.25rem;
         }
 
-        /* MOBILE DRAWER STYLING (SOLID DARK BACKGROUND FOR ABSOLUTE LEGIBILITY ON TABLETS & MOBILES) */
+        /* MOBILE DRAWER STYLING */
         .mobile-overlay {
           position: fixed;
           inset: 0;
@@ -355,7 +376,7 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
         }
 
         .mobile-logo {
-          height: 46px;
+          height: 48px;
         }
 
         .mobile-close {
@@ -380,7 +401,7 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
         }
 
         .mobile-nav-links a {
@@ -399,6 +420,40 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
           padding-left: 0.5rem;
         }
 
+        .mobile-drawer-actions {
+          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .mobile-drawer-lang {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-lang-btn {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          color: rgba(247, 245, 240, 0.7);
+          font-size: 0.85rem;
+          font-weight: 700;
+          padding: 0.55rem 0.85rem;
+          text-align: left;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .mobile-lang-btn.active {
+          background: rgba(229, 167, 27, 0.15);
+          border-color: #e5a71b;
+          color: #e5a71b;
+          font-weight: 800;
+        }
+
         /* RESPONSIVE BREAKPOINTS (COLLAPSE TO HAMBURGER BELOW 1180px TO PREVENT OVERFLOW) */
         @media (max-width: 1180px) {
           .desktop-nav-center {
@@ -413,7 +468,23 @@ export const Navbar = ({ onOpenCart, cartCount, onOpenBooking }) => {
             display: none;
           }
         }
+
+        /* MOBILE OPTIMIZATIONS (< 768px): ENLARGE LOGO 25-30% AND HIDE PLAIN TEXT LANG SWITCHER IN TOP BAR */
+        @media (max-width: 768px) {
+          .compact-lang-switcher {
+            display: none !important;
+          }
+
+          .nav-logo-img {
+            height: 64px; /* +25-30% increase for strong mobile brand presence */
+          }
+
+          .nav-glass-right {
+            gap: 0.8rem;
+          }
+        }
       `}</style>
     </header>
   );
 };
+
