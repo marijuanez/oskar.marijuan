@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from '../context/LanguageContext';
-import { X, Send, CheckCircle } from 'lucide-react';
+import { X, Send, CheckCircle, Mail, Loader2 } from 'lucide-react';
 import { createReservation } from '../services/reservationService';
 
 export const BookingModal = ({ isOpen, onClose, initialData }) => {
@@ -13,15 +13,17 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
     location: '',
     notes: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [lastReservation, setLastReservation] = useState(null);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Save to reservations store
-    createReservation({
+    const reservationData = {
       date: initialData?.eventDate || new Date().toISOString().split('T')[0],
       guests: initialData?.guests || 20,
       menuType: initialData?.menuId || 'sushi-fusion',
@@ -37,14 +39,71 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
       location: formData.location,
       notes: formData.notes,
       paymentMethod: paymentMethod
-    });
+    };
 
+    // 1. Save to local & Firestore reservations store
+    const created = createReservation(reservationData);
+    setLastReservation(reservationData);
+
+    // 2. Automated Email dispatch to munchos.catering@gmail.com via FormSubmit AJAX service
+    try {
+      await fetch("https://formsubmit.co/ajax/munchos.catering@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `🔔 Nueva Reserva MUNCHOS: ${formData.name} (${reservationData.date})`,
+          _template: "table",
+          _captcha: "false",
+          Cliente: formData.name,
+          Email_Cliente: formData.email,
+          Telefono_WhatsApp: formData.phone,
+          Ubicacion_Evento: formData.location || 'Múnich / No especificada',
+          Fecha_Evento: reservationData.date,
+          Numero_Invitados: reservationData.guests,
+          Menu_Elegido: reservationData.menuName,
+          Servicios_Extra: (reservationData.extras || []).join(', ') || 'Sin extras',
+          Precio_Estimado_Total: `${reservationData.estimatedTotal}€ (${reservationData.pricePerPerson}€ / pers)`,
+          Forma_Pago_Preferida: paymentMethod,
+          Notas_Alergias: formData.notes || 'Ninguna'
+        })
+      });
+    } catch (err) {
+      console.warn("Could not reach FormSubmit service, mailto fallback available", err);
+    }
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
   const handleClose = () => {
     setSubmitted(false);
+    setIsSubmitting(false);
     onClose();
+  };
+
+  const getMailtoUrl = () => {
+    if (!lastReservation) return '#';
+    const subject = encodeURIComponent(`Solicitud Reserva MUNCHOS Catering - ${lastReservation.clientName}`);
+    const body = encodeURIComponent(
+      `Hola MUNCHOS Catering (munchos.catering@gmail.com),\n\n` +
+      `Confirmación de solicitud de reserva:\n\n` +
+      `• Cliente: ${lastReservation.clientName}\n` +
+      `• Email: ${lastReservation.clientEmail}\n` +
+      `• Teléfono: ${lastReservation.clientPhone}\n` +
+      `• Fecha Evento: ${lastReservation.date}\n` +
+      `• Invitados: ${lastReservation.guests}\n` +
+      `• Menú: ${lastReservation.menuName}\n` +
+      `• Extras: ${(lastReservation.extras || []).join(', ') || 'Ninguno'}\n` +
+      `• Estimación Total: ${lastReservation.estimatedTotal}€\n` +
+      `• Pago Preferido: ${lastReservation.paymentMethod}\n` +
+      `• Ubicación: ${lastReservation.location || 'Múnich'}\n` +
+      `• Notas: ${lastReservation.notes || 'Ninguna'}\n\n` +
+      `Saludos,\n${lastReservation.clientName}`
+    );
+    return `mailto:munchos.catering@gmail.com?cc=${encodeURIComponent(lastReservation.clientEmail)}&subject=${subject}&body=${body}`;
   };
 
   return (
@@ -172,9 +231,18 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-primary modal-submit">
-                <Send size={18} />
-                <span>{t('modal.submit')}</span>
+              <button type="submit" className="btn btn-primary modal-submit" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>Enviando solicitud...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    <span>{t('modal.submit')}</span>
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -183,7 +251,20 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
             <CheckCircle size={64} className="success-icon" />
             <h3>{t('modal.successTitle')}</h3>
             <p>{t('modal.successText')}</p>
-            <button className="btn btn-primary" onClick={handleClose}>{t('modal.understood')}</button>
+            
+            <div className="email-sent-badge">
+              <Mail size={18} className="gold-icon" />
+              <span>Notificación enviada a <strong>munchos.catering@gmail.com</strong></span>
+            </div>
+
+            <div className="success-actions">
+              <a href={getMailtoUrl()} className="btn btn-outline-gold" target="_blank" rel="noopener noreferrer">
+                <Mail size={16} />
+                <span>Enviar copia desde mi Correo</span>
+              </a>
+
+              <button className="btn btn-primary" onClick={handleClose}>{t('modal.understood')}</button>
+            </div>
           </div>
         )}
 
@@ -350,12 +431,42 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
 
         .success-icon { color: var(--accent-cyan); }
 
+        .email-sent-badge {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          background: rgba(201, 176, 74, 0.12);
+          border: 1px solid rgba(201, 176, 74, 0.35);
+          color: #E0E0E0;
+          padding: 0.65rem 1rem;
+          font-size: 0.88rem;
+          margin: 0.5rem 0;
+        }
+
+        .gold-icon { color: #C9B04A; }
+
+        .success-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          width: 100%;
+          margin-top: 0.5rem;
+        }
+
+        .animate-spin {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 640px) {
           .form-row {
             grid-template-columns: 1fr;
           }
-        }
-      `}</style>
+        }`}</style>
     </div>
   );
 };
