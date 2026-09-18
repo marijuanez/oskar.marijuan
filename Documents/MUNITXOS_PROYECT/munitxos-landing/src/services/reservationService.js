@@ -2,6 +2,7 @@
  * MUNCHOS Reservation Service (Firestore + LocalStorage Persistence)
  */
 import { DEFAULT_CAPACITY_SETTINGS } from './availabilityEngine';
+import { syncClientFromReservations } from './clientService';
 
 const STORAGE_KEY_RESERVATIONS = 'munchos_reservations_v1';
 const STORAGE_KEY_SETTINGS = 'munchos_settings_v1';
@@ -131,6 +132,11 @@ export const createReservation = (newResData) => {
   };
   const updated = [newRecord, ...current];
   saveReservations(updated);
+  
+  if (newRecord.clientEmail) {
+    syncClientFromReservations(updated, newRecord.clientEmail);
+  }
+
   return newRecord;
 };
 
@@ -138,6 +144,12 @@ export const updateReservationStatus = (id, newStatus) => {
   const current = getStoredReservations();
   const updated = current.map(r => r.id === id ? { ...r, status: newStatus } : r);
   saveReservations(updated);
+
+  const target = updated.find(r => r.id === id);
+  if (target?.clientEmail) {
+    syncClientFromReservations(updated, target.clientEmail);
+  }
+
   return updated;
 };
 
@@ -145,6 +157,12 @@ export const updateReservationDetails = (id, updates) => {
   const current = getStoredReservations();
   const updated = current.map(r => r.id === id ? { ...r, ...updates } : r);
   saveReservations(updated);
+
+  const target = updated.find(r => r.id === id);
+  if (target?.clientEmail) {
+    syncClientFromReservations(updated, target.clientEmail);
+  }
+
   return updated;
 };
 

@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Calendar, Flame, List, BarChart3, ShoppingBag, Tag, Users, LogOut, ArrowLeft, ShieldCheck, User, ChevronDown, Check, Video } from 'lucide-react';
+import { Calendar, Flame, List, BarChart3, ShoppingBag, Tag, Users, UserCheck, LogOut, ArrowLeft, ShieldCheck, User, ChevronDown, Check, Video } from 'lucide-react';
 import { MonthlyCalendar } from './MonthlyCalendar';
 import { AnnualHeatmap } from './AnnualHeatmap';
 import { ReservationsList } from './ReservationsList';
 import { AnalyticsView } from './AnalyticsView';
+import { ClientsManager } from './ClientsManager';
 import { ProductsManager } from './ProductsManager';
 import { PromotionsManager } from './PromotionsManager';
 import { HeroSlidesManager } from './HeroSlidesManager';
 import { UserManagement } from './UserManagement';
 import { AddReservationModal } from './AddReservationModal';
 import { getStoredReservations, updateReservationStatus, createReservation, getCapacitySettings } from '../../services/reservationService';
+import { syncAllClientsFromReservations } from '../../services/clientService';
 
 export const AdminLayout = ({ onNavigateToPublic }) => {
   const { currentUser, logout } = useAuth();
@@ -18,6 +20,11 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
   const [reservations, setReservations] = useState(getStoredReservations());
   const [capacitySettings, setCapacitySettings] = useState(getCapacitySettings());
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
+  // Sync clients from reservations on mount
+  useEffect(() => {
+    syncAllClientsFromReservations(reservations);
+  }, [reservations]);
   
   // Add Reservation Modal State
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -43,6 +50,7 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
     { id: 'calendar', label: 'Calendario Mensual', icon: Calendar },
     { id: 'heatmap', label: 'Mapa de Calor Anual', icon: Flame },
     { id: 'reservations', label: 'Lista de Reservas', icon: List },
+    { id: 'clients', label: 'Base de Datos Clientes', icon: UserCheck, ownerOnly: true },
     { id: 'analytics', label: 'Analítica & Métricas', icon: BarChart3, ownerOnly: true },
     { id: 'products', label: 'CMS Tienda Gourmet', icon: ShoppingBag, ownerOnly: true },
     { id: 'promotions', label: 'CMS Banners Promo', icon: Tag, ownerOnly: true },
@@ -171,6 +179,10 @@ export const AdminLayout = ({ onNavigateToPublic }) => {
               onUpdateStatus={handleUpdateStatus}
               onOpenAddModal={handleOpenAddModal}
             />
+          )}
+
+          {activeTab === 'clients' && currentUser?.role === 'owner' && (
+            <ClientsManager />
           )}
 
           {activeTab === 'analytics' && currentUser?.role === 'owner' && (
