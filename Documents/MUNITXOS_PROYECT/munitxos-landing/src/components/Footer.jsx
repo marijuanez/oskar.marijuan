@@ -10,9 +10,9 @@ export const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           
-          {/* Brand Col — Pure Vector Text-Only MUNCHOS Logo */}
+          {/* Brand Col — Unified Ranchers Brand Typography Logo */}
           <div className="footer-brand-col">
-            <img src="/images/logo-text-only.svg?v=4" alt="MUNCHOS" className="footer-logo" />
+            <span className="footer-logo-text">MUNCHOS</span>
             <p className="footer-about">{t('footer.about')}</p>
             <div className="social-links">
               <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
@@ -95,12 +95,19 @@ export const Footer = () => {
           align-items: flex-start;
         }
 
-        .footer-logo {
-          height: 34px;
-          width: auto;
-          margin-bottom: 1.25rem;
-          display: block;
-          filter: none !important;
+        .footer-logo-text {
+          font-family: var(--font-headline);
+          font-size: 2.2rem;
+          font-weight: 400;
+          font-style: normal !important;
+          letter-spacing: 0.05em;
+          background: linear-gradient(135deg, #FCE8A6 0%, #FFD700 35%, #D4AF37 70%, #997315 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 1rem;
+          line-height: 1;
+          display: inline-block;
+          text-transform: uppercase;
         }
 
         .footer-about {
