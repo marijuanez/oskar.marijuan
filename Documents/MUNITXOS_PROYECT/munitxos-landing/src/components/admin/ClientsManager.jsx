@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Users, UserCheck, Search, Filter, Download, Mail, Phone, MapPin, 
-  Calendar, Award, DollarSign, ExternalLink, Edit3, X, Save, RefreshCw, CheckCircle, MessageSquare
+  Calendar, Award, DollarSign, ExternalLink, Edit3, X, Save, RefreshCw, CheckCircle, MessageSquare, Plus, Trash2, AlertTriangle
 } from 'lucide-react';
-import { getStoredClients, updateClientDetails, exportClientsToCSV } from '../../services/clientService';
+import { getStoredClients, updateClientDetails, deleteClient, createManualClient, exportClientsToCSV } from '../../services/clientService';
 import { getStoredReservations } from '../../services/reservationService';
 
 export const ClientsManager = () => {
@@ -11,10 +11,26 @@ export const ClientsManager = () => {
   const [reservations, setReservations] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterTag, setFilterTag] = useState('all'); // all, repeat, new, vip, corp
+
+  // Modal States
   const [selectedClient, setSelectedClient] = useState(null);
-  const [isEditingNotes, setIsEditingNotes] = useState(false);
-  const [editedNotes, setEditedNotes] = useState('');
-  const [editedTagInput, setEditedTagInput] = useState('');
+  const [clientToEdit, setClientToEdit] = useState(null);
+  const [clientToDelete, setClientToDelete] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  // Form State for Add / Edit
+  const [formData, setFormData] = useState({
+    clientName: '',
+    clientEmail: '',
+    clientPhone: '',
+    location: '',
+    totalEventsCount: 1,
+    completedEventsCount: 1,
+    totalGuestsServed: 20,
+    totalSpent: 0,
+    notes: '',
+    tagsStr: 'Particular'
+  });
 
   const refreshData = () => {
     const storedClis = getStoredClients();
@@ -53,39 +69,84 @@ export const ClientsManager = () => {
   const totalSpentAll = clients.reduce((sum, c) => sum + (c.totalSpent || 0), 0);
   const avgLtv = totalClientsCount > 0 ? Math.round(totalSpentAll / totalClientsCount) : 0;
 
+  // Handlers
   const handleOpenDetail = (client) => {
     setSelectedClient(client);
-    setEditedNotes(client.notes || '');
-    setIsEditingNotes(false);
   };
 
-  const handleSaveNotes = () => {
-    if (!selectedClient) return;
-    const updated = updateClientDetails(selectedClient.id, { notes: editedNotes });
-    setClients(updated);
-    const updatedSel = updated.find(c => c.id === selectedClient.id);
-    setSelectedClient(updatedSel);
-    setIsEditingNotes(false);
+  const handleOpenAddModal = () => {
+    setFormData({
+      clientName: '',
+      clientEmail: '',
+      clientPhone: '',
+      location: 'Múnich',
+      totalEventsCount: 1,
+      completedEventsCount: 1,
+      totalGuestsServed: 20,
+      totalSpent: 0,
+      notes: '',
+      tagsStr: 'Particular'
+    });
+    setIsAddModalOpen(true);
   };
 
-  const handleAddTag = (tagToAdd) => {
-    if (!selectedClient || !tagToAdd) return;
-    const currentTags = selectedClient.tags || [];
-    if (currentTags.includes(tagToAdd)) return;
-    const newTags = [...currentTags, tagToAdd];
-    const updated = updateClientDetails(selectedClient.id, { tags: newTags });
+  const handleSaveNewClient = (e) => {
+    e.preventDefault();
+    const tags = formData.tagsStr.split(',').map(t => t.trim()).filter(Boolean);
+    const updated = createManualClient({
+      ...formData,
+      tags
+    });
     setClients(updated);
-    setSelectedClient(updated.find(c => c.id === selectedClient.id));
-    setEditedTagInput('');
+    setIsAddModalOpen(false);
   };
 
-  const handleRemoveTag = (tagToRemove) => {
-    if (!selectedClient) return;
-    const currentTags = selectedClient.tags || [];
-    const newTags = currentTags.filter(t => t !== tagToRemove);
-    const updated = updateClientDetails(selectedClient.id, { tags: newTags });
+  const handleOpenEditModal = (client) => {
+    setClientToEdit(client);
+    setFormData({
+      clientName: client.clientName || '',
+      clientEmail: client.clientEmail || '',
+      clientPhone: client.clientPhone || '',
+      location: client.location || 'Múnich',
+      totalEventsCount: client.totalEventsCount || 0,
+      completedEventsCount: client.completedEventsCount || 0,
+      totalGuestsServed: client.totalGuestsServed || 0,
+      totalSpent: client.totalSpent || 0,
+      notes: client.notes || '',
+      tagsStr: (client.tags || []).join(', ')
+    });
+  };
+
+  const handleSaveEditClient = (e) => {
+    e.preventDefault();
+    if (!clientToEdit) return;
+
+    const tags = formData.tagsStr.split(',').map(t => t.trim()).filter(Boolean);
+    const updated = updateClientDetails(clientToEdit.id, {
+      ...formData,
+      totalEventsCount: parseInt(formData.totalEventsCount) || 0,
+      completedEventsCount: parseInt(formData.completedEventsCount) || 0,
+      totalGuestsServed: parseInt(formData.totalGuestsServed) || 0,
+      totalSpent: parseFloat(formData.totalSpent) || 0,
+      isRepeatCustomer: (parseInt(formData.totalEventsCount) || 0) > 1,
+      tags
+    });
+
     setClients(updated);
-    setSelectedClient(updated.find(c => c.id === selectedClient.id));
+    setClientToEdit(null);
+    if (selectedClient && selectedClient.id === clientToEdit.id) {
+      setSelectedClient(updated.find(c => c.id === clientToEdit.id));
+    }
+  };
+
+  const handleDeleteClientConfirm = () => {
+    if (!clientToDelete) return;
+    const updated = deleteClient(clientToDelete.id);
+    setClients(updated);
+    if (selectedClient && selectedClient.id === clientToDelete.id) {
+      setSelectedClient(null);
+    }
+    setClientToDelete(null);
   };
 
   const getClientReservations = (email) => {
@@ -103,7 +164,7 @@ export const ClientsManager = () => {
         <div className="header-left">
           <h2 className="header-title">Base de Datos de Clientes & CRM</h2>
           <p className="header-subtitle">
-            Gestión centralizada de contactos, historial de eventos, comensales atendidos y recurrencia.
+            Gestión de fichas de clientes, edición, borrado, historial de solicitudes y analítica de comensales.
           </p>
         </div>
 
@@ -113,7 +174,12 @@ export const ClientsManager = () => {
             <span>Actualizar</span>
           </button>
 
-          <button className="btn btn-primary btn-sm btn-export" onClick={exportClientsToCSV}>
+          <button className="btn btn-primary btn-sm btn-add-client" onClick={handleOpenAddModal}>
+            <Plus size={16} />
+            <span>+ Nuevo Cliente</span>
+          </button>
+
+          <button className="btn btn-secondary btn-sm btn-export" onClick={exportClientsToCSV}>
             <Download size={16} />
             <span>Exportar CSV</span>
           </button>
@@ -161,7 +227,7 @@ export const ClientsManager = () => {
           <Search size={18} className="search-icon" />
           <input 
             type="text"
-            placeholder="Buscar por nombre, email, teléfono o zona..."
+            placeholder="Buscar cliente por nombre, email, teléfono o zona..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -218,14 +284,14 @@ export const ClientsManager = () => {
               <th>Total Comensales</th>
               <th>Gasto Acumulado</th>
               <th>Recurrencia</th>
-              <th>Acción</th>
+              <th>Acciones (CMS)</th>
             </tr>
           </thead>
           <tbody>
             {filteredClients.length === 0 ? (
               <tr>
                 <td colSpan="7" className="empty-row">
-                  No se encontraron clientes que coincidan con la búsqueda.
+                  No se encontraron clientes en la base de datos.
                 </td>
               </tr>
             ) : (
@@ -288,12 +354,31 @@ export const ClientsManager = () => {
                   </td>
 
                   <td>
-                    <button 
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => handleOpenDetail(client)}
-                    >
-                      Ver Historial
-                    </button>
+                    <div className="action-buttons-cell">
+                      <button 
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => handleOpenDetail(client)}
+                        title="Ver Historial"
+                      >
+                        Ver
+                      </button>
+
+                      <button 
+                        className="btn-icon btn-edit-icon"
+                        onClick={() => handleOpenEditModal(client)}
+                        title="Editar Datos Cliente"
+                      >
+                        <Edit3 size={15} />
+                      </button>
+
+                      <button 
+                        className="btn-icon btn-delete-icon"
+                        onClick={() => setClientToDelete(client)}
+                        title="Eliminar Cliente"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -301,6 +386,274 @@ export const ClientsManager = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Add New Client Modal */}
+      {isAddModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsAddModalOpen(false)}>
+          <div className="modal-container crm-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setIsAddModalOpen(false)}><X size={22} /></button>
+            <h3 className="modal-title">+ Registrar Nuevo Cliente en la Base de Datos</h3>
+
+            <form onSubmit={handleSaveNewClient} className="crm-form">
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="form-label">Nombre del Cliente / Empresa *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    className="form-input" 
+                    value={formData.clientName}
+                    onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
+                    placeholder="Ej. Markus & Sofía"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Correo Electrónico *</label>
+                  <input 
+                    type="email" 
+                    required 
+                    className="form-input" 
+                    value={formData.clientEmail}
+                    onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
+                    placeholder="ejemplo@web.de"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Teléfono / WhatsApp</label>
+                  <input 
+                    type="text" 
+                    className="form-input" 
+                    value={formData.clientPhone}
+                    onChange={(e) => setFormData({ ...formData, clientPhone: e.target.value })}
+                    placeholder="+49 171 1234567"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Ubicación / Zona de Múnich</label>
+                  <input 
+                    type="text" 
+                    className="form-input" 
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    placeholder="Schwabing, Múnich"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Total Solicitudes Realizadas</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalEventsCount}
+                    onChange={(e) => setFormData({ ...formData, totalEventsCount: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Eventos Confirmados</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.completedEventsCount}
+                    onChange={(e) => setFormData({ ...formData, completedEventsCount: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Total Comensales Atendidos</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalGuestsServed}
+                    onChange={(e) => setFormData({ ...formData, totalGuestsServed: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Gasto Acumulado (€)</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalSpent}
+                    onChange={(e) => setFormData({ ...formData, totalSpent: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Etiquetas (separadas por coma)</label>
+                <input 
+                  type="text" 
+                  className="form-input" 
+                  value={formData.tagsStr}
+                  onChange={(e) => setFormData({ ...formData, tagsStr: e.target.value })}
+                  placeholder="Particular, Recurrente, VIP"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Notas Observaciones CRM</label>
+                <textarea 
+                  className="form-textarea"
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  placeholder="Detalles sobre alergias, empresa, facturación..."
+                />
+              </div>
+
+              <div className="form-actions-row">
+                <button type="button" className="btn btn-secondary" onClick={() => setIsAddModalOpen(false)}>Cancelar</button>
+                <button type="submit" className="btn btn-primary"><Save size={16} /> Guardar Cliente</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Client Modal */}
+      {clientToEdit && (
+        <div className="modal-overlay" onClick={() => setClientToEdit(null)}>
+          <div className="modal-container crm-edit-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setClientToEdit(null)}><X size={22} /></button>
+            <h3 className="modal-title">Editar Ficha de Cliente: {clientToEdit.clientName}</h3>
+
+            <form onSubmit={handleSaveEditClient} className="crm-form">
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="form-label">Nombre del Cliente / Empresa</label>
+                  <input 
+                    type="text" 
+                    required 
+                    className="form-input" 
+                    value={formData.clientName}
+                    onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Correo Electrónico</label>
+                  <input 
+                    type="email" 
+                    required 
+                    className="form-input" 
+                    value={formData.clientEmail}
+                    onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Teléfono / WhatsApp</label>
+                  <input 
+                    type="text" 
+                    className="form-input" 
+                    value={formData.clientPhone}
+                    onChange={(e) => setFormData({ ...formData, clientPhone: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Ubicación / Zona</label>
+                  <input 
+                    type="text" 
+                    className="form-input" 
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Total Solicitudes</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalEventsCount}
+                    onChange={(e) => setFormData({ ...formData, totalEventsCount: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Eventos Confirmados</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.completedEventsCount}
+                    onChange={(e) => setFormData({ ...formData, completedEventsCount: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Total Comensales Atendidos</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalGuestsServed}
+                    onChange={(e) => setFormData({ ...formData, totalGuestsServed: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Facturación Acumulada (€)</label>
+                  <input 
+                    type="number" 
+                    className="form-input" 
+                    value={formData.totalSpent}
+                    onChange={(e) => setFormData({ ...formData, totalSpent: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Etiquetas (separadas por coma)</label>
+                <input 
+                  type="text" 
+                  className="form-input" 
+                  value={formData.tagsStr}
+                  onChange={(e) => setFormData({ ...formData, tagsStr: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Notas Internas CRM</label>
+                <textarea 
+                  className="form-textarea"
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                />
+              </div>
+
+              <div className="form-actions-row">
+                <button type="button" className="btn btn-secondary" onClick={() => setClientToEdit(null)}>Cancelar</button>
+                <button type="submit" className="btn btn-primary"><Save size={16} /> Actualizar Cliente</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {clientToDelete && (
+        <div className="modal-overlay" onClick={() => setClientToDelete(null)}>
+          <div className="modal-container delete-confirm-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="confirm-icon-box">
+              <AlertTriangle size={36} className="icon-red" />
+            </div>
+            <h3 className="confirm-title">¿Eliminar cliente de la base de datos?</h3>
+            <p className="confirm-desc">
+              Estás a punto de borrar permanentemente la ficha del cliente <strong>"{clientToDelete.clientName}"</strong> ({clientToDelete.clientEmail}). Esta acción no se puede deshacer.
+            </p>
+
+            <div className="confirm-actions">
+              <button className="btn btn-secondary" onClick={() => setClientToDelete(null)}>Cancelar</button>
+              <button className="btn btn-danger" onClick={handleDeleteClientConfirm}>
+                <Trash2 size={16} /> Sí, Eliminar Cliente
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Client Detail Drawer / Modal */}
       {selectedClient && (
@@ -322,13 +675,6 @@ export const ClientsManager = () => {
                   {(selectedClient.tags || []).map((t, idx) => (
                     <span key={idx} className={`tag-badge tag-${t.toLowerCase()}`}>
                       {t}
-                      <button 
-                        className="remove-tag-btn" 
-                        onClick={() => handleRemoveTag(t)} 
-                        title="Eliminar etiqueta"
-                      >
-                        ×
-                      </button>
                     </span>
                   ))}
                 </div>
@@ -336,13 +682,26 @@ export const ClientsManager = () => {
 
               {/* Action Buttons */}
               <div className="client-contact-actions">
+                <button 
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => handleOpenEditModal(selectedClient)}
+                >
+                  <Edit3 size={15} /> Editar Ficha
+                </button>
+
+                <button 
+                  className="btn btn-danger-outline btn-sm"
+                  onClick={() => setClientToDelete(selectedClient)}
+                >
+                  <Trash2 size={15} /> Borrar
+                </button>
+
                 {selectedClient.clientPhone && (
                   <a 
                     href={`https://wa.me/${selectedClient.clientPhone.replace(/[^0-9]/g, '')}`} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="btn-action btn-whatsapp"
-                    title="Enviar WhatsApp"
                   >
                     <MessageSquare size={16} /> WhatsApp
                   </a>
@@ -350,7 +709,6 @@ export const ClientsManager = () => {
                 <a 
                   href={`mailto:${selectedClient.clientEmail}`} 
                   className="btn-action btn-email"
-                  title="Enviar Email"
                 >
                   <Mail size={16} /> Email
                 </a>
@@ -377,7 +735,7 @@ export const ClientsManager = () => {
               </div>
             </div>
 
-            {/* Content Split: History vs Notes & Tags */}
+            {/* Content Split: History vs Notes */}
             <div className="detail-split-grid">
               
               {/* Event Timeline History */}
@@ -388,7 +746,7 @@ export const ClientsManager = () => {
 
                 <div className="timeline-list">
                   {getClientReservations(selectedClient.clientEmail).length === 0 ? (
-                    <p className="no-res-msg">No hay registros de reserva adicionales.</p>
+                    <p className="no-res-msg">No hay registros de reserva asociados.</p>
                   ) : (
                     getClientReservations(selectedClient.clientEmail).map(r => (
                       <div key={r.id} className="timeline-item">
@@ -410,54 +768,14 @@ export const ClientsManager = () => {
                 </div>
               </div>
 
-              {/* Notes & Tags Edit */}
+              {/* Notes */}
               <div className="detail-notes-block">
-                
-                {/* Notes Section */}
                 <div className="notes-card">
-                  <div className="card-header-row">
-                    <h4 className="block-title"><Edit3 size={16} className="icon-cyan" /> Notas Internas CRM</h4>
-                    {!isEditingNotes ? (
-                      <button className="btn-icon-link" onClick={() => setIsEditingNotes(true)}>Editar</button>
-                    ) : (
-                      <button className="btn-icon-link icon-cyan" onClick={handleSaveNotes}><Save size={14} /> Guardar</button>
-                    )}
-                  </div>
-
-                  {isEditingNotes ? (
-                    <textarea 
-                      className="notes-textarea"
-                      value={editedNotes}
-                      onChange={(e) => setEditedNotes(e.target.value)}
-                      placeholder="Añade observaciones sobre preferencias, dietas, facturación corporativa..."
-                    />
-                  ) : (
-                    <p className="notes-display">
-                      {selectedClient.notes || 'Sin observaciones registradas.'}
-                    </p>
-                  )}
+                  <h4 className="block-title"><Edit3 size={16} className="icon-cyan" /> Notas Internas CRM</h4>
+                  <p className="notes-display">
+                    {selectedClient.notes || 'Sin observaciones registradas.'}
+                  </p>
                 </div>
-
-                {/* Add Tag Section */}
-                <div className="tags-card">
-                  <h4 className="block-title">Añadir Etiqueta</h4>
-                  <div className="add-tag-form">
-                    <input 
-                      type="text"
-                      className="tag-input"
-                      placeholder="Ej. VIP, Bodas, Empresa..."
-                      value={editedTagInput}
-                      onChange={(e) => setEditedTagInput(e.target.value)}
-                    />
-                    <button 
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => handleAddTag(editedTagInput)}
-                    >
-                      Añadir
-                    </button>
-                  </div>
-                </div>
-
               </div>
 
             </div>
@@ -499,12 +817,17 @@ export const ClientsManager = () => {
         .header-actions {
           display: flex;
           gap: 0.75rem;
+          flex-wrap: wrap;
         }
 
-        .btn-export {
+        .btn-add-client {
           background: var(--accent-cyan);
           color: #0D0D0C;
           font-weight: 700;
+        }
+
+        .btn-export {
+          background: rgba(247, 245, 240, 0.08);
         }
 
         .kpi-grid {
@@ -529,15 +852,8 @@ export const ClientsManager = () => {
           line-height: 1;
         }
 
-        .kpi-val small {
-          font-size: 1rem;
-          color: var(--accent-gold);
-        }
-
-        .kpi-lbl {
-          font-size: 0.82rem;
-          color: var(--text-dark-secondary);
-        }
+        .kpi-val small { font-size: 1rem; color: var(--accent-gold); }
+        .kpi-lbl { font-size: 0.82rem; color: var(--text-dark-secondary); }
 
         .controls-bar {
           display: flex;
@@ -660,7 +976,6 @@ export const ClientsManager = () => {
           padding: 0.15rem 0.45rem;
           display: inline-flex;
           align-items: center;
-          gap: 0.25rem;
         }
 
         .tag-badge.tag-vip { background: rgba(212, 175, 55, 0.2); border-color: var(--accent-gold); color: var(--accent-gold); }
@@ -674,19 +989,10 @@ export const ClientsManager = () => {
           color: var(--text-dark-secondary);
         }
 
-        .contact-line {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-        }
-
+        .contact-line { display: flex; align-items: center; gap: 0.4rem; }
         .location-line { color: var(--text-dark-muted); }
 
-        .stats-cell {
-          display: flex;
-          flex-direction: column;
-        }
-
+        .stats-cell { display: flex; flex-direction: column; }
         .highlight-num { font-weight: 700; color: #FFF; }
         .sub-num { font-size: 0.78rem; color: var(--text-dark-muted); }
 
@@ -712,10 +1018,153 @@ export const ClientsManager = () => {
           padding: 0.25rem 0.5rem;
         }
 
-        .empty-row {
-          text-align: center;
-          padding: 2.5rem;
+        .action-buttons-cell {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        .btn-icon {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(247, 245, 240, 0.05);
+          border: 1px solid rgba(247, 245, 240, 0.1);
           color: var(--text-dark-secondary);
+          cursor: pointer;
+          transition: all var(--transition-fast);
+        }
+
+        .btn-edit-icon:hover {
+          background: rgba(62, 193, 201, 0.2);
+          border-color: var(--accent-cyan);
+          color: var(--accent-cyan);
+        }
+
+        .btn-delete-icon:hover {
+          background: rgba(231, 76, 60, 0.2);
+          border-color: #e74c3c;
+          color: #e74c3c;
+        }
+
+        .btn-danger-outline {
+          background: transparent;
+          border: 1px solid #e74c3c;
+          color: #e74c3c;
+        }
+
+        .btn-danger-outline:hover {
+          background: #e74c3c;
+          color: #FFF;
+        }
+
+        .btn-danger {
+          background: #e74c3c;
+          color: #FFF;
+          border: none;
+        }
+
+        /* FORM & MODAL STYLES */
+        .crm-edit-modal {
+          max-width: 680px;
+          width: 90%;
+        }
+
+        .crm-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+
+        .form-grid-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+
+        .form-label {
+          font-size: 0.82rem;
+          color: var(--text-dark-secondary);
+          font-weight: 600;
+        }
+
+        .form-input, .form-textarea {
+          background: #0D0D0C;
+          border: 1px solid rgba(247, 245, 240, 0.15);
+          color: #FFF;
+          padding: 0.6rem 0.8rem;
+          font-size: 0.88rem;
+          font-family: inherit;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+          border-color: var(--accent-cyan);
+          outline: none;
+        }
+
+        .form-textarea {
+          min-height: 80px;
+          resize: vertical;
+        }
+
+        .form-actions-row {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.8rem;
+          margin-top: 0.5rem;
+        }
+
+        /* DELETE CONFIRMATION MODAL */
+        .delete-confirm-modal {
+          max-width: 440px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          padding: 2rem;
+        }
+
+        .confirm-icon-box {
+          background: rgba(231, 76, 60, 0.15);
+          border: 1px solid #e74c3c;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .icon-red { color: #e74c3c; }
+
+        .confirm-title {
+          font-family: var(--font-subtitles);
+          font-size: 1.3rem;
+          color: #FFF;
+        }
+
+        .confirm-desc {
+          font-size: 0.88rem;
+          color: var(--text-dark-secondary);
+          line-height: 1.4;
+        }
+
+        .confirm-actions {
+          display: flex;
+          gap: 0.8rem;
+          width: 100%;
+          justify-content: center;
+          margin-top: 0.5rem;
         }
 
         /* CLIENT DETAIL MODAL */
@@ -750,25 +1199,17 @@ export const ClientsManager = () => {
           flex-wrap: wrap;
         }
 
-        .remove-tag-btn {
-          background: transparent;
-          border: none;
-          color: inherit;
-          cursor: pointer;
-          font-weight: bold;
-          margin-left: 0.2rem;
-        }
-
         .client-contact-actions {
           display: flex;
           gap: 0.6rem;
+          flex-wrap: wrap;
         }
 
         .btn-action {
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          padding: 0.5rem 0.9rem;
+          padding: 0.45rem 0.85rem;
           font-size: 0.85rem;
           font-weight: 700;
           text-decoration: none;
@@ -786,12 +1227,7 @@ export const ClientsManager = () => {
           padding: 1rem;
         }
 
-        .metric-box {
-          display: flex;
-          flex-direction: column;
-          gap: 0.2rem;
-        }
-
+        .metric-box { display: flex; flex-direction: column; gap: 0.2rem; }
         .metric-lbl { font-size: 0.75rem; color: var(--text-dark-secondary); }
         .metric-val { font-weight: 700; font-size: 1.2rem; color: #FFF; }
 
@@ -849,58 +1285,16 @@ export const ClientsManager = () => {
           gap: 1rem;
         }
 
-        .notes-card, .tags-card {
+        .notes-card {
           background: rgba(247, 245, 240, 0.03);
           border: 1px solid rgba(247, 245, 240, 0.08);
           padding: 1rem;
-        }
-
-        .card-header-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .btn-icon-link {
-          background: transparent;
-          border: none;
-          color: var(--accent-cyan);
-          cursor: pointer;
-          font-size: 0.8rem;
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-        }
-
-        .notes-textarea {
-          width: 100%;
-          min-height: 100px;
-          background: #0D0D0C;
-          border: 1px solid var(--accent-cyan);
-          color: #FFF;
-          padding: 0.6rem;
-          font-size: 0.85rem;
-          font-family: inherit;
         }
 
         .notes-display {
           font-size: 0.85rem;
           color: var(--text-dark-secondary);
           line-height: 1.4;
-        }
-
-        .add-tag-form {
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        .tag-input {
-          flex-grow: 1;
-          background: #0D0D0C;
-          border: 1px solid rgba(247, 245, 240, 0.15);
-          color: #FFF;
-          padding: 0.4rem 0.7rem;
-          font-size: 0.82rem;
         }
 
         .icon-cyan { color: var(--accent-cyan); }
@@ -914,6 +1308,7 @@ export const ClientsManager = () => {
 
         @media (max-width: 640px) {
           .kpi-grid { grid-template-columns: 1fr; }
+          .form-grid-2 { grid-template-columns: 1fr; }
           .controls-bar { flex-direction: column; align-items: stretch; }
           .search-input-wrapper { max-width: 100%; }
         }

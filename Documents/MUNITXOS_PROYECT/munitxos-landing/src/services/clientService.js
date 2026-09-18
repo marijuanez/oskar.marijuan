@@ -247,6 +247,39 @@ export const updateClientDetails = (clientId, updates) => {
   return updated;
 };
 
+export const deleteClient = (clientId) => {
+  const current = getStoredClients();
+  const updated = current.filter(c => c.id !== clientId);
+  saveClients(updated);
+  return updated;
+};
+
+export const createManualClient = (newClientData) => {
+  const current = getStoredClients();
+  const newClient = {
+    id: `cli_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
+    clientName: newClientData.clientName || 'Nuevo Cliente',
+    clientEmail: (newClientData.clientEmail || '').trim().toLowerCase(),
+    clientPhone: newClientData.clientPhone || '',
+    location: newClientData.location || 'Múnich',
+    totalEventsCount: parseInt(newClientData.totalEventsCount) || 0,
+    completedEventsCount: parseInt(newClientData.completedEventsCount) || 0,
+    cancelledEventsCount: 0,
+    totalGuestsServed: parseInt(newClientData.totalGuestsServed) || 0,
+    totalSpent: parseFloat(newClientData.totalSpent) || 0,
+    isRepeatCustomer: (parseInt(newClientData.totalEventsCount) || 0) > 1,
+    firstEventDate: newClientData.firstEventDate || new Date().toISOString().split('T')[0],
+    lastEventDate: newClientData.lastEventDate || new Date().toISOString().split('T')[0],
+    notes: newClientData.notes || '',
+    tags: newClientData.tags || ['Nuevo'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  const updated = [newClient, ...current];
+  saveClients(updated);
+  return updated;
+};
+
 /**
  * Export clients database to CSV format for marketing campaigns
  */
