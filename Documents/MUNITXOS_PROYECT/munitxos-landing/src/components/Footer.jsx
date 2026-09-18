@@ -1,9 +1,14 @@
 import React from 'react';
 import { useTranslation } from '../context/LanguageContext';
-import { MapPin, Phone, Mail, Instagram, Facebook, Lock } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Lock, Cookie } from 'lucide-react';
 
 export const Footer = () => {
   const { t } = useTranslation();
+
+  const handleOpenCookieSettings = (e) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent('openMunchosCookieSettings'));
+  };
 
   return (
     <footer className="footer-section">
@@ -58,7 +63,13 @@ export const Footer = () => {
               <li><a href="#">{t('footer.impressum')}</a></li>
               <li><a href="#">{t('footer.privacy')}</a></li>
               <li><a href="#">{t('footer.terms')}</a></li>
-              <li style={{ marginTop: '0.5rem' }}>
+              <li>
+                <button onClick={handleOpenCookieSettings} className="footer-cookie-link">
+                  <Cookie size={13} />
+                  <span>{t('cookies.settings') || 'Configuración de Cookies'}</span>
+                </button>
+              </li>
+              <li style={{ marginTop: '0.35rem' }}>
                 <a href="#admin" className="admin-footer-link">
                   <Lock size={13} />
                   <span>Acceso Propietario / Admin</span>
@@ -160,7 +171,20 @@ export const Footer = () => {
           transition: color var(--transition-fast);
         }
 
-        .footer-col a:hover {
+        .footer-cookie-link {
+          background: transparent;
+          border: none;
+          color: var(--text-dark-secondary);
+          font-size: 0.92rem;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0;
+          transition: color var(--transition-fast);
+        }
+
+        .footer-cookie-link:hover {
           color: var(--accent-cyan);
         }
 

@@ -330,5 +330,29 @@
         "ctaText": "Inquire Paella Dates"
       }
     ]
+  },
+  "cookies": {
+    "bannerTitle": "We Respect Your Privacy",
+    "bannerText": "We use essential and analytics cookies to ensure the smooth operation of our catering booking platform and analyze traffic anonymously (GDPR/DSGVO compliant).",
+    "acceptAll": "Accept All",
+    "essentialOnly": "Essential Only",
+    "settings": "Manage Preferences",
+    "modalTitle": "Cookie Consent Settings",
+    "modalSubtitle": "You can customize the categories of cookies you authorize for MUNCHOS Catering.",
+    "savePreferences": "Save Preferences",
+    "catEssential": "Required Cookies (Technical)",
+    "catEssentialDesc": "Essential for navigation, the gourmet shopping cart, and processing reservations.",
+    "catAnalytics": "Analytics Cookies",
+    "catAnalyticsDesc": "Allow us to measure website traffic to optimize performance and user experience.",
+    "catMarketing": "Marketing Cookies",
+    "catMarketingDesc": "Used to present tailored culinary offers and exclusive gastronomic promotions."
+  },
+  "payments": {
+    "title": "Secure Payment Methods",
+    "subtitle": "We accept major payment options in Germany and the EU",
+    "paypal": "PayPal / Apple Pay",
+    "klarna": "Klarna / Sofort",
+    "cards": "Credit / Debit Cards (Stripe)",
+    "invoice": "B2B Invoice / SEPA Bank Transfer"
   }
 }

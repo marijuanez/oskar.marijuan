@@ -534,7 +534,7 @@ export const Hero = ({ onOpenBooking }) => {
         @media (max-width: 767px) {
           .hero-fullscreen {
             padding-top: 92px;
-            padding-bottom: 2rem;
+            padding-bottom: 0.5rem;
             min-height: auto;
             height: auto;
           }
@@ -583,8 +583,8 @@ export const Hero = ({ onOpenBooking }) => {
           /* Botones CTAs en ancho completo (width: 100%) apilados verticalmente con 12px gap */
           .hero-buttons-group {
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 1rem;
+            gap: 10px;
+            margin-bottom: 0.5rem;
             width: 100%;
           }
 

@@ -28,6 +28,13 @@
   --accent-red-hover: #C02931;
   --accent-basque-green: #275A38;
 
+  /* Official MUNCHOS 5-Color Gastronomic Palette */
+  --palette-sage: #BAC08D;        /* Sage Green / Olive */
+  --palette-gold: #C9B04A;        /* Warm Ochre / Gold */
+  --palette-chestnut: #886850;    /* Warm Chestnut Brown */
+  --palette-terracotta: #6F352D;  /* Terracotta Rust Red */
+  --palette-burgundy: #5B1C2B;    /* Deep Burgundy / Wine */
+
   /* Typography Stack - Ranchers Brand Harmony */
   --font-headline: 'Ranchers', 'Plus Jakarta Sans', Impact, sans-serif;
   --font-logo: 'Ranchers', 'Plus Jakarta Sans', Impact, sans-serif;

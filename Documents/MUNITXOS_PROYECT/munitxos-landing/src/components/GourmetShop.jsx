@@ -8,12 +8,12 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
   const products = t('gourmetShop.products');
 
   return (
-    <section id="gourmet" className="section-padding">
+    <section id="gourmet" className="section-padding gourmet-section">
       <div className="container">
         <div className="section-header">
-          <div className="badge">{t('gourmetShop.badge')}</div>
+          <div className="badge burgundy-badge">{t('gourmetShop.badge')}</div>
           <h2>{t('gourmetShop.title')}</h2>
-          <HorizontalPintxoIcon color="#D4AF37" width={140} height={32} />
+          <HorizontalPintxoIcon color="#C9B04A" width={140} height={32} />
           <p>{t('gourmetShop.subtitle')}</p>
         </div>
 
@@ -47,7 +47,7 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
         </div>
 
         <div className="gourmet-bottom-cta">
-          <button className="btn btn-outline-gold" onClick={onOpenCart}>
+          <button className="btn btn-outline-gold gourmet-cart-btn" onClick={onOpenCart}>
             <ShoppingBag size={18} />
             <span>{t('gourmetShop.interestBtn')}</span>
           </button>
@@ -55,6 +55,26 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
       </div>
 
       <style>{`
+        .gourmet-section {
+          background-color: #5B1C2B;
+          color: #FFFFFF;
+          padding: 5rem 0;
+        }
+
+        .gourmet-section h2 {
+          color: #FFFFFF;
+        }
+
+        .gourmet-section .section-header p {
+          color: #E8DFDC;
+        }
+
+        .burgundy-badge {
+          background: rgba(201, 176, 74, 0.18) !important;
+          border-color: #C9B04A !important;
+          color: #C9B04A !important;
+        }
+
         .gourmet-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -62,8 +82,8 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
         }
 
         .gourmet-card {
-          background: var(--bg-card-dark);
-          border: 1px solid rgba(247, 245, 240, 0.08);
+          background: #1C0A0F;
+          border: 1px solid rgba(201, 176, 74, 0.35);
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -72,7 +92,7 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
 
         .gourmet-card:hover {
           transform: translateY(-6px);
-          border-color: var(--accent-cyan);
+          border-color: #C9B04A;
         }
 
         .gourmet-img-wrapper {
@@ -96,9 +116,10 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
           position: absolute;
           top: 1rem;
           left: 1rem;
-          background: rgba(13, 13, 12, 0.9);
+          background: rgba(28, 10, 15, 0.92);
           backdrop-filter: blur(8px);
-          color: var(--accent-cyan);
+          border: 1px solid #C9B04A;
+          color: #C9B04A;
           font-size: 0.75rem;
           font-weight: 700;
           padding: 0.25rem 0.75rem;
@@ -114,7 +135,7 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
 
         .gourmet-content h3 {
           font-size: 1.25rem;
-          color: var(--text-dark-primary);
+          color: #FFFFFF;
           margin-bottom: 0.5rem;
         }
 
@@ -123,13 +144,14 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
           line-height: 1.5;
           margin-bottom: 1.5rem;
           flex-grow: 1;
+          color: #E8DFDC;
         }
 
         .gourmet-footer {
           display: flex;
           flex-direction: column;
           gap: 0.85rem;
-          border-top: 1px solid rgba(247, 245, 240, 0.08);
+          border-top: 1px solid rgba(201, 176, 74, 0.2);
           padding-top: 1rem;
           width: 100%;
         }
@@ -144,7 +166,7 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
           font-family: var(--font-subtitles);
           font-size: 1.6rem;
           font-weight: 700;
-          color: var(--accent-cyan);
+          color: #C9B04A;
           white-space: nowrap;
         }
 
@@ -153,12 +175,28 @@ export const GourmetShop = ({ onAddToCart, onOpenCart }) => {
           padding: 0.8rem 1rem;
           font-size: 0.85rem;
           justify-content: center;
-          white-space: nowrap !important;
+          background: #C9B04A !important;
+          color: #0D0D0C !important;
+        }
+
+        .gourmet-add-btn:hover {
+          background: #E6C665 !important;
         }
 
         .gourmet-bottom-cta {
           text-align: center;
           margin-top: 3rem;
+        }
+
+        .gourmet-cart-btn {
+          border-color: #C9B04A !important;
+          color: #C9B04A !important;
+          background: #1C0A0F !important;
+        }
+
+        .gourmet-cart-btn:hover {
+          background: #C9B04A !important;
+          color: #0D0D0C !important;
         }
       `}</style>
     </section>

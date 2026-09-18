@@ -330,5 +330,29 @@
         "ctaText": "Consultar Fechas de Paella"
       }
     ]
+  },
+  "cookies": {
+    "bannerTitle": "Respetamos tu Privacidad",
+    "bannerText": "Utilizamos cookies propias y de terceros para garantizar el correcto funcionamiento de nuestra plataforma de reservas de catering y analizar el tráfico de forma anónima (cumplimiento GDPR/DSGVO).",
+    "acceptAll": "Aceptar Todas",
+    "essentialOnly": "Solo Necesarias",
+    "settings": "Configurar Preferencias",
+    "modalTitle": "Configuración de Consentimiento de Cookies",
+    "modalSubtitle": "Puedes personalizar las categorías de cookies que autorizas para MUNCHOS Catering.",
+    "savePreferences": "Guardar Preferencias",
+    "catEssential": "Cookies Necesarias (Técnicas)",
+    "catEssentialDesc": "Imprescindibles para la navegación, el carrito gourmet y la gestión del proceso de reserva.",
+    "catAnalytics": "Cookies Analíticas",
+    "catAnalyticsDesc": "Nos permiten medir el uso de la web para optimizar la velocidad y la experiencia del usuario.",
+    "catMarketing": "Cookies de Marketing",
+    "catMarketingDesc": "Utilizadas para mostrar ofertas personalizadas y promociones gastronómicas exclusivas."
+  },
+  "payments": {
+    "title": "Métodos de Pago Seguros",
+    "subtitle": "Aceptamos los principales métodos de pago en Alemania y la UE",
+    "paypal": "PayPal / Apple Pay",
+    "klarna": "Klarna / Sofort",
+    "cards": "Tarjetas (Visa / Mastercard)",
+    "invoice": "Factura B2B / Transferencia SEPA"
   }
 }

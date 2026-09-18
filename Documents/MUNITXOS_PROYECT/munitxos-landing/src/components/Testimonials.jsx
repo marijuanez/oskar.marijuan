@@ -7,12 +7,12 @@ export const Testimonials = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="testimonios" className="section-padding bg-surface">
+    <section id="testimonios" className="section-padding testimonials-section">
       <div className="container">
         <div className="section-header">
-          <div className="badge">{t('testimonials.badge')}</div>
+          <div className="badge cream-badge">{t('testimonials.badge')}</div>
           <h2>{t('testimonials.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#5B1C2B" width={140} height={32} />
         </div>
 
         <div className="testimonials-grid">
@@ -24,7 +24,7 @@ export const Testimonials = () => {
               
               <div className="rating-row">
                 {[...Array(rev.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="#3EC1C9" color="#3EC1C9" />
+                  <Star key={i} size={16} fill="#C9B04A" color="#C9B04A" />
                 ))}
               </div>
 
@@ -40,6 +40,22 @@ export const Testimonials = () => {
       </div>
 
       <style>{`
+        .testimonials-section {
+          background-color: #F7F5F0;
+          color: #1A1918;
+          padding: 5rem 0;
+        }
+
+        .testimonials-section h2 {
+          color: #1A1918;
+        }
+
+        .cream-badge {
+          background: rgba(91, 28, 43, 0.12) !important;
+          border-color: #5B1C2B !important;
+          color: #5B1C2B !important;
+        }
+
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -47,14 +63,17 @@ export const Testimonials = () => {
         }
 
         .testimonial-card {
+          background: #5B1C2B;
+          border: 1px solid #C9B04A;
           position: relative;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          padding: 2rem;
         }
 
         .quote-icon {
-          color: rgba(62, 193, 201, 0.3);
+          color: rgba(201, 176, 74, 0.5);
           margin-bottom: 1rem;
         }
 
@@ -66,9 +85,9 @@ export const Testimonials = () => {
 
         .testimonial-text {
           font-family: var(--font-subtitles);
-          font-size: 1.15rem;
-          font-style: italic;
-          color: var(--text-dark-primary);
+          font-size: 1.1rem;
+          font-style: normal !important;
+          color: #FFFFFF;
           line-height: 1.6;
           margin-bottom: 2rem;
         }
@@ -76,18 +95,18 @@ export const Testimonials = () => {
         .reviewer-info {
           display: flex;
           flex-direction: column;
-          border-top: 1px solid rgba(247, 245, 240, 0.08);
+          border-top: 1px solid rgba(201, 176, 74, 0.3);
           padding-top: 1rem;
         }
 
         .reviewer-name {
           font-weight: 700;
-          color: var(--accent-cyan);
+          color: #C9B04A;
         }
 
         .reviewer-event {
           font-size: 0.85rem;
-          color: var(--text-dark-muted);
+          color: #E8DFDC;
         }
 
         @media (max-width: 900px) {

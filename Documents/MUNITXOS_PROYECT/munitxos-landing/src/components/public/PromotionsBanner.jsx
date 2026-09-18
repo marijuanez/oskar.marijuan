@@ -98,8 +98,8 @@ export const PromotionsBanner = () => {
         .promo-card {
           display: grid;
           grid-template-columns: 360px 1fr;
-          background: var(--bg-card-dark);
-          border: 1px solid var(--accent-cyan);
+          background: #5B1C2B;
+          border: 1px solid #C9B04A;
           box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
           overflow: hidden;
           align-items: stretch;
@@ -224,6 +224,9 @@ export const PromotionsBanner = () => {
         }
 
         @media (max-width: 680px) {
+          .promotions-banner-section {
+            margin: 0.5rem 0 0.85rem 0;
+          }
           .promo-card {
             grid-template-columns: 1fr;
           }
@@ -232,7 +235,7 @@ export const PromotionsBanner = () => {
             height: 200px;
           }
           .promo-content-col {
-            padding: 1.4rem 1.4rem;
+            padding: 1.25rem 1.25rem;
           }
           .promo-content-col h2 {
             font-size: 1.35rem;

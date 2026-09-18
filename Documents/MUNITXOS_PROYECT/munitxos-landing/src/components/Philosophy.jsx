@@ -7,13 +7,13 @@ export const Philosophy = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="filosofia" className="section-padding bg-surface">
+    <section id="filosofia" className="section-padding philosophy-section">
       <div className="container">
         
         <div className="section-header" style={{ marginBottom: '3rem' }}>
-          <div className="badge">{t('philosophy.badge')}</div>
+          <div className="badge terracotta-badge">{t('philosophy.badge')}</div>
           <h2>{t('philosophy.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#FCE8A6" width={140} height={32} />
         </div>
 
         <div className="philosophy-grid">
@@ -52,7 +52,7 @@ export const Philosophy = () => {
                 onError={(e) => { e.target.src = "/images/lifestyle-people-learning-make-sushi.jpg"; }}
               />
               <div className="experience-badge">
-                <Award size={24} className="cyan-icon" />
+                <Award size={24} className="gold-icon" />
                 <div>
                   <span className="badge-title">Gastronomía Vasca</span>
                   <span className="badge-sub">en el corazón de Múnich</span>
@@ -65,6 +65,22 @@ export const Philosophy = () => {
       </div>
 
       <style>{`
+        .philosophy-section {
+          background-color: #6F352D;
+          color: #FFFFFF;
+          padding: 5rem 0;
+        }
+
+        .philosophy-section h2 {
+          color: #FFFFFF;
+        }
+
+        .terracotta-badge {
+          background: rgba(255, 255, 255, 0.15) !important;
+          border-color: rgba(255, 255, 255, 0.4) !important;
+          color: #FFFFFF !important;
+        }
+
         .philosophy-grid {
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
@@ -75,10 +91,10 @@ export const Philosophy = () => {
         .philosophy-quote {
           font-family: var(--font-subtitles);
           font-size: 1.3rem;
-          font-style: italic;
-          color: var(--accent-cyan);
+          font-style: normal !important;
+          color: #FCE8A6;
           line-height: 1.6;
-          border-left: 3px solid var(--accent-cyan);
+          border-left: 4px solid #C9B04A;
           padding-left: 1.5rem;
           margin-bottom: 1.5rem;
         }
@@ -91,12 +107,12 @@ export const Philosophy = () => {
 
         .author-name {
           font-weight: 700;
-          color: var(--text-dark-primary);
+          color: #FFFFFF;
         }
 
         .author-role {
           font-size: 0.88rem;
-          color: var(--text-dark-muted);
+          color: #F5EAE8;
         }
 
         .philosophy-points {
@@ -114,8 +130,9 @@ export const Philosophy = () => {
         .point-icon {
           width: 36px;
           height: 36px;
-          background: rgba(62, 193, 201, 0.15);
-          color: var(--accent-cyan);
+          background: #4E211A;
+          border: 1px solid #C9B04A;
+          color: #FCE8A6;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -126,19 +143,20 @@ export const Philosophy = () => {
           font-family: var(--font-body);
           font-size: 1rem;
           font-weight: 700;
-          color: var(--text-dark-primary);
+          color: #FFFFFF;
           margin-bottom: 0.2rem;
         }
 
         .point-item p {
           font-size: 0.9rem;
+          color: #F5EAE8;
         }
 
         .image-frame {
           position: relative;
           overflow: hidden;
           box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-          border: 1px solid rgba(62, 193, 201, 0.3);
+          border: 1px solid #C9B04A;
         }
 
         .chef-img {
@@ -152,16 +170,16 @@ export const Philosophy = () => {
           position: absolute;
           bottom: 2rem;
           left: 2rem;
-          background: rgba(13, 13, 12, 0.92);
+          background: rgba(24, 15, 13, 0.92);
           backdrop-filter: blur(12px);
-          border: 1px solid var(--accent-cyan);
+          border: 1px solid #C9B04A;
           padding: 1rem 1.5rem;
           display: flex;
           align-items: center;
           gap: 1rem;
         }
 
-        .cyan-icon { color: var(--accent-cyan); }
+        .gold-icon { color: #C9B04A; }
 
         .badge-title {
           font-weight: 700;
@@ -172,7 +190,7 @@ export const Philosophy = () => {
 
         .badge-sub {
           font-size: 0.8rem;
-          color: var(--text-dark-secondary);
+          color: #F5EAE8;
         }
 
         @media (max-width: 900px) {

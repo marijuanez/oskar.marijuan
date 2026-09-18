@@ -63,6 +63,17 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
               <span className="total-price">{totalAmount.toFixed(2)}€</span>
             </div>
 
+            {/* Payment Methods Badges Row */}
+            <div className="cart-payment-methods">
+              <span className="pay-methods-title">Formas de pago aceptadas:</span>
+              <div className="pay-badges-row">
+                <span className="pay-badge" title="PayPal & Apple Pay">PayPal / Apple Pay</span>
+                <span className="pay-badge" title="Klarna & Sofortüberweisung">Klarna / Sofort</span>
+                <span className="pay-badge" title="Visa & Mastercard">Visa / Mastercard</span>
+                <span className="pay-badge" title="Factura B2B o Transferencia SEPA">Factura B2B / SEPA</span>
+              </div>
+            </div>
+
             <button 
               className="btn btn-primary w-full"
               onClick={() => {
@@ -230,10 +241,39 @@ export const GourmetCartDrawer = ({ isOpen, onClose, cartItems, onUpdateQuantity
         }
 
         .total-price {
-          font-family: var(--font-serif);
+          font-family: var(--font-headline);
           font-size: 1.8rem;
           font-weight: 700;
-          color: var(--accent-gold);
+          color: #C9B04A;
+        }
+
+        .cart-payment-methods {
+          margin-bottom: 1.2rem;
+        }
+
+        .pay-methods-title {
+          font-size: 0.75rem;
+          color: var(--text-dark-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        .pay-badges-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+        }
+
+        .pay-badge {
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #C9B04A;
+          background: rgba(201, 176, 74, 0.12);
+          border: 1px solid rgba(201, 176, 74, 0.3);
+          padding: 0.2rem 0.55rem;
+          border-radius: 0px !important;
         }
       `}</style>
     </div>

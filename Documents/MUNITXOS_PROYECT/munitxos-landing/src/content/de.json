@@ -330,5 +330,29 @@
         "ctaText": "Paella-Termine Anfragen"
       }
     ]
+  },
+  "cookies": {
+    "bannerTitle": "Wir respektieren Ihre Privatsphäre",
+    "bannerText": "Wir verwenden eigene und Drittanbieter-Cookies, um die ordnungsgemäße Funktion unserer Catering-Plattform zu gewährleisten und den Datenverkehr anonym zu analysieren (DSGVO-konform).",
+    "acceptAll": "Alle akzeptieren",
+    "essentialOnly": "Nur essenzielle",
+    "settings": "Einstellungen",
+    "modalTitle": "Cookie-Einwilligungseinstellungen",
+    "modalSubtitle": "Sie können die Kategorien von Cookies anpassen, die Sie für MUNCHOS Catering autorisieren.",
+    "savePreferences": "Einstellungen speichern",
+    "catEssential": "Erforderliche Cookies (Technisch)",
+    "catEssentialDesc": "Unverzichtbar für Navigation, den Gourmet-Warenkorb und die Abwicklung von Buchungen.",
+    "catAnalytics": "Analytische Cookies",
+    "catAnalyticsDesc": "Ermöglichen uns die Messung der Website-Nutzung zur Optimierung von Geschwindigkeit und Benutzererlebnis.",
+    "catMarketing": "Marketing-Cookies",
+    "catMarketingDesc": "Wird verwendet, um personalisierte Angebote und exklusive kulinarische Aktionen anzuzeigen."
+  },
+  "payments": {
+    "title": "Sichere Zahlungsmethoden",
+    "subtitle": "Wir akzeptieren die wichtigsten Zahlungsmethoden in Deutschland und der EU",
+    "paypal": "PayPal / Apple Pay",
+    "klarna": "Klarna / Sofortüberweisung",
+    "cards": "Kreditkarten (Visa / Mastercard)",
+    "invoice": "B2B-Rechnung / SEPA-Überweisung"
   }
 }

@@ -9,12 +9,12 @@ export const Guarantee = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="garantia" className="section-padding">
+    <section id="garantia" className="section-padding guarantee-section">
       <div className="container">
         <div className="section-header">
-          <div className="badge">{t('guarantee.badge')}</div>
+          <div className="badge guarantee-sage-badge">{t('guarantee.badge')}</div>
           <h2>{t('guarantee.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#2D391A" width={140} height={32} />
           <p>{t('guarantee.subtitle')}</p>
         </div>
 
@@ -35,6 +35,26 @@ export const Guarantee = () => {
       </div>
 
       <style>{`
+        .guarantee-section {
+          background-color: #BAC08D;
+          color: #1A2215;
+          padding: 5rem 0;
+        }
+
+        .guarantee-section h2 {
+          color: #1A2215;
+        }
+
+        .guarantee-section .section-header p {
+          color: #2D391A;
+        }
+
+        .guarantee-sage-badge {
+          background: rgba(26, 34, 21, 0.12) !important;
+          border-color: #3E4B28 !important;
+          color: #2D391A !important;
+        }
+
         .guarantee-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -42,32 +62,39 @@ export const Guarantee = () => {
         }
 
         .guarantee-card {
-          border-top: 3px solid var(--accent-cyan);
+          background: #182216;
+          border-top: 4px solid #C9B04A;
+          border-left: 1px solid rgba(212, 175, 55, 0.3);
+          border-right: 1px solid rgba(212, 175, 55, 0.3);
+          border-bottom: 1px solid rgba(212, 175, 55, 0.3);
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          padding: 2rem;
         }
 
         .guarantee-icon {
           width: 52px;
           height: 52px;
-          background: rgba(62, 193, 201, 0.12);
-          color: var(--accent-cyan);
+          background: rgba(201, 176, 74, 0.18);
+          color: #C9B04A;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 1.5rem;
+          border: 1px solid #C9B04A;
         }
 
         .guarantee-card h3 {
           font-size: 1.3rem;
-          color: var(--text-dark-primary);
+          color: #FFFFFF;
           margin-bottom: 0.75rem;
         }
 
         .guarantee-card p {
           font-size: 0.95rem;
           line-height: 1.6;
+          color: #D8D6CD;
         }
 
         @media (max-width: 900px) {

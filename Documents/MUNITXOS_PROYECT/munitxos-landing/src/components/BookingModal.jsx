@@ -5,6 +5,7 @@ import { createReservation } from '../services/reservationService';
 
 export const BookingModal = ({ isOpen, onClose, initialData }) => {
   const { t } = useTranslation();
+  const [paymentMethod, setPaymentMethod] = useState('paypal');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,7 +35,8 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
       clientEmail: formData.email,
       clientPhone: formData.phone,
       location: formData.location,
-      notes: formData.notes
+      notes: formData.notes,
+      paymentMethod: paymentMethod
     });
 
     setSubmitted(true);
@@ -116,11 +118,58 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
               <div className="form-field">
                 <label>{t('modal.notes')}</label>
                 <textarea 
-                  rows="3" 
+                  rows="2" 
                   placeholder="Preferencias de tus invitados, opciones vegetarianas o sin gluten..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 ></textarea>
+              </div>
+
+              {/* Payment Method Selector */}
+              <div className="payment-options-group">
+                <label className="pay-group-label">Forma de pago preferida:</label>
+                <div className="pay-options-grid">
+                  <label className={`pay-opt-card ${paymentMethod === 'paypal' ? 'selected' : ''}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="paypal" 
+                      checked={paymentMethod === 'paypal'}
+                      onChange={() => setPaymentMethod('paypal')}
+                    />
+                    <span>PayPal / Apple Pay</span>
+                  </label>
+                  <label className={`pay-opt-card ${paymentMethod === 'klarna' ? 'selected' : ''}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="klarna" 
+                      checked={paymentMethod === 'klarna'}
+                      onChange={() => setPaymentMethod('klarna')}
+                    />
+                    <span>Klarna / Sofort</span>
+                  </label>
+                  <label className={`pay-opt-card ${paymentMethod === 'card' ? 'selected' : ''}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="card" 
+                      checked={paymentMethod === 'card'}
+                      onChange={() => setPaymentMethod('card')}
+                    />
+                    <span>Tarjeta (Stripe)</span>
+                  </label>
+                  <label className={`pay-opt-card ${paymentMethod === 'invoice' ? 'selected' : ''}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="invoice" 
+                      checked={paymentMethod === 'invoice'}
+                      onChange={() => setPaymentMethod('invoice')}
+                    />
+                    <span>Factura B2B / SEPA</span>
+                  </label>
+                </div>
               </div>
 
               <button type="submit" className="btn btn-primary modal-submit">
@@ -244,8 +293,50 @@ export const BookingModal = ({ isOpen, onClose, initialData }) => {
         }
 
         .modal-submit {
-          margin-top: 1rem;
+          margin-top: 1.25rem;
           width: 100%;
+        }
+
+        .payment-options-group {
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .pay-group-label {
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: var(--text-dark-primary);
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        .pay-options-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.6rem;
+        }
+
+        .pay-opt-card {
+          background: rgba(13, 13, 12, 0.8);
+          border: 1px solid rgba(247, 245, 240, 0.15);
+          padding: 0.65rem 0.75rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          font-size: 0.82rem;
+          color: var(--text-dark-secondary);
+          transition: all 0.2s ease;
+        }
+
+        .pay-opt-card.selected {
+          border-color: #C9B04A;
+          background: rgba(201, 176, 74, 0.12);
+          color: #FFFFFF;
+        }
+
+        .pay-opt-card input {
+          accent-color: #C9B04A;
         }
 
         .success-screen {

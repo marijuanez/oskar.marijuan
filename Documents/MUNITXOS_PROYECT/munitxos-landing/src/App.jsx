@@ -17,6 +17,7 @@ import { Footer } from './components/Footer';
 import { GourmetCartDrawer } from './components/GourmetCartDrawer';
 import { BookingModal } from './components/BookingModal';
 import { PromotionsBanner } from './components/public/PromotionsBanner';
+import { CookieConsent } from './components/CookieConsent';
 
 // Admin Components
 import { AdminLayout } from './components/admin/AdminLayout';
@@ -168,6 +169,9 @@ function MainAppContent() {
         onClose={() => setIsBookingOpen(false)}
         initialData={bookingPrefill}
       />
+
+      {/* GDPR / DSGVO Cookie Consent Banner & Modal */}
+      <CookieConsent />
     </div>
   );
 }

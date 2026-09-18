@@ -7,12 +7,12 @@ export const HowItWorks = ({ onOpenBooking }) => {
   const { t } = useTranslation();
 
   return (
-    <section id="como-funciona" className="section-padding">
+    <section id="como-funciona" className="section-padding how-it-works-section">
       <div className="container">
         <div className="section-header">
-          <div className="badge">{t('howItWorks.badge')}</div>
+          <div className="badge chestnut-badge">{t('howItWorks.badge')}</div>
           <h2>{t('howItWorks.title')}</h2>
-          <HorizontalPintxoIcon color="#3EC1C9" width={140} height={32} />
+          <HorizontalPintxoIcon color="#F5EBE1" width={140} height={32} />
           <p>{t('howItWorks.subtitle')}</p>
         </div>
 
@@ -34,13 +34,33 @@ export const HowItWorks = ({ onOpenBooking }) => {
         </div>
 
         <div className="how-it-works-cta">
-          <button className="btn btn-outline-gold" onClick={onOpenBooking}>
+          <button className="btn btn-outline-gold how-cta-btn" onClick={onOpenBooking}>
             <span>Diseña tu evento en 2 minutos</span>
           </button>
         </div>
       </div>
 
       <style>{`
+        .how-it-works-section {
+          background-color: #886850;
+          color: #FFFFFF;
+          padding: 5rem 0;
+        }
+
+        .how-it-works-section h2 {
+          color: #FFFFFF;
+        }
+
+        .how-it-works-section .section-header p {
+          color: #F5EBE1;
+        }
+
+        .chestnut-badge {
+          background: rgba(255, 255, 255, 0.15) !important;
+          border-color: rgba(255, 255, 255, 0.4) !important;
+          color: #FFFFFF !important;
+        }
+
         .steps-container {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -49,25 +69,26 @@ export const HowItWorks = ({ onOpenBooking }) => {
         }
 
         .step-card {
-          background: var(--bg-card-dark);
-          border: 1px solid rgba(247, 245, 240, 0.08);
+          background: #2D211A;
+          border: 1px solid rgba(201, 176, 74, 0.35);
           padding: 2rem 1.5rem;
           position: relative;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          transition: border-color var(--transition-fast);
+          transition: border-color var(--transition-fast), transform var(--transition-fast);
         }
 
         .step-card:hover {
-          border-color: var(--accent-cyan);
+          border-color: #C9B04A;
+          transform: translateY(-4px);
         }
 
         .step-number {
           font-family: var(--font-subtitles);
           font-size: 2.8rem;
           font-weight: 700;
-          color: var(--accent-cyan);
+          color: #C9B04A;
           line-height: 1;
           margin-bottom: 1rem;
         }
@@ -75,12 +96,13 @@ export const HowItWorks = ({ onOpenBooking }) => {
         .step-content h3 {
           font-size: 1.25rem;
           margin-bottom: 0.75rem;
-          color: var(--text-dark-primary);
+          color: #FFFFFF;
         }
 
         .step-content p {
           font-size: 0.92rem;
           line-height: 1.6;
+          color: #E6DDD6;
         }
 
         .step-connector {
@@ -88,19 +110,30 @@ export const HowItWorks = ({ onOpenBooking }) => {
           right: -1.2rem;
           top: 3.5rem;
           z-index: 2;
-          color: var(--accent-cyan);
-          background: var(--bg-dark);
+          color: #C9B04A;
+          background: #2D211A;
           width: 32px;
           height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid rgba(62, 193, 201, 0.4);
+          border: 1px solid #C9B04A;
         }
 
         .how-it-works-cta {
           text-align: center;
           margin-top: 3.5rem;
+        }
+
+        .how-cta-btn {
+          border-color: #C9B04A !important;
+          color: #C9B04A !important;
+          background: #2D211A !important;
+        }
+
+        .how-cta-btn:hover {
+          background: #C9B04A !important;
+          color: #0D0D0C !important;
         }
 
         @media (max-width: 1024px) {

@@ -15,7 +15,7 @@ export const FinalCTA = ({ onOpenBooking }) => {
           <p>{t('finalCta.subtitle')}</p>
 
           <div className="final-cta-actions">
-            <button className="btn btn-primary btn-large" onClick={onOpenBooking}>
+            <button className="btn btn-primary btn-large final-primary-btn" onClick={onOpenBooking}>
               <Calendar size={20} />
               <span>{t('finalCta.primaryBtn')}</span>
             </button>
@@ -24,7 +24,7 @@ export const FinalCTA = ({ onOpenBooking }) => {
               href="https://wa.me/498912345678" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn btn-secondary btn-large"
+              className="btn btn-secondary btn-large final-sec-btn"
             >
               <MessageCircle size={20} />
               <span>{t('finalCta.secondaryBtn')}</span>
@@ -36,12 +36,14 @@ export const FinalCTA = ({ onOpenBooking }) => {
       <style>{`
         .final-cta-section {
           position: relative;
-          background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-surface-dark) 100%);
+          background: linear-gradient(135deg, #6F352D 0%, #5B1C2B 100%);
+          padding: 6rem 0;
         }
 
         .final-cta-card {
-          background: rgba(30, 29, 27, 0.85);
-          border: 1px solid var(--accent-cyan);
+          background: rgba(20, 10, 14, 0.88);
+          backdrop-filter: blur(12px);
+          border: 1px solid #C9B04A;
           padding: 4rem 3rem;
           text-align: center;
           max-width: 900px;
@@ -60,6 +62,7 @@ export const FinalCTA = ({ onOpenBooking }) => {
           max-width: 680px;
           margin: 0 auto 2.5rem auto;
           line-height: 1.6;
+          color: #E8DFDC;
         }
 
         .final-cta-actions {
@@ -70,8 +73,29 @@ export const FinalCTA = ({ onOpenBooking }) => {
         }
 
         .btn-large {
-          font-size: 1.1rem;
+          font-size: 1.05rem;
           padding: 1.1rem 2.5rem;
+        }
+
+        .final-primary-btn {
+          background: #C9B04A !important;
+          color: #0D0D0C !important;
+        }
+
+        .final-primary-btn:hover {
+          background: #E6C665 !important;
+        }
+
+        .final-sec-btn {
+          background: rgba(255, 255, 255, 0.1) !important;
+          border-color: rgba(255, 255, 255, 0.3) !important;
+          color: #FFFFFF !important;
+        }
+
+        .final-sec-btn:hover {
+          background: rgba(255, 255, 255, 0.2) !important;
+          border-color: #C9B04A !important;
+          color: #C9B04A !important;
         }
 
         @media (max-width: 640px) {
