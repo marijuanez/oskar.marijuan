@@ -18,6 +18,7 @@ import { GourmetCartDrawer } from './components/GourmetCartDrawer';
 import { BookingModal } from './components/BookingModal';
 import { PromotionsBanner } from './components/public/PromotionsBanner';
 import { CookieConsent } from './components/CookieConsent';
+import { LegalPage } from './components/legal/LegalPage';
 
 // Admin Components
 import { AdminLayout } from './components/admin/AdminLayout';
@@ -25,7 +26,16 @@ import { AdminLogin } from './components/admin/AdminLogin';
 
 function MainAppContent() {
   const { currentUser } = useAuth();
-  const [route, setRoute] = useState(window.location.hash === '#admin' ? 'admin' : 'public');
+  
+  const getInitialRoute = () => {
+    const hash = window.location.hash.toLowerCase();
+    const path = window.location.pathname.toLowerCase();
+    if (hash === '#admin') return 'admin';
+    if (hash.startsWith('#legal') || hash.startsWith('#cancellation') || hash.startsWith('#terms') || hash.startsWith('#privacy') || path.includes('/legal')) return 'legal';
+    return 'public';
+  };
+
+  const [route, setRoute] = useState(getInitialRoute);
 
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -34,14 +44,23 @@ function MainAppContent() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#admin') {
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+      if (hash === '#admin') {
         setRoute('admin');
+      } else if (hash.startsWith('#legal') || hash.startsWith('#cancellation') || hash.startsWith('#terms') || hash.startsWith('#privacy') || path.includes('/legal')) {
+        setRoute('legal');
       } else {
         setRoute('public');
       }
     };
+
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
+    };
   }, []);
 
   // Cart Handlers
@@ -99,6 +118,46 @@ function MainAppContent() {
           setRoute('public');
         }} 
       />
+    );
+  }
+
+  // Render Legal Page Route
+  if (route === 'legal') {
+    let initialTab = 'cancellation';
+    const hash = window.location.hash.toLowerCase();
+    if (hash.includes('terms') || hash.includes('agb')) initialTab = 'terms';
+    if (hash.includes('privacy') || hash.includes('datenschutz')) initialTab = 'privacy';
+
+    return (
+      <div className="munitxos-app">
+        <Navbar 
+          onOpenCart={() => setIsCartOpen(true)}
+          cartCount={totalCartCount}
+          onOpenBooking={() => handleOpenBooking()}
+        />
+        <LegalPage 
+          initialTab={initialTab}
+          onBackToHome={() => {
+            window.location.hash = '';
+            setRoute('public');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+        <Footer />
+        <GourmetCartDrawer 
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveItem={handleRemoveCartItem}
+        />
+        <BookingModal 
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          initialData={bookingPrefill}
+        />
+        <CookieConsent />
+      </div>
     );
   }
 

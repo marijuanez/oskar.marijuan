@@ -60,9 +60,10 @@ export const Footer = () => {
           <div className="footer-col">
             <h4>{t('footer.legal')}</h4>
             <ul>
-              <li><a href="#">{t('footer.impressum')}</a></li>
-              <li><a href="#">{t('footer.privacy')}</a></li>
-              <li><a href="#">{t('footer.terms')}</a></li>
+              <li><a href="#legal#cancellation">{t('footer.cancellation')}</a></li>
+              <li><a href="#legal#terms">{t('footer.terms')}</a></li>
+              <li><a href="#legal#privacy">{t('footer.privacy')}</a></li>
+              <li><a href="#legal#terms">{t('footer.impressum')}</a></li>
               <li>
                 <button onClick={handleOpenCookieSettings} className="footer-cookie-link">
                   <Cookie size={13} />
